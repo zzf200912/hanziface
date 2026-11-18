@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://hanziface.com/sitemap.xml
+# auto deploy test
