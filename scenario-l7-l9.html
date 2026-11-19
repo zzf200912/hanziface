@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L7–L9 高阶汉语 · 情境连续对话 | HanziFace Premium</title>
+<meta name="description" content="HanziFace Premium：L7-L9 高阶汉语情境连续对话，12 课 HSK6+ 深度内容，固定角色、分支剧情、三语对照、文化点。">
+<style>
+:root{--red:#c0392b;--red-dark:#96281b;--gold:#d4a017;--ink:#1f2937;--muted:#6b7280;--line:#e7e2d8;--bg:#faf7f0;--card:#fff;--green:#2e7d32;--blue:#185fa5;--purple:#7b4ea0;--teal:#1f8a70}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+header{background:var(--card);border-bottom:3px solid var(--gold);padding:14px 0}
+.hd{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:20px;font-weight:800;color:var(--red)}
+.badge-demo{background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:999px}
+.badge-prem{background:#1f2937;color:#f5d76e;font-size:11px;font-weight:700;padding:3px 12px;border-radius:999px;border:1px solid #b8860b}
+.hd .sp{flex:1}
+.hd .meta{font-size:12px;color:var(--muted)}
+main{padding:22px 0 70px}
+.levelbar{font-size:12px;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.levelbar b{color:var(--red)}
+.lvgroup{margin-bottom:14px}
+.lvtitle{font-size:12px;font-weight:700;color:var(--purple);letter-spacing:.5px;margin:0 0 6px 2px;display:flex;align-items:center;gap:8px}
+.lvtitle .tag{background:var(--purple);color:#fff;font-size:10px;padding:1px 8px;border-radius:999px}
+.coursebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.coursebar .c{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:8px 12px;font-size:12px;cursor:pointer;transition:.15s;line-height:1.3;position:relative}
+.coursebar .c:hover{border-color:var(--gold);transform:translateY(-2px)}
+.coursebar .c.on{background:var(--red);color:#fff;border-color:var(--red)}
+.coursebar .c b{display:block;font-size:13px;font-weight:700}
+.coursebar .c span{opacity:.75;font-size:11px}
+.coursebar .c .pro{position:absolute;top:-7px;right:-6px;background:#1f2937;color:#f5d76e;font-size:9px;font-weight:700;padding:1px 6px;border-radius:999px;border:1px solid #b8860b}
+.scene{background:linear-gradient(135deg,#3b2b52,#62407e);color:#fff;border-radius:16px;padding:22px 24px;margin-bottom:18px}
+.scene .kicker{font-size:11px;letter-spacing:1px;opacity:.85;text-transform:uppercase}
+.scene h1{font-size:25px;margin:4px 0 8px}
+.scene h1 .h1en{display:block;font-size:14px;font-weight:500;opacity:.75;margin-top:2px}
+.scene p{font-size:14px;opacity:.95;margin:2px 0}
+.scene p.descen{font-size:12px;opacity:.7;font-style:italic;line-height:1.5}
+.cast{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{background:rgba(255,255,255,.18);border-radius:999px;padding:4px 12px;font-size:12px}
+.chip .en{opacity:.7;font-size:10px;margin-left:6px;font-style:italic}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.trail{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:16px}
+.trail b{color:var(--red)}
+.trail .sep{color:#bbb}
+.dlg{display:flex;flex-direction:column;gap:14px}
+.bubble{max-width:88%;border-radius:14px;padding:12px 16px;background:#f7f3ea;animation:pop .25s ease}
+.bubble.right{align-self:flex-end;background:#fbeaea}
+.bubble.anna{background:#eaf2fb}
+.bubble.waiter,.bubble.agent{background:#eef0f2}
+.bubble.friend,.bubble.banker{background:#eef7fb}
+.bubble.boss,.bubble.doctor{background:#f0f7ea}
+.bubble.teacher,.bubble.colleague{background:#f4eefb}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.who{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:3px}
+.who .dot{margin-right:5px}
+.who .en{opacity:.65;font-weight:500;font-size:10px;margin-left:6px;font-style:italic}
+.bubble .zh{font-size:19px;font-weight:700}
+.bubble .py{color:var(--gold);font-size:13px;margin:2px 0}
+.bubble .en{color:var(--muted);font-size:13px;font-style:italic}
+.say{border:none;background:var(--gold);color:#fff;border-radius:999px;padding:2px 10px;font-size:11px;cursor:pointer;margin-left:8px;vertical-align:middle}
+.culture{background:#fffaf0;border-left:3px solid var(--gold);border-radius:8px;padding:10px 14px;font-size:13px;color:#8a6d1f;margin:2px 0}
+.culture b{color:var(--red-dark)}
+.prompt{background:#fff;border:2px dashed var(--gold);border-radius:14px;padding:16px 18px;margin:8px 0 4px}
+.prompt .q{font-size:14px;font-weight:600;margin-bottom:12px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{text-align:left;background:#fff;border:2px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;cursor:pointer;transition:.15s}
+.opt:hover{border-color:var(--red);transform:translateX(3px)}
+.opt .n{display:inline-block;background:var(--red);color:#fff;width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;font-size:12px;font-weight:700;margin-right:10px}
+.opt .sub{display:block;font-size:12px;color:var(--muted);margin-left:32px;font-style:italic}
+.controls{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.btn{border:none;cursor:pointer;font-size:14px;font-weight:600;padding:10px 22px;border-radius:999px}
+.btn-red{background:var(--red);color:#fff}
+.btn-ghost{background:transparent;border:2px solid var(--line);color:var(--muted)}
+.end{background:var(--card);border:2px solid var(--gold);border-radius:18px;padding:28px;text-align:center;margin-top:10px}
+.end .big{font-size:40px}
+.end h2{color:var(--red-dark);font-size:22px;margin:6px 0}
+.end .paths{font-size:13px;color:var(--muted);margin:12px 0}
+footer{text-align:center;color:#9ca3af;font-size:12px;padding:20px;line-height:1.8}
+.certmodal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:99;padding:20px}
+.certcard{background:#fff;border-radius:16px;padding:26px;max-width:440px;width:100%;box-shadow:0 12px 44px rgba(0,0,0,.25)}
+.certcard h3{margin-bottom:6px;color:var(--red-dark);font-size:19px}
+.certcard .note{font-size:12px;color:var(--muted);line-height:1.6}
+.certcard label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin:16px 0 6px}
+.certcard input{width:100%;border:2px solid var(--line);border-radius:10px;padding:10px 12px;font-size:15px}
+.certmeta{background:#faf7f0;border-radius:8px;padding:10px 12px;font-size:13px;margin:14px 0}
+.certbtns{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<header><div class="wrap hd">
+  <div class="logo">汉字Face <span style="color:var(--gold)">· HanziFace</span></div>
+  <span class="badge-prem">★ PREMIUM</span>
+  <div class="sp"></div>
+  <div class="meta">L7–L9 高阶 · 12 课</div>
+</div></header>
+<main class="wrap">
+  <div class="levelbar">课程：<b id="lessonCount"></b> · 点击任一课进入，剧情分支随你的选择变化</div>
+  <div id="coursebar"></div>
+  <div class="scene" id="scene"></div>
+  <div class="trail" id="trail"></div>
+  <div class="dlg" id="dlg"></div>
+  <div class="controls" id="controls"></div>
+</main>
+<footer>情境连续对话 · L7–L9 高阶汉语（12 课 · Premium）<br>固定角色 + 连续剧情 + 分支选择 + 文化点 · HSK6+ 思辨与专业内容</footer>
+
+<script>
+const ROLES={
+  me:{name:"我（小明）",en:"Me (Xiaoming)",color:"#c0392b",cls:""},
+  anna:{name:"Anna",en:"Anna",color:"#185fa5",cls:"anna"},
+  colleague:{name:"同事",en:"Colleague",color:"#7b4ea0",cls:"colleague"},
+  boss:{name:"上司",en:"Boss",color:"#2e7d32",cls:"boss"},
+  friend:{name:"朋友",en:"Friend",color:"#1f8a70",cls:"friend"},
+  expert:{name:"专家",en:"Expert",color:"#96281b",cls:"agent"},
+  lawyer:{name:"律师",en:"Lawyer",color:"#185fa5",cls:"anna"},
+  doctor:{name:"医生",en:"Doctor",color:"#2e7d32",cls:"doctor"}
+};
+const LEVEL_TAG={L7:"HSK6 · 思辨表达",L8:"HSK6+ · 专业场景",L9:"HSK6+ · 文化精通"};
+const COURSES=[
+  {
+    id:"l7-1",level:"L7",title:"热搜该不该管",titleEn:"Should trending topics be controlled?",scene:"Scene L7-1 · 办公室午休",
+    desc:"Anna 看到一个热搜话题，大家看法不一。聊聊舆论、隐私和「网络暴力」——高阶思辨从这里开始。",
+    descEn:"Anna sees a trending topic and opinions differ. Discuss public opinion, privacy and online harassment — advanced critical thinking starts here.",
+    cast:["me","anna","colleague"],
+    names:{start:"刷到热搜",facts:"求证事实",emotion:"情绪与立场","end":"理性收尾"},
+    story:{
+      start:{
+        lines:[
+          {who:"anna",zh:"这个热搜你们看了吗？评论区吵翻了。",py:"Zhège rèshōu nǐmen kàn le ma? Pínglùnqū chǎo fān le.",en:"Did you guys see this trending topic? The comment section is exploding."},
+          {who:"colleague",zh:"我一看标题就觉得，当事人被曝光了。",py:"Wǒ yí kàn biāotí jiù juéde, dāngshìrén bèi bàoguāng le.",en:"The moment I saw the headline I felt the person's privacy was exposed."}
+        ],
+        prompt:{zh:"面对全网讨论，你的第一反应是？",en:"Faced with a viral online discussion, what's your first reaction?"},
+        opts:[
+          {label:"先弄清楚事实",en:"Find out the facts first",to:"facts"},
+          {label:"先谈谈该不该曝光",en:"Discuss whether it should be exposed",to:"emotion"}
+        ]
+      },
+      facts:{
+        lines:[
+          {who:"me",zh:"网上信息真假难辨，最好等官方通报。",py:"Wǎngshàng xìnxī zhēnjiǎ nándbiàn, zuìhǎo děng guānfāng tōngbào.",en:"Online info is hard to verify — best to wait for an official statement."},
+          {who:"anna",zh:"有道理。可很多人跟着骂，已经造成网络暴力了。",py:"Yǒu dàolǐ. Kě hěn duō rén gēn zhe mà, yǐjīng zàochéng wǎngluò bàolì le.",en:"Fair point. But many people piled on and it's already become cyberbullying."}
+        ],
+        culture:"<b>思辨词：</b>「真假难辨」zhēnjiǎ nándbiàn = hard to tell true from false；「官方通报」guānfāng tōngbào = official statement；「网络暴力」wǎngluò bàolì = cyberbullying。高阶讨论常先区分事实与情绪。",
+        to:"end"
+      },
+      emotion:{
+        lines:[
+          {who:"colleague",zh:"我觉得平台得管，不能什么都往上推。",py:"Wǒ juéde píngtái děi guǎn, bùnéng shénme dōu wǎng shàng tuī.",en:"I think the platform should step in — it can't push everything."},
+          {who:"me",zh:"但谁来定义「该管」？管多了，又是另一种问题。",py:"Dàn shuí lái dìngyì 'gāi guǎn'? Guǎn duō le, yòu shì lìng yì zhǒng wèntí.",en:"But who decides what should be controlled? Over-control creates another problem."}
+        ],
+        culture:"<b>表达两难：</b>「但谁来……」= but who will...；「管多了」= over-regulate；「另一种问题」= a different kind of problem。这是表达复杂立场的高频句型。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"anna",zh:"看来这事没那么简单。至少我下次会先等等，不跟风。",py:"Kànlái zhè shì méi nàme jiǎndān. Zhìshǎo wǒ xià cì huì xiān děngdeng, bù gēnfēng.",en:"It's more complicated than I thought. At least next time I'll wait instead of following the crowd."},
+          {who:"me",zh:"对，「让子弹飞一会儿」——先别急着下结论。",py:"Duì, 'ràng zǐdàn fēi yíhuìr' — xiān bié jí zhe xià jiélùn.",en:"Right — 'let the bullet fly for a moment,' i.e. don't rush to conclusions."}
+        ],
+        culture:"<b>网络流行语：</b>「让子弹飞一会儿」ràng zǐdàn fēi yíhuìr 出自电影，意为「先别急着下判断」；「跟风」gēnfēng = follow the trend。理解这类表达是融入中文网络语境的关键。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l7-2",level:"L7",title:"内卷与躺平",titleEn:"Involution and lying flat",scene:"Scene L7-2 · 深夜朋友圈",
+    desc:"朋友纠结要不要「卷」升职。内卷、躺平、精神内耗——这些高频社会词，看懂才能听懂当代中国人的焦虑。",
+    descEn:"A friend debates whether to chase a promotion. Involution, lying flat, mental friction — understand these social buzzwords to grasp contemporary anxieties.",
+    cast:["me","friend"],
+    names:{start:"要不要卷",involution:"什么是内卷","flat":"躺平的选择","end":"找到平衡"},
+    story:{
+      start:{
+        lines:[
+          {who:"friend",zh:"领导又暗示我竞争主管，可我最近特别累。",py:"Lǐngdǎo yòu ànshì wǒ jìngzhēng zhǔguǎn, kě wǒ zuìjìn tèbié lèi.",en:"My boss hinted again that I should compete for manager, but I'm exhausted."},
+          {who:"me",zh:"这就是典型的「内卷」吧，大家都被推着往前。",py:"Zhè jiùshì diǎnxíng de 'nèijuǎn' ba, dàjiā dōu bèi tuī zhe wǎng qián.",en:"That's classic 'involution' — everyone's pushed forward."}
+        ],
+        prompt:{zh:"你会劝朋友怎么做？",en:"What would you advise your friend?"},
+        opts:[
+          {label:"分析内卷的本质",en:"Analyze the nature of involution",to:"involution"},
+          {label:"聊聊躺平行不行",en:"Discuss whether lying flat works",to:"flat"}
+        ]
+      },
+      involution:{
+        lines:[
+          {who:"me",zh:"内卷就是努力越来越多，回报却没变多。",py:"Nèijuǎn jiùshì nǔlì yuèláiyuè duō, huíbào què méi biàn duō.",en:"Involution means ever more effort but no extra reward."},
+          {who:"friend",zh:"没错，像大家加班比谁走得晚，其实产出没增加。",py:"Méicuò, xiàng dàjiā jiābān bǐ shuí zǒu de wǎn, qíshí chǎnchū méi zēngjiā.",en:"Exactly — like competing over who leaves latest, with no real gain."}
+        ],
+        culture:"<b>高频句型：</b>「越……越……」= the more... the more...；「其实」qíshí = actually。内卷 nèijuǎn 已被英语世界收录为 involution，是中国当代社会最核心的词之一。",
+        to:"end"
+      },
+      flat:{
+        lines:[
+          {who:"friend",zh:"有时候真想躺平，不争了。",py:"Yǒu shíhou zhēn xiǎng tǎngpíng, bù zhēng le.",en:"Sometimes I just want to lie flat and stop competing."},
+          {who:"me",zh:"躺平能喘口气，但完全躺下也有代价。关键是知道自己要什么。",py:"Tǎngpíng néng chuǎn kǒu qì, dàn wánquán tǎng xià yě yǒu dàijià. Guānjiàn shì zhīdào zìjǐ yào shénme.",en:"Lying flat lets you breathe, but total withdrawal has a cost. The key is knowing what you want."}
+        ],
+        culture:"<b>表达建议：</b>「喘口气」chuǎn kǒu qì = catch a breath；「代价」dàijià = price/cost；「关键是……」= the key is...。躺平 tǎngpíng = lying flat，指主动降低欲望、退出竞争。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"friend",zh:"你说得对，我不如先想清楚，别精神内耗。",py:"Nǐ shuō de duì, wǒ bùrú xiān xiǎng qīngchu, bié jīngshén nèihào.",en:"You're right — I should figure things out first and stop the mental friction."},
+          {who:"me",zh:"对，卷也好，躺也好，别让别人的节奏替你做决定。",py:"Duì, juǎn yě hǎo, tǎng yě hǎo, bié ràng biérén de jiézòu tì nǐ zuò juédìng.",en:"Right — whether you hustle or rest, don't let others' pace decide for you."}
+        ],
+        culture:"<b>价值表达：</b>「精神内耗」jīngshén nèihào = mental friction / internal drain（近年超高频词）；「与其……不如……」= rather than... better to...；「节奏」jiézòu = pace。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l7-3",level:"L7",title:"催婚与边界",titleEn:"Marriage pressure and boundaries",scene:"Scene L7-3 · 家庭视频通话",
+    desc:"Anna 被家人催婚，学会既尊重长辈、又守住自己的边界——中文里「委婉拒绝」的分寸感，是高阶社交的必修课。",
+    descEn:"Anna faces marriage pressure from family. Learn to respect elders while holding your boundaries — the art of polite refusal in Chinese is essential advanced social skill.",
+    cast:["me","anna","friend"],
+    names:{start:"被催婚",reason:"理解长辈","boundary":"委婉拒绝","end":"守住分寸"},
+    story:{
+      start:{
+        lines:[
+          {who:"anna",zh:"我妈又催我找对象了，视频里哭了。",py:"Wǒ mā yòu cuī wǒ zhǎo duìxiàng le, shìpín lǐ kū le.",en:"My mom pressured me about finding a partner again — she cried on the video call."},
+          {who:"friend",zh:"哎，咱们这代人都躲不过这一关。",py:"Āi, zánmen zhè dài rén dōu duǒ bú guò zhè yì guān.",en:"Sigh — our generation can't escape this."}
+        ],
+        prompt:{zh:"你想先怎么处理？",en:"How would you handle it first?"},
+        opts:[
+          {label:"先理解长辈的立场",en:"Understand the elder's perspective",to:"reason"},
+          {label:"直接商量怎么拒绝",en:"Discuss how to refuse",to:"boundary"}
+        ]
+      },
+      reason:{
+        lines:[
+          {who:"me",zh:"长辈催婚，很多时候是怕你晚年孤单。",py:"Zhǎngbèi cuīhūn, hěn duō shíhou shì pà nǐ wǎnnián gūdān.",en:"Elders push for marriage mostly because they fear you'll be lonely later."},
+          {who:"anna",zh:"我懂，但「为你好」有时候也让人喘不过气。",py:"Wǒ dǒng, dàn 'wèi nǐ hǎo' yǒu shíhou yě ràng rén chuǎn bú guò qì.",en:"I get it, but 'for your own good' can be suffocating."}
+        ],
+        culture:"<b>文化理解：</b>「为你好」wèi nǐ hǎo = for your own good（中国式关心的口头禅）；「喘不过气」= feel suffocated。理解动机不等于接受行为，这是成熟表达的前提。",
+        to:"end"
+      },
+      boundary:{
+        lines:[
+          {who:"me",zh:"别说「我不结婚」，可以说「我还没遇到合适的」。",py:"Bié shuō 'wǒ bù jiéhūn', kěyǐ shuō 'wǒ hái méi yùdào héshì de'.",en:"Don't say 'I won't marry' — say 'I haven't met the right person yet.'"},
+          {who:"anna",zh:"这样既没撒谎，也没把话说死，是吧？",py:"Zhèyàng jì méi sāhuǎng, yě méi bǎ huà shuō sǐ, shì ba?",en:"That way I'm neither lying nor closing the door — right?"}
+        ],
+        culture:"<b>委婉表达：</b>「没把话说死」= not rule it out completely；「合适的」héshì de = suitable (one)；中文长辈沟通多用模糊、留余地的说法，避免正面冲突。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"anna",zh:"我打算说：您的心意我明白，我会照顾好自己。",py:"Wǒ dǎsuàn shuō: nín de xīnyì wǒ míngbai, wǒ huì zhàogù hǎo zìjǐ.",en:"I'll say: I understand your care, and I'll take good care of myself."},
+          {who:"me",zh:"很好，先接住关心，再守住边界——这就是分寸。",py:"Hěn hǎo, xiān jiē zhù guānxīn, zài shǒuzhù biānjiè — zhè jiùshì fēncùn.",en:"Perfect — accept the care first, then hold your boundary. That's the right measure."}
+        ],
+        culture:"<b>高阶分寸：</b>「心意」xīnyì = good intention；「接住」jiē zhù = acknowledge/accept；「边界」biānjiè = boundary；「分寸」fēncùn = sense of propriety。这是中文高语境沟通的核心。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l7-4",level:"L7",title:"消费观与断舍离",titleEn:"Consumerism and minimalism",scene:"Scene L7-4 · 搬家整理",
+    desc:"搬家时面对一堆闲置物品，聊聊「断舍离」和消费观。从买买买到极简，学会用中文表达价值观的转变。",
+    descEn:"Sorting through unused things during a move, discuss minimalism and consumer values. From shopping sprees to simplicity — express a shift in values in Chinese.",
+    cast:["me","anna"],
+    names:{start:"一堆闲置","why":"为什么买","minimal":"断舍离","end":"新的消费观"},
+    story:{
+      start:{
+        lines:[
+          {who:"anna",zh:"这些没拆封的东西，我当初为什么买啊？",py:"Zhèxiē méi chāifēng de dōngxi, wǒ dāngchū wèishénme mǎi a?",en:"Why did I buy all these unopened things?"},
+          {who:"me",zh:"这就是「冲动消费」，当时觉得便宜，结果用不上。",py:"Zhè jiùshì 'chōngdòng xiāofèi', dāngshí juéde piányi, jiéguǒ yòng bú shàng.",en:"That's impulse buying — seemed cheap at the time, but ended up unused."}
+        ],
+        prompt:{zh:"你觉得该怎么处理？",en:"How do you think she should handle it?"},
+        opts:[
+          {label:"反思消费习惯",en:"Reflect on shopping habits",to:"why"},
+          {label:"实践断舍离",en:"Practice minimalism",to:"minimal"}
+        ]
+      },
+      why:{
+        lines:[
+          {who:"me",zh:"直播间的「限时秒杀」最容易让人上头。",py:"Zhíbō jiān de 'xiànshí miǎoshā' zuì róngyì ràng rén shàngtóu.",en:"Live-stream 'limited-time flash sales' most easily get people carried away."},
+          {who:"anna",zh:"对，还总觉得「买了就省了」，其实根本没需要。",py:"Duì, hái zǒng juéde 'mǎi le jiù shěng le', qíshí gēnběn méi xūyào.",en:"Right, and I always felt 'buying saves money,' but I didn't need it at all."}
+        ],
+        culture:"<b>消费词：</b>「冲动消费」chōngdòng xiāofèi = impulse buying；「上头」shàngtóu = get carried away；「秒杀」miǎoshā = flash sale。「买了就省了」是典型的自我说服话术。",
+        to:"end"
+      },
+      minimal:{
+        lines:[
+          {who:"anna",zh:"我决定学「断舍离」，只留下真正需要的。",py:"Wǒ juédìng xué 'duànshělí', zhǐ liú xià zhēnzhèng xūyào de.",en:"I've decided to try minimalism — keep only what I truly need."},
+          {who:"me",zh:"好，问自己三个问题：用得上吗？喜欢吗？会一直留吗？",py:"Hǎo, wèn zìjǐ sān ge wèntí: yòng de shàng ma? Xǐhuan ma? Huì yìzhí liú ma?",en:"Good — ask three questions: will I use it? Do I love it? Will I keep it long-term?"}
+        ],
+        culture:"<b>生活方式词：</b>「断舍离」duànshělí = minimalism (let go of unneeded things)；「闲置」xiánzhì = idle/unused；「留下」liú xià = keep。这是近年流行的生活哲学词汇。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"anna",zh:"清完这些东西，心里反而轻松了。",py:"Qīng wán zhèxiē dōngxi, xīnlǐ fǎn'ér qīngsōng le.",en:"After clearing all this out, I actually feel lighter."},
+          {who:"me",zh:"对，「少即是多」。买之前先想想，是不是真的需要。",py:"Duì, 'shǎo jí shì duō'. Mǎi zhīqián xiān xiǎngxiang, shì bú shì zhēn de xūyào.",en:"Right — 'less is more.' Think before you buy: do you really need it?"}
+        ],
+        culture:"<b>哲理表达：</b>「少即是多」shǎo jí shì duō = less is more；「反而」fǎn'ér = instead/on the contrary；「心里轻松」= feel relieved。用中文讲生活感悟，难在自然，不在词汇。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l8-1",level:"L8",title:"商务谈判拉锯",titleEn:"The negotiation tug-of-war",scene:"Scene L8-1 · 会议室",
+    desc:"和供应商谈年度合同，价格、账期、违约条款——用中文把立场说清楚，还要给对方留余地。",
+    descEn:"Negotiating an annual contract with a supplier: price, payment terms, penalty clauses — state your position clearly while leaving room for the other side.",
+    cast:["me","boss","expert"],
+    names:{start:"开场报价",price:"价格拉锯",terms:"账期条款","end":"达成协议"},
+    story:{
+      start:{
+        lines:[
+          {who:"boss",zh:"这次谈判你来主谈，我听着。别把底牌全亮了。",py:"Zhè cì tánpàn nǐ lái zhǔtán, wǒ tīng zhe. Bié bǎ dǐpái quán liàng le.",en:"You lead this negotiation; I'll listen. Don't reveal all our cards."},
+          {who:"me",zh:"明白，我先探他们的价，再谈条件。",py:"Míngbai, wǒ xiān tàn tāmen de jià, zài tán tiáojiàn.",en:"Understood — I'll probe their price first, then discuss terms."}
+        ],
+        prompt:{zh:"对方报价偏高，你的策略是？",en:"Their quote is high — what's your strategy?"},
+        opts:[
+          {label:"直接压价，亮出底线",en:"Push back hard, show your bottom line",to:"price"},
+          {label:"先谈合作，再谈价格",en:"Build rapport first, then discuss price",to:"terms"}
+        ]
+      },
+      price:{
+        lines:[
+          {who:"me",zh:"这个价格我们很难接受，能再让一步吗？",py:"Zhège jiàgé wǒmen hěn nán jiēshòu, néng zài ràng yí bù ma?",en:"This price is hard for us to accept — can you move a bit?"},
+          {who:"expert",zh:"可以谈，但如果降价，账期得缩短到三十天。",py:"Kěyǐ tán, dàn rúguǒ jiàngjià, zhàngqī děi suōduǎn dào sānshí tiān.",en:"We can talk, but if the price drops, payment terms must shrink to 30 days."}
+        ],
+        culture:"<b>谈判词：</b>「让一步」= make a concession；「账期」zhàngqī = payment term；「缩短」suōduǎn = shorten；「底线」dǐxiàn = bottom line。中文谈判讲究「有来有往」，很少一口回绝。",
+        to:"end"
+      },
+      terms:{
+        lines:[
+          {who:"me",zh:"价格先放一放。我们更看重长期合作和稳定的供应。",py:"Jiàgé xiān fàng yi fàng. Wǒmen gèng kànzhòng chángqī hézuò hé wěndìng de gōngyìng.",en:"Let's set price aside for now — we value long-term partnership and stable supply more."},
+          {who:"expert",zh:"那好办。量上去了，价格自然好谈。",py:"Nà hǎo bàn. Liàng shàng qù le, jiàgé zìrán hǎo tán.",en:"That's easy — once volume goes up, price is naturally negotiable."}
+        ],
+        culture:"<b>迂回策略：</b>「先放一放」= set aside for now；「更看重……」= value... more；「自然」zìrán = naturally。先谈共识再谈分歧，是中文商务沟通的典型节奏。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"me",zh:"那我们各退一步：价格降五个点，账期四十五天。",py:"Nà wǒmen gè tuì yí bù: jiàgé jiàng wǔ ge diǎn, zhàngqī sìshíwǔ tiān.",en:"Then let's both compromise: 5% off, 45-day payment terms."},
+          {who:"boss",zh:"可以，白纸黑字写进合同，我就签字。",py:"Kěyǐ, báizhǐhēizì xiě jìn hétong, wǒ jiù qiānzì.",en:"Good — put it in black and white in the contract and I'll sign."}
+        ],
+        culture:"<b>成交用语：</b>「各退一步」= both sides compromise；「五个点」= 5 percentage points；「白纸黑字」báizhǐhēizì = in black and white (written explicitly)。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l8-2",level:"L8",title:"劳动纠纷咨询",titleEn:"Consulting a lawyer",scene:"Scene L8-2 · 律师事务所",
+    desc:"Anna 被公司无故辞退，向律师咨询维权。试用期、赔偿金、劳动仲裁——听懂专业术语，维护自己的权益。",
+    descEn:"Anna was unfairly dismissed and consults a lawyer. Probation, severance, labor arbitration — understand legal jargon to protect your rights.",
+    cast:["me","anna","lawyer"],
+    names:{start:"说明情况","case":"评析案情","action":"维权步骤","end":"心中有数"},
+    story:{
+      start:{
+        lines:[
+          {who:"anna",zh:"律师您好，我试用期刚过就被辞退了，理由是「不合适」。",py:"Lǜshī nín hǎo, wǒ shìyòngqī gāng guò jiù bèi cítuì le, lǐyóu shì 'bù héshì'.",en:"Hello lawyer — I was dismissed right after probation, the reason given was 'not suitable.'"},
+          {who:"lawyer",zh:"先别急。公司给出书面通知了吗？",py:"Xiān bié jí. Gōngsī gěi chū shūmiàn tōngzhī le ma?",en:"Take it easy. Did the company give you a written notice?"}
+        ],
+        prompt:{zh:"你想先了解哪方面？",en:"What do you want to understand first?"},
+        opts:[
+          {label:"我这种情况合法吗",en:"Was this legal?",to:"case"},
+          {label:"我能拿到什么赔偿",en:"What compensation can I get?",to:"action"}
+        ]
+      },
+      case:{
+        lines:[
+          {who:"lawyer",zh:"试用期后辞退，公司得证明你确实不符合录用条件。",py:"Shìyòngqī hòu cítuì, gōngsī děi zhèngmíng nǐ quèshí bù fúhé lùyòng tiáojiàn.",en:"After probation, dismissal requires the company to prove you didn't meet hiring requirements."},
+          {who:"me",zh:"也就是说，「不合适」不能是一句空话？",py:"Yě jiùshì shuō, 'bù héshì' bùnéng shì yí jù kōnghuà?",en:"So 'not suitable' can't just be an empty claim?"}
+        ],
+        culture:"<b>法律词：</b>「试用期」shìyòngqī = probation period；「辞退」cítuì = dismiss；「录用条件」lùyòng tiáojiàn = hiring requirements；「空话」= empty talk。",
+        to:"end"
+      },
+      action:{
+        lines:[
+          {who:"lawyer",zh:"你可以主张违法解除赔偿，一般是经济补偿的两倍。",py:"Nǐ kěyǐ zhǔzhāng wéifǎ jiěchú péicháng, yìbān shì jīngjì bǔcháng de liǎng bèi.",en:"You can claim compensation for unlawful termination — generally twice the severance."},
+          {who:"anna",zh:"那我需要准备哪些证据？",py:"Nà wǒ xūyào zhǔnbèi nǎxiē zhèngjù?",en:"What evidence do I need to prepare?"}
+        ],
+        culture:"<b>维权词：</b>「主张」zhǔzhāng = claim/assert；「赔偿」péicháng = compensation；「经济补偿」= severance pay；「证据」zhèngjù = evidence；「劳动仲裁」láodòng zhòngcái = labor arbitration。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"lawyer",zh:"先收集劳动合同、工资流水和辞退通知，我们再申请仲裁。",py:"Xiān shōují láodòng hétong, gōngzī liúshuǐ hé cítuì tōngzhī, wǒmen zài shēnqǐng zhòngcái.",en:"First gather your labor contract, salary records and dismissal notice, then we'll file arbitration."},
+          {who:"anna",zh:"好的，我心里有数了。谢谢您。",py:"Hǎo de, wǒ xīnlǐ yǒu shù le. Xièxie nín.",en:"OK, I have a clear picture now. Thank you."}
+        ],
+        culture:"<b>沟通用语：</b>「心里有数」xīnlǐ yǒu shù = have a clear idea；「收集证据」= gather evidence；「申请仲裁」= file for arbitration。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l8-3",level:"L8",title:"门诊高效沟通",titleEn:"Talking with the doctor",scene:"Scene L8-3 · 三甲医院",
+    desc:" Anna 长期失眠，陪她看专家门诊。如何准确描述症状、听懂医嘱、追问用药细节——就医沟通的进阶表达。",
+    descEn:"Anna has chronic insomnia and sees a specialist. Learn to describe symptoms accurately, understand advice and ask about medication — advanced medical communication.",
+    cast:["me","anna","doctor"],
+    names:{start:"描述病情","detail":"医生追问","advice":"听懂医嘱","end":"确认细节"},
+    story:{
+      start:{
+        lines:[
+          {who:"doctor",zh:"请坐。哪里不舒服？这种情况多久了？",py:"Qǐng zuò. Nǎlǐ bù shūfu? Zhè zhǒng qíngkuàng duō jiǔ le?",en:"Please sit. What's wrong? How long has this been going on?"},
+          {who:"anna",zh:"我失眠三个月了，入睡困难，半夜老醒。",py:"Wǒ shīmián sān ge yuè le, rùshuì kùnnán, bànyè lǎo xǐng.",en:"I've had insomnia for three months — trouble falling asleep and waking at night."}
+        ],
+        prompt:{zh:"医生详细追问，你想先说什么？",en:"The doctor asks for detail — what do you want to mention first?"},
+        opts:[
+          {label:"说诱因和生活习惯",en:"Mention triggers and lifestyle",to:"detail"},
+          {label:"问需要做哪些检查",en:"Ask about needed tests",to:"advice"}
+        ]
+      },
+      detail:{
+        lines:[
+          {who:"doctor",zh:"最近压力大吗？咖啡、手机会影响睡眠。",py:"Zuìjìn yālì dà ma? Kāfēi, shǒujī huì yǐngxiǎng shuìmián.",en:"Have you been under stress? Coffee and phones affect sleep."},
+          {who:"anna",zh:"加班多，睡前一小时还在回消息。",py:"Jiābān duō, shuìqián yì xiǎoshí hái zài huí xiāoxi.",en:"Lots of overtime — I'm still replying to messages an hour before bed."}
+        ],
+        culture:"<b>描述症状：</b>「入睡困难」= difficulty falling asleep；「诱因」yòu yīn = trigger；「压力大」= stressed；「睡前」shuìqián = before bed。看医生要用具体时间、频率描述，别只说「不舒服」。",
+        to:"end"
+      },
+      advice:{
+        lines:[
+          {who:"me",zh:"医生，需要先做检查吗？还是先调整作息？",py:"Yīshēng, xūyào xiān zuò jiǎnchá ma? Háishì xiān tiáozhěng zuòxī?",en:"Doctor, do we need tests first, or adjust the sleep schedule first?"},
+          {who:"doctor",zh:"先做甲状腺功能检查，排除器质性问题，再谈用药。",py:"Xiān zuò jiǎzhuàngxiàn gōngnéng jiǎnchá, páichú qìzhìxìng wèntí, zài tán yòngyào.",en:"First do a thyroid function test to rule out organic issues, then discuss medication."}
+        ],
+        culture:"<b>医嘱词：</b>「检查」jiǎnchá = test/exam；「排除」páichú = rule out；「器质性」qìzhìxìng = organic (physical)；「用药」yòngyào = medication。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"anna",zh:"这个药有副作用吗？会不会依赖？",py:"Zhège yào yǒu fùzuòyòng ma? Huì bú huì yīlài?",en:"Does this medicine have side effects? Will it be habit-forming?"},
+          {who:"doctor",zh:"短期用很安全。按疗程吃，复诊时我们再评估。",py:"Duǎnqī yòng hěn ānquán. Àn liáochéng chī, fùzhěn shí wǒmen zài pínggū.",en:"Short-term use is safe. Take it as prescribed and we'll reassess at the follow-up."}
+        ],
+        culture:"<b>追问细节：</b>「副作用」fùzuòyòng = side effect；「依赖」yīlài = dependence；「疗程」liáochéng = course of treatment；「复诊」fùzhěn = follow-up visit。会追问，是就医沟通成熟的标志。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l8-4",level:"L8",title:"高压面试作答",titleEn:"The high-pressure interview",scene:"Scene L8-4 · 公司会议室",
+    desc:"Anna 面试被追问短板与离职原因。如何既诚实又得体地回答敏感问题——高阶求职表达，决定成败的最后几句话。",
+    descEn:"Anna is asked about weaknesses and why she left her last job. How to answer sensitive questions honestly yet gracefully — advanced interview skills.",
+    cast:["me","anna","boss"],
+    names:{start:"压力问题","weak":"谈短板","why":"说离职","end":"漂亮收尾"},
+    story:{
+      start:{
+        lines:[
+          {who:"boss",zh:"最后一个问题：你最大的缺点是什么？",py:"Zuìhòu yí ge wèntí: nǐ zuì dà de quēdiǎn shì shénme?",en:"One last question: what's your greatest weakness?"},
+          {who:"anna",zh:"（深呼吸）我觉得自己有时候太追求细节。",py:"(Shēn hūxī) Wǒ juéde zìjǐ yǒu shíhou tài zhuīqiú xìjié.",en:"(Takes a breath) I think sometimes I'm too detail-oriented."}
+        ],
+        prompt:{zh:"面试官继续追问，你怎么接？",en:"The interviewer probes further — how do you respond?"},
+        opts:[
+          {label:"举例说明缺点在改进",en:"Give an example of improving it",to:"weak"},
+          {label:"转向自己的优势",en:"Pivot to your strengths",to:"why"}
+        ]
+      },
+      weak:{
+        lines:[
+          {who:"anna",zh:"比如上次做报表，我反复核对，反而耽误了进度。",py:"Bǐrú shàng cì zuò bàobiǎo, wǒ fǎnfù héduì, fǎn'ér dānwu le jìndù.",en:"For example, last time I checked a report repeatedly and actually delayed progress."},
+          {who:"me",zh:"接着要说出你怎么改——否则就是假缺点。",py:"Jiēzhe yào shuō chū nǐ zěnme gǎi — fǒuzé jiùshì jiǎ quēdiǎn.",en:"Then say how you fixed it — otherwise it's a fake weakness."}
+        ],
+        culture:"<b>面试技巧：</b>「追求细节」= detail-oriented；「耽误进度」= delay progress；「改进」gǎijìn = improve。回答缺点要有「改进动作」，才显得真诚。",
+        to:"end"
+      },
+      why:{
+        lines:[
+          {who:"boss",zh:"那您为什么离开上一家公司？",py:"Nà nín wèishénme líkāi shàng yì jiā gōngsī?",en:"So why did you leave your last company?"},
+          {who:"anna",zh:"不是因为不满，而是想找更大的成长空间。",py:"Bú shì yīnwèi bù mǎn, érshì xiǎng zhǎo gèng dà de chéngzhǎng kōngjiān.",en:"Not out of dissatisfaction — I wanted more room to grow."}
+        ],
+        culture:"<b>得体表达：</b>「不是……而是……」= not... but...；「成长空间」= room for growth；「上一家」= previous (company)。谈离职忌抱怨，要给正向理由。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"anna",zh:"后来我给自己定了时限，先完成再优化，效率明显提高。",py:"Hòulái wǒ gěi zìjǐ dìng le shíxiàn, xiān wánchéng zài yōuhuà, xiàolǜ míngxiǎn tígāo.",en:"I later set myself a time limit — finish first, then polish — and efficiency improved."},
+          {who:"boss",zh:"很好。你能反思、能改进，这正是我们要的。",py:"Hěn hǎo. Nǐ néng fǎnsī, néng gǎijìn, zhè zhèngshì wǒmen yào de.",en:"Great — you can reflect and improve. That's exactly what we want."}
+        ],
+        culture:"<b>收尾表达：</b>「给自己定时限」= set a deadline for oneself；「先……再……」= first... then...；「反思」fǎnsī = reflect；「正是」= precisely。用行动证明成长，比空谈更有力。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l9-1",level:"L9",title:"成语里的智慧",titleEn:"Wisdom in idioms",scene:"Scene L9-1 · 中文课堂",
+    desc:"老师讲「画蛇添足」和「守株待兔」。成语不只是四个字，而是一整个故事——学会用典，中文才真正地道。",
+    descEn:"The teacher explains two classic idioms. Idioms are not just four characters but whole stories — master them and your Chinese becomes truly natural.",
+    cast:["me","anna","expert"],
+    names:{start:"成语导入","story":"讲典故","use":"学着用","end":"点睛之笔"},
+    story:{
+      start:{
+        lines:[
+          {who:"expert",zh:"今天讲两个成语：画蛇添足、守株待兔。你们听过吗？",py:"Jīntiān jiǎng liǎng ge chéngyǔ: huà shé tiān zú, shǒu zhū dài tù. Nǐmen tīng guò ma?",en:"Today we'll learn two idioms: drawing legs on a snake, and waiting by a stump for rabbits. Heard of them?"},
+          {who:"anna",zh:"听过，但只会照字面理解，不知道怎么用。",py:"Tīng guò, dàn zhǐ huì zhào zìmiàn lǐjiě, bù zhīdào zěnme yòng.",en:"I've heard them, but only literally — I don't know how to use them."}
+        ],
+        prompt:{zh:"你想先听哪个故事？",en:"Which story do you want to hear first?"},
+        opts:[
+          {label:"画蛇添足：多此一举",en:"Drawing legs on a snake: overdoing it",to:"story"},
+          {label:"守株待兔：坐享其成",en:"Waiting by a stump: waiting for luck",to:"use"}
+        ]
+      },
+      story:{
+        lines:[
+          {who:"expert",zh:"古人比赛画蛇，有个人画完又添脚，结果输了。",py:"Gǔrén bǐsài huà shé, yǒu ge rén huà wán yòu tiān jiǎo, jiéguǒ shū le.",en:"In an ancient contest to draw a snake, one man added legs after finishing and lost."},
+          {who:"me",zh:"所以「画蛇添足」就是做了多余的事，反而坏事。",py:"Suǒyǐ 'huà shé tiān zú' jiùshì zuò le duōyú de shì, fǎn'ér huài shì.",en:"So the idiom means doing something superfluous that ruins the result."}
+        ],
+        culture:"<b>典故文化：</b>「画蛇添足」huà shé tiān zú 出自《战国策》；「多此一举」duō cǐ yì jǔ = unnecessary action；「反而」fǎn'ér = on the contrary。用成语时点出典故，对方会觉得你有文化底蕴。",
+        to:"end"
+      },
+      use:{
+        lines:[
+          {who:"expert",zh:"守株待兔说的是农夫捡到撞死的兔子，从此不种田。",py:"Shǒu zhū dài tù shuō de shì nóngfū jiǎn dào zhuàng sǐ de tùzi, cóngcǐ bù zhòng tián.",en:"Waiting by a stump is about a farmer who found a dead rabbit and stopped farming."},
+          {who:"anna",zh:"我懂了——比喻不劳而获、死守经验。可以说「别守株待兔，要主动争取」。",py:"Wǒ dǒng le — bǐyù bù láo ér huò, sǐ shǒu jīngyàn. Kěyǐ shuō 'bié shǒu zhū dài tù, yào zhǔdòng zhēngqǔ'.",en:"I get it — it means expecting gain without effort. You can say 'don't wait for luck — take the initiative.'"}
+        ],
+        culture:"<b>用典句型：</b>「比喻……」bǐyù = is a metaphor for...；「不劳而获」= gain without labor；「主动争取」= take the initiative。会用成语，是中文高手的分水岭。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"anna",zh:"原来四个字背后有这么多东西，难怪中国人爱用成语。",py:"Yuánlái sì ge zì bèihòu yǒu zhème duō dōngxi, nánguài Zhōngguó rén ài yòng chéngyǔ.",en:"So much behind four characters — no wonder Chinese people love idioms."},
+          {who:"expert",zh:"对，成语是中文的浓缩。用对一个，整句话都活了。",py:"Duì, chéngyǔ shì Zhōngwén de nóngsuō. Yòng duì yí ge, zhěng jù huà dōu huó le.",en:"Exactly — idioms are concentrated Chinese. Use one well and the whole sentence comes alive."}
+        ],
+        culture:"<b>高阶点睛：</b>「浓缩」nóngsuō = concentrated；「整句话都活了」= the whole sentence comes alive；「难怪」nánguài = no wonder。地道的表达，往往就差一个恰当的成语。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l9-2",level:"L9",title:"诗词里的情味",titleEn:"Emotion in classical poetry",scene:"Scene L9-2 · 月下阳台",
+    desc:"中秋夜，Anna 听懂了「但愿人长久，千里共婵娟」。学几句诗词，表达思念和祝福时，中文就有了更深的味道。",
+    descEn:"On Mid-Autumn night, Anna understands a famous line by Su Shi. Learn a few poems and your Chinese gains deeper flavor when expressing longing and good wishes.",
+    cast:["me","anna"],
+    names:{start:"中秋夜","poem":"苏轼名句","meaning":"含蓄之美","end":"以诗寄情"},
+    story:{
+      start:{
+        lines:[
+          {who:"anna",zh:"今晚月亮好圆。大家都在发「中秋快乐」。",py:"Jīn wǎn yuèliang hǎo yuán. Dàjiā dōu zài fā 'Zhōngqiū kuàilè'.",en:"The moon is so round tonight. Everyone's posting 'Happy Mid-Autumn.'"},
+          {who:"me",zh:"你可以回一句「但愿人长久，千里共婵娟」，更有味道。",py:"Nǐ kěyǐ huí yí jù 'dàn yuàn rén chángjiǔ, qiānlǐ gòng chánjuān', gèng yǒu wèidào.",en:"You could reply with a line from Su Shi — it has more feeling."}
+        ],
+        prompt:{zh:"你想先了解什么？",en:"What would you like to know first?"},
+        opts:[
+          {label:"这句诗什么意思",en:"What does the line mean",to:"poem"},
+          {label:"中文怎么含蓄表达思念",en:"How Chinese expresses longing indirectly",to:"meaning"}
+        ]
+      },
+      poem:{
+        lines:[
+          {who:"me",zh:"这句出自苏轼，意思是：只愿亲人平安长久，千里之外也能共赏同一轮月。",py:"Zhè jù chū zì Sū Shì, yìsi shì: zhǐ yuàn qīnrén píng'ān chángjiǔ, qiānlǐ zhī wài yě néng gòng shǎng tóng yì lún yuè.",en:"It's by Su Shi: may my loved ones be safe and long-lived; though far apart, we share the same moon."},
+          {who:"anna",zh:"真美。比起直接说「想你」，含蓄多了。",py:"Zhēn měi. Bǐqǐ zhíjiē shuō 'xiǎng nǐ', hánxù duō le.",en:"Beautiful — much more subtle than directly saying 'I miss you.'"}
+        ],
+        culture:"<b>诗词知识：</b>「婵娟」chánjuān 本指美女，这里代指月亮；「千里共婵娟」= share the moon across a thousand miles。苏轼原词写于中秋，是华人最熟悉的名句之一。",
+        to:"end"
+      },
+      meaning:{
+        lines:[
+          {who:"me",zh:"中文里说思念，常借月亮、季节、酒——不直说，却更动人。",py:"Zhōngwén lǐ shuō sīniàn, cháng jiè yuèliang, jìjié, jiǔ — bù zhí shuō, què gèng dòngrén.",en:"In Chinese, longing is often expressed through the moon, seasons or wine — indirect, but more moving."},
+          {who:"anna",zh:"就像「举头望明月，低头思故乡」？",py:"Jiù xiàng 'jǔ tóu wàng míngyuè, dī tóu sī gùxiāng'?",en:"Like Li Bai's 'I raise my head to the bright moon, then lower it and think of home'?"}
+        ],
+        culture:"<b>含蓄美学：</b>「借……抒情」= express emotion through...；「含蓄」hánxù = implicit；「动人」dòngrén = moving。中文诗词讲究「言有尽而意无穷」——话尽而意未尽。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"anna",zh:"那我发朋友圈：「但愿人长久，千里共婵娟。」",py:"Nà wǒ fā péngyouquān: 'dàn yuàn rén chángjiǔ, qiānlǐ gòng chánjuān.'",en:"Then I'll post: 'May we be safe and long-lived, sharing this moon across a thousand miles.'"},
+          {who:"me",zh:"配上今晚的月亮，绝了。这一句，抵得上十句「中秋快乐」。",py:"Pèi shàng jīn wǎn de yuèliang, jué le. Zhè yí jù, dǐ de shàng shí jù 'Zhōngqiū kuàilè'.",en:"Perfect with tonight's moon — this one line beats ten 'Happy Mid-Autumns.'"}
+        ],
+        culture:"<b>以诗寄情：</b>「抵得上」= be worth as much as；「绝了」jué le = absolutely perfect (colloquial)；「寄情」jì qíng = express feelings through。古典诗词是中文表达的情感高峰。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l9-3",level:"L9",title:"书法与留白",titleEn:"Calligraphy and blank space",scene:"Scene L9-3 · 美术馆",
+    desc:"看一场书法展，聊「气韵」「留白」。用中文谈审美，是语言之外的文化通行证。",
+    descEn:"At a calligraphy exhibition, discuss 'spirit' and 'blank space.' Discussing aesthetics in Chinese is a cultural passport beyond language.",
+    cast:["me","anna","expert"],
+    names:{start:"看不懂","appreciation":"学会看","blank":"留白之妙","end":"审美的眼光"},
+    story:{
+      start:{
+        lines:[
+          {who:"anna",zh:"这幅字我认得，可看不出好在哪儿。",py:"Zhè fú zì wǒ rèn de, kě kàn bù chū hǎo zài nǎr.",en:"I can recognize the characters, but I can't see what makes it good."},
+          {who:"expert",zh:"书法看的不是「认不认得」，是「气韵」和线条的力量。",py:"Shūfǎ kàn de bú shì 'rèn bù rèn de', shì 'qìyùn' hé xiàntiáo de lìliàng.",en:"Calligraphy isn't about recognition — it's about spirit and the strength of the strokes."}
+        ],
+        prompt:{zh:"你想先听哪方面？",en:"What do you want to hear about first?"},
+        opts:[
+          {label:"怎么欣赏一幅字",en:"How to appreciate a piece",to:"appreciation"},
+          {label:"什么是留白",en:"What is 'blank space'",to:"blank"}
+        ]
+      },
+      appreciation:{
+        lines:[
+          {who:"expert",zh:"看笔锋的提按、行气的连贯，还有整体的节奏。",py:"Kàn bǐfēng de tí'àn, xíngqì de liánguàn, hái yǒu zhěngtǐ de jiézòu.",en:"Look at the lift-and-press of the brush, the flow of energy, and the overall rhythm."},
+          {who:"me",zh:"就像音乐，有轻重缓急，不只是把字写对。",py:"Jiù xiàng yīnyuè, yǒu qīngzhòng huǎnjí, bù zhǐshì bǎ zì xiě duì.",en:"Like music — with dynamics and tempo, not just writing characters correctly."}
+        ],
+        culture:"<b>审美词：</b>「气韵」qìyùn = spirit/resonance；「笔锋」bǐfēng = brush tip；「行气」xíngqì = flow of energy；「提按」tí'àn = lift and press。用音乐类比书法，是常见的通感表达。",
+        to:"end"
+      },
+      blank:{
+        lines:[
+          {who:"expert",zh:"注意这块空白——「疏可走马，密不透风」。",py:"Zhùyì zhè kuài kòngbái — 'shū kě zǒu mǎ, mì bù tòu fēng'.",en:"Notice this blank space — 'sparse enough to ride a horse through, dense enough to stop wind.'"},
+          {who:"anna",zh:"空白也是内容？这和我熟悉的西方满构图完全不同。",py:"Kòngbái yěshì nèiróng? Zhè hé wǒ shúxī de Xīfāng mǎn gòutú wánquán bùtóng.",en:"Blank space is also content? This is totally different from the full compositions I know."}
+        ],
+        culture:"<b>留白美学：</b>「留白」liúbái = leaving blank space；「疏可走马，密不透风」是书法篆刻名言，讲疏密对比；「计白当黑」= treat blank as ink。这是中国艺术独有的空间观。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"anna",zh:"我现在有点懂了——书法是「看得见的节奏」。",py:"Wǒ xiànzài yǒudiǎn dǒng le — shūfǎ shì 'kàn de jiàn de jiézòu'.",en:"I'm starting to get it — calligraphy is 'visible rhythm.'"},
+          {who:"me",zh:"对。谈审美不需要术语堆砌，能说出自己的感受就够了。",py:"Duì. Tán shěnměi bù xūyào shùyǔ duīqì, néng shuō chū zìjǐ de gǎnshòu jiù gòu le.",en:"Right — discussing aesthetics doesn't need jargon; saying your own feeling is enough."}
+        ],
+        culture:"<b>表达感受：</b>「有点懂了」= starting to understand；「看得见的节奏」= visible rhythm；「术语堆砌」= piling up jargon。高阶表达贵在真诚，不在炫技。",
+        end:true
+      }
+    }
+  },
+  {
+    id:"l9-4",level:"L9",title:"商务宴请分寸",titleEn:"Business dinner etiquette",scene:"Scene L9-4 · 高档中餐厅",
+    desc:"签完合同，客户宴请。敬酒顺序、座次、客套话——读懂饭桌上的潜台词，才算真正拿下了这单生意。",
+    descEn:"After signing, the client hosts dinner. Toasting order, seating, polite formulas — read between the lines at the table to truly close the deal.",
+    cast:["me","boss","expert"],
+    names:{start:"入座","toast":"敬酒","smalltalk":"席间闲谈","end":"得体收场"},
+    story:{
+      start:{
+        lines:[
+          {who:"boss",zh:"待会儿你坐我旁边。客户是主宾，让他先入座。",py:"Dāihuìr nǐ zuò wǒ pángbiān. Kèhù shì zhǔbīn, ràng tā xiān rùzuò.",en:"Sit next to me later. The client is the guest of honor — let him be seated first."},
+          {who:"me",zh:"明白。主位是对着门的那个吧？",py:"Míngbai. Zhǔwèi shì duì zhe mén de nàge ba?",en:"Got it — the seat facing the door is the main seat, right?"}
+        ],
+        prompt:{zh:"宴席开始，你先做什么？",en:"The dinner begins — what do you do first?"},
+        opts:[
+          {label:"主动敬第一杯酒",en:"Propose the first toast",to:"toast"},
+          {label:"先敬客人茶、寒暄",en:"Offer tea and make small talk first",to:"smalltalk"}
+        ]
+      },
+      toast:{
+        lines:[
+          {who:"me",zh:"李总，我敬您一杯，感谢今天的信任。",py:"Lǐ zǒng, wǒ jìng nín yì bēi, gǎnxiè jīntiān de xìnrèn.",en:"Director Li, a toast to you — thank you for your trust today."},
+          {who:"expert",zh:"不错，杯沿低于对方，双手端杯更显尊重。",py:"Búcuò, bēiyán dī yú duìfāng, shuāngshǒu duān bēi gèng xiǎn zūnzhòng.",en:"Good — keep your glass rim lower than theirs and hold it with both hands to show respect."}
+        ],
+        culture:"<b>敬酒礼仪：</b>「敬酒」jìngjiǔ = propose a toast；「杯沿」bēiyán = glass rim；「双手端杯」= hold glass with both hands；「李总」= Director Li (title + surname)。晚辈/下属敬酒，杯沿要低于对方。",
+        to:"end"
+      },
+      smalltalk:{
+        lines:[
+          {who:"me",zh:"李总今天怎么来的？路上还顺利吗？",py:"Lǐ zǒng jīntiān zěnme lái de? Lùshàng hái shùnlì ma?",en:"How did you get here today, Director Li? Was the trip smooth?"},
+          {who:"expert",zh:"很好，先聊路上、天气这类安全话题，别急着谈生意。",py:"Hěn hǎo, xiān liáo lùshàng, tiānqì zhè lèi ānquán huàtí, bié jí zhe tán shēngyi.",en:"Good — start with safe topics like the trip or weather; don't rush into business."}
+        ],
+        culture:"<b>寒暄之道：</b>「寒暄」hánxuān = small talk；「安全话题」= safe topic；「顺利」shùnlì = smooth。中文饭局讲究先铺垫感情，再谈正事。",
+        to:"end"
+      },
+      end:{
+        lines:[
+          {who:"expert",zh:"差不多了。你替老板挡两杯，但别喝过头。",py:"Chàbuduō le. Nǐ tì lǎobǎn dǎng liǎng bēi, dàn bié hē guòtóu.",en:"About time. Take a couple of drinks for your boss, but don't overdo it."},
+          {who:"boss",zh:"来，最后一杯，祝我们合作长久！干杯！",py:"Lái, zuìhòu yì bēi, zhù wǒmen hézuò chángjiǔ! Gānbēi!",en:"Come, one last toast — to our lasting partnership. Cheers!"}
+        ],
+        culture:"<b>收场用语：</b>「挡酒」dǎngjiǔ = take drinks on someone's behalf；「喝过头」= drink too much；「干杯」gānbēi = cheers；「祝……长久」= may... last long。饭局收尾要干脆、祝愿要响亮。",
+        end:true
+      }
+    }
+  }
+];
+let curLesson=0, path=[];
+function say(t){if(!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(t);u.lang="zh-CN";u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u)}
+function lineHTML(d){
+  const c=ROLES[d.who]||ROLES.me;
+  return `<div class="bubble ${c.cls}"><div class="who"><span class="dot" style="background:${c.color}"></span>${c.name}<span class="en">${c.en}</span></div>
+    <div class="zh">${d.zh}<button class="say" onclick="say('${d.zh.replace(/'/g,"\\'")}')">🔊</button></div>
+    <div class="py">${d.py}</div><div class="en">${d.en}</div></div>`;
+}
+function nodeName(c,id){if(c.names&&c.names[id])return c.names[id];return {start:"开场",ending:"结局"}[id]||id}
+function openLesson(i){curLesson=i;path=["start"];render();window.scrollTo({top:0,behavior:"smooth"})}
+function render(){
+  const c=COURSES[curLesson], story=c.story, cur=story[path[path.length-1]];
+  document.getElementById("lessonCount").textContent=COURSES.length+" 课（Premium）";
+  const groups={};
+  COURSES.forEach((x,i)=>{(groups[x.level]=groups[x.level]||[]).push([x,i])});
+  document.getElementById("coursebar").innerHTML=Object.keys(groups).map(lv=>`<div class="lvgroup"><div class="lvtitle"><span class="tag">${lv}</span>${LEVEL_TAG[lv]}</div><div class="coursebar">${groups[lv].map(([x,i])=>`<div class="c ${i===curLesson?"on":""}" onclick="openLesson(${i})"><span class="pro">PRO</span><b>${x.title}</b><span>${x.titleEn}</span></div>`).join("")}</div></div>`).join("");
+  const sceneCode=c.scene.split("·")[0].trim();
+  document.getElementById("scene").innerHTML=`<div class="kicker">${sceneCode} &middot; ${c.titleEn.toUpperCase()}</div><h1>${c.title}<span class="h1en">${c.titleEn}</span></h1><p>${c.desc}</p><p class="descen">${c.descEn||""}</p>
+    <div class="cast">${c.cast.map(k=>`<span class="chip"><span class="dot" style="background:${ROLES[k].color}"></span>${ROLES[k].name}<span class="en">${ROLES[k].en}</span></span>`).join("")}</div>`;
+  let html="",culture="";
+  path.forEach(id=>{
+    const node=story[id];
+    node.lines.forEach(d=>html+=lineHTML(d));
+    if(node.culture)culture+=`<div class="culture">${node.culture}</div>`;
+    if(node!==cur&&node.prompt)html+=`<div class="prompt" style="opacity:.6"><div class="q">你选择了：${node.opts.find(o=>o.to===path[path.indexOf(id)+1])?.label||""}</div></div>`;
+  });
+  document.getElementById("dlg").innerHTML=html+culture;
+  const names=path.map(id=>nodeName(c,id));
+  document.getElementById("trail").innerHTML="剧情路径：<b>"+names.join("</b><span class='sep'> → </span><b>")+"</b>";
+  const ctr=document.getElementById("controls");
+  if(cur.end){
+    markScenarioDone();
+    const next=curLesson<COURSES.length-1;
+    ctr.innerHTML=`<div class="end"><div class="big">🎬</div><h2>剧情完成</h2>
+      <div class="paths">你走的是：<b>${names.slice(0,-1).join(" → ")}</b> 路线</div>
+      <p style="font-size:13px;color:var(--muted)">这一幕你读了 <b>${path.reduce((n,id)=>n+story[id].lines.length,0)}</b> 句真实对话，遇到 <b>${path.filter(id=>story[id].prompt).length}</b> 个选择点。<br>重来一次走另一条路线，对话内容会不同。</p>
+      <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-red" onclick="restart()">↻ 重来，试试另一条路线</button>
+        <button class="btn btn-ghost" onclick="openCertModal()">🎓 领取结业证书</button>
+        ${next?'<button class="btn btn-ghost" onclick="openLesson('+(curLesson+1)+')">下一课：'+COURSES[curLesson+1].title+' →</button>':''}
+      </div></div>`;
+  }else if(cur.prompt){
+    ctr.innerHTML=`<div class="prompt"><div class="q">${cur.prompt.zh}<br><span style="font-weight:400;color:var(--muted);font-size:12px">${cur.prompt.en}</span></div>
+      <div class="opts">${cur.opts.map((o,i)=>`<button class="opt" onclick="pick('${o.to}')"><span class="n">${i+1}</span>${o.label}<span class="sub">${o.en}</span></button>`).join("")}</div></div>`;
+  }else{
+    ctr.innerHTML=`<button class="btn btn-red" onclick="pick('${cur.to}')">继续剧情 →</button>`;
+  }
+}
+function pick(to){path.push(to);render();window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"})}
+function restart(){path=["start"];render();window.scrollTo({top:0,behavior:"smooth"})}
+
+// ===== Digital certificate (commemorative, scenario line) =====
+const CERT_KEY_S="mh_cert_scenario_v1";
+function courseId(){return (COURSES[curLesson]&&COURSES[curLesson].id)||""}
+function markScenarioDone(){try{let a=JSON.parse(localStorage.getItem(CERT_KEY_S)||"[]");if(!a.includes(courseId())){a.push(courseId());localStorage.setItem(CERT_KEY_S,JSON.stringify(a))}}catch(e){}}
+function scenarioDoneCount(){try{return JSON.parse(localStorage.getItem(CERT_KEY_S)||"[]").length}catch(e){return 0}}
+function openCertModal(){
+  const box=document.createElement("div");box.className="certmodal";
+  box.innerHTML='<div class="certcard"><h3>🎓 领取数字结业证书</h3>'+
+    '<p class="note">这是参与证明（纪念证书），非官方学历或资质认证。证书上的姓名仅保存在你的浏览器，不会上传。</p>'+
+    '<label>证书上的姓名 / Name on certificate</label>'+
+    '<input id="certName" placeholder="Your name" value="Learner">'+
+    '<div class="certmeta">已完成情境对话 <b>'+scenarioDoneCount()+'</b> 门 · 涵盖 HSK1–6+</div>'+
+    '<div class="certbtns"><button class="btn btn-ghost" onclick="this.closest(\'.certmodal\').remove()">取消</button>'+
+    '<button class="btn btn-red" onclick="downloadCert()">生成并下载 PNG</button></div></div>';
+  document.body.appendChild(box);
+}
+function downloadCert(){
+  const cv=document.createElement("canvas");cv.width=1200;cv.height=850;const c=cv.getContext("2d");
+  const g=c.createLinearGradient(0,0,1200,850);
+  g.addColorStop(0,"#0d203c");g.addColorStop(.5,"#16305a");g.addColorStop(1,"#0d203c");
+  c.fillStyle=g;c.fillRect(0,0,1200,850);
+  c.strokeStyle="#d4af37";c.lineWidth=10;c.strokeRect(28,28,1144,794);
+  c.strokeStyle="#b89a4a";c.lineWidth=2;c.strokeRect(48,48,1104,754);
+  [[72,72],[1128,72],[72,778],[1128,778]].forEach(([x,y])=>{c.save();c.translate(x,y);c.rotate(Math.PI/4);c.fillStyle="#d4af37";c.fillRect(-7,-7,14,14);c.restore()});
+  c.textAlign="center";
+  c.fillStyle="#e8c96b";c.font="bold 32px Georgia";c.fillText("HANZIFACE",600,138);
+  c.fillStyle="#b89a4a";c.font="15px Georgia";c.fillText("·  EST. 2026  ·",600,170);
+  c.fillStyle="#f5ecd7";c.font="bold 52px Georgia";c.fillText("Certificate of Completion",600,240);
+  c.fillStyle="#d4af37";c.font="24px 'PingFang SC','Microsoft YaHei',Arial";c.fillText("结 业 证 书 · 情境连续对话",600,290);
+  c.strokeStyle="#b89a4a";c.lineWidth=1;c.beginPath();c.moveTo(430,315);c.lineTo(770,315);c.stroke();
+  c.fillStyle="#c9b98a";c.font="22px Arial";c.fillText("This is to certify that / 兹证明",600,360);
+  c.fillStyle="#ffffff";c.font="bold 56px Georgia";c.fillText(name,600,435);
+  c.strokeStyle="#d4af37";c.lineWidth=2;c.beginPath();c.moveTo(400,455);c.lineTo(800,455);c.stroke();
+  c.fillStyle="#e8dcc0";c.font="24px Arial";
+  c.fillText("has completed "+scenarioDoneCount()+" scenario dialogue lessons (HSK1-6+)",600,510);
+  c.fillText("已完成 "+scenarioDoneCount()+" 门情境对话课程，涵盖 HSK1–6+",600,550);
+  const d=new Date().toLocaleDateString("zh-CN");
+  c.fillStyle="#c9b98a";c.font="20px Arial";c.fillText("Issued on "+d,600,635);
+  c.fillStyle="#8f9bb3";c.font="italic 17px Arial";
+  c.fillText("Digital certificate of participation - not an official academic credential",600,748);
+  c.fillText("数字参与证明 - 非官方学历或资质认证",600,776);
+  const a=document.createElement("a");a.download="HanziFace-情境对话结业证书.png";a.href=cv.toDataURL("image/png");a.click();
+  const box=document.querySelector(".certmodal");if(box)box.remove();
+}
+render();
+</script>
+
+<!-- ===== Premium access gate (single switch) ===== -->
+<style>
+  #gate{position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#0d203c,#16305a);color:#f5ecd7;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+  #gate .gcard{max-width:520px}
+  #gate .glogo{font-family:Georgia,serif;color:#e8c96b;font-size:15px;letter-spacing:3px;margin-bottom:18px}
+  #gate .gicon{font-size:52px;margin-bottom:14px}
+  #gate h2{font-family:Georgia,serif;font-size:30px;color:#fff;margin-bottom:10px}
+  #gate p{color:#c9b98a;font-size:15px;line-height:1.8;margin-bottom:8px}
+  #gate .glist{text-align:left;display:inline-block;margin:16px 0 22px;color:#e8dcc0;font-size:14px;line-height:2}
+  #gate .glist li{list-style:none}
+  #gate .btn{display:inline-block;background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;text-decoration:none;font-weight:700;padding:12px 26px;border-radius:10px;font-size:15px;margin:4px}
+  #gate .btn.ghost{background:transparent;border:1px solid #b89a4a;color:#e8dcc0}
+</style>
+<div id="gate">
+  <div class="gcard">
+    <div class="glogo">HANZIFACE · PREMIUM</div>
+    <div class="gicon">🔒</div>
+    <h2>L7–L9 高阶汉语 · 12 课</h2>
+    <p>这套情境连续对话属于 <b style="color:#e8c96b">Premium 会员</b>内容，支付通道正在开通中，预计本周五上线后即可解锁。</p>
+    <ul class="glist">
+      <li>✅ 固定角色 + 连续剧情 + 分支选择</li>
+      <li>✅ 中文 / 拼音 / 英文三语对照 + 语音朗读</li>
+      <li>✅ 文化点注释 · HSK 进阶表达</li>
+    </ul>
+    <div>
+      <a class="btn" href="index.html">查看会员方案 →</a>
+      <a class="btn ghost" href="index.html">← 返回主站</a>
+    </div>
+    <p style="font-size:12px;color:#8f9bb3;margin-top:18px">Payments opening this Friday · 已订阅用户届时可解锁全部内容</p>
+  </div>
+</div>
+<script>
+  /* 两种解锁方式：① 主站 PAYMENTS_LIVE 打开后写入的 localStorage 广播；② 本页强制开关（兜底） */
+  const SCENARIO_LIVE = false;
+  let live = SCENARIO_LIVE;
+  try{ if(localStorage.getItem('mh_premium_live')==='1') live = true; }catch(e){}
+  if(live){ const g=document.getElementById('gate'); if(g) g.remove(); }
+</script>
+
+</body>
+</html>
