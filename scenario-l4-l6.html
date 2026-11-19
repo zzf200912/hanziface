@@ -107,842 +107,9 @@ footer{text-align:center;color:#9ca3af;font-size:12px;padding:20px;line-height:1
 
 <script>
 const ROLES={
-  me:{name:"我（小明）",en:"Me (Xiaoming)",color:"#c0392b",cls:""},
-  anna:{name:"Anna",en:"Anna",color:"#185fa5",cls:"anna"},
-  doctor:{name:"医生",en:"Doctor",color:"#2e7d32",cls:"doctor"},
-  agent:{name:"工作人员",en:"Staff",color:"#888",cls:"agent"},
-  banker:{name:"银行职员",en:"Bank clerk",color:"#1f8a70",cls:"banker"},
-  colleague:{name:"同事",en:"Colleague",color:"#7b4ea0",cls:"colleague"},
-  friend:{name:"朋友",en:"Friend",color:"#1f8a70",cls:"friend"},
-  client:{name:"客户",en:"Client",color:"#96281b",cls:"agent"}
 };
 const LEVEL_TAG={L4:"HSK4 · 进阶生活",L5:"HSK5 · 社会话题",L6:"HSK5–6 · 深度表达"};
-const COURSES=[
-  {
-    id:"l4-1",level:"L4",title:"看病就医",titleEn:"At the clinic",scene:"Scene L4-1 · 医院门诊",
-    desc:"Anna 感冒发烧，你陪她去看医生。描述症状、听懂医嘱——这些表达关键时刻能派上用场。",
-    descEn:"Anna has a cold and a fever. You take her to the doctor — describing symptoms and understanding the doctor's advice are skills you'll use when it matters most.",
-    cast:["me","anna","doctor"],
-    names:{start:"开场",temperature:"问体温",nofood:"说情况",medicine:"开药",injection:"打针",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"doctor",zh:"你怎么了？哪里不舒服？",py:"Nǐ zěnme le? Nǎlǐ bù shūfu?",en:"What's wrong? Where does it hurt?"},
-          {who:"anna",zh:"我头疼，还有点发烧。",py:"Wǒ tóu téng, hái yǒu diǎn fāshāo.",en:"I have a headache and a slight fever."},
-          {who:"me",zh:"她昨天淋了雨。",py:"Tā zuótiān lín le yǔ.",en:"She got caught in the rain yesterday."}
-        ],
-        prompt:{zh:"医生想进一步了解病情。你怎么补充？",en:"The doctor wants more detail. What do you add?"},
-        opts:[
-          {label:"请医生「量一下体温」",en:"Ask to take her temperature",to:"temperature"},
-          {label:"说「她还没吃饭」",en:"Mention she hasn't eaten",to:"nofood"}
-        ]
-      },
-      temperature:{
-        lines:[
-          {who:"doctor",zh:"量一下体温。三十八度五，有点高。",py:"Liáng yíxià tǐwēn. Sānshíbā dù wǔ, yǒudiǎn gāo.",en:"Let me take your temperature. 38.5 — a bit high."}
-        ],
-        culture:"<b>语言点：</b>「度」dù 是温度单位；「有点」yǒudiǎn = a bit，后面多接消极形容词（有点高 / 有点累）。",
-        prompt:{zh:"医生问：吃药还是打针？",en:"Doctor: medicine or injection?"},
-        opts:[
-          {label:"问「能开点药吗？」",en:"Can you prescribe medicine?",to:"medicine"},
-          {label:"问「需要打针吗？」",en:"Do I need an injection?",to:"injection"}
-        ]
-      },
-      nofood:{
-        lines:[
-          {who:"me",zh:"她还没吃饭。",py:"Tā hái méi chīfàn.",en:"She hasn't eaten yet."},
-          {who:"doctor",zh:"先吃点东西，再来看。",py:"Xiān chī diǎn dōngxi, zài lái kàn.",en:"Eat something first, then come back."}
-        ],
-        prompt:{zh:"医生问：吃药还是打针？",en:"Doctor: medicine or injection?"},
-        opts:[
-          {label:"问「能开点药吗？」",en:"Can you prescribe medicine?",to:"medicine"},
-          {label:"问「需要打针吗？」",en:"Do I need an injection?",to:"injection"}
-        ]
-      },
-      medicine:{
-        lines:[
-          {who:"anna",zh:"能开点药吗？我不喜欢打针。",py:"Néng kāi diǎn yào ma? Wǒ bù xǐhuan dǎ zhēn.",en:"Can you prescribe medicine? I don't like injections."},
-          {who:"doctor",zh:"可以，一天三次，饭后吃。",py:"Kěyǐ, yì tiān sān cì, fàn hòu chī.",en:"OK, three times a day, after meals."}
-        ],
-        culture:"<b>医嘱常用：</b>「饭后」fàn hòu = after meals；「一天三次」yì tiān sān cì = three times a day。中医还常说「忌生冷」jì shēnglěng（忌食生冷食物）。",
-        to:"ending"
-      },
-      injection:{
-        lines:[
-          {who:"anna",zh:"需要打针吗？",py:"Xūyào dǎ zhēn ma?",en:"Do I need an injection?"},
-          {who:"doctor",zh:"不用，吃药就行，多喝水多休息。",py:"Bú yòng, chī yào jiù xíng, duō hē shuǐ duō xiūxi.",en:"No need — medicine is enough. Drink more water and rest."}
-        ],
-        culture:"<b>句型：</b>「多……多……」duō...duō... 表示「多做某事」：多喝水多休息 = drink more and rest more。「不用」bú yòng = no need。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"me",zh:"记住，一天三次，饭后吃。",py:"Jìzhù, yì tiān sān cì, fàn hòu chī.",en:"Remember — three times a day, after meals."},
-          {who:"anna",zh:"记住了，谢谢医生！",py:"Jìzhù le, xièxie yīshēng!",en:"Got it, thank you doctor!"}
-        ],
-        culture:"<b>词汇：</b>「记住」jìzhù = remember；「按时吃药」àn shí chī yào = take medicine on time。这是医嘱里最常见的一句。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l4-2",level:"L4",title:"租房看房",titleEn:"Renting an apartment",scene:"Scene L4-2 · 房产中介",
-    desc:"中介带你们看房。押一付三、违约金、拎包入住——读懂中国租房的合同术语。",
-    descEn:"An agent shows you around an apartment. Deposit-plus-three-months, penalty fees, move-in ready — learn the contract terms you'll meet when renting in China.",
-    cast:["me","anna","agent"],
-    names:{start:"开场",monthly:"问月付",furniture:"问家具",contract:"问合同",utilities:"问水电",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"agent",zh:"这套两居室，月租五千，押一付三。",py:"Zhè tào liǎng jū shì, yuè zū wǔ qiān, yā yī fù sān.",en:"This two-bedroom: 5000 a month, one deposit plus three months upfront."},
-          {who:"anna",zh:"押一付三是什么意思？",py:"Yā yī fù sān shì shénme yìsi?",en:"What does 'one deposit, three payment' mean?"},
-          {who:"me",zh:"就是先付四个月的租金。",py:"Jiù shì xiān fù sì ge yuè de zūjīn.",en:"It means paying four months' rent up front."}
-        ],
-        prompt:{zh:"Anna 想问付款方式能否灵活些。",en:"Anna asks about flexible payment."},
-        opts:[
-          {label:"问「能不能月付？」",en:"Can we pay monthly?",to:"monthly"},
-          {label:"问「家具能留吗？」",en:"Can the furniture stay?",to:"furniture"}
-        ]
-      },
-      monthly:{
-        lines:[
-          {who:"anna",zh:"能不能月付？我们刚来中国。",py:"Néng bù néng yuè fù? Wǒmen gāng lái Zhōngguó.",en:"Can we pay monthly? We just arrived in China."},
-          {who:"agent",zh:"一般是押一付三，不过可以商量。",py:"Yìbān shì yā yī fù sān, búguò kěyǐ shāngliang.",en:"Usually it's one-and-three, but we can discuss."}
-        ],
-        culture:"<b>文化点：</b>「押一付三」yā yī fù sān 是中国租房常见付款方式：押金 1 个月 + 预付 3 个月租金。「商量」shāngliang = to negotiate。",
-        prompt:{zh:"你想问合同细节。",en:"You ask about contract details."},
-        opts:[
-          {label:"问「合同签多久？」",en:"How long is the lease?",to:"contract"},
-          {label:"问「水电费怎么算？」",en:"How are utilities billed?",to:"utilities"}
-        ]
-      },
-      furniture:{
-        lines:[
-          {who:"anna",zh:"家具能留吗？",py:"Jiājù néng liú ma?",en:"Can the furniture stay?"},
-          {who:"agent",zh:"家具家电都包括，拎包入住。",py:"Jiājù jiādiàn dōu bāokuò, līn bāo rùzhù.",en:"Furniture and appliances are included — move in with your bags."}
-        ],
-        culture:"<b>文化点：</b>「拎包入住」līn bāo rùzhù = move in with just your bags (fully furnished)。这是租房广告高频语。",
-        prompt:{zh:"你想问合同细节。",en:"You ask about contract details."},
-        opts:[
-          {label:"问「合同签多久？」",en:"How long is the lease?",to:"contract"},
-          {label:"问「水电费怎么算？」",en:"How are utilities billed?",to:"utilities"}
-        ]
-      },
-      contract:{
-        lines:[
-          {who:"me",zh:"合同签多久？",py:"Hétong qiān duōjiǔ?",en:"How long is the lease?"},
-          {who:"agent",zh:"一年起租，提前退租要赔违约金。",py:"Yì nián qǐ zū, tíqián tuì zū yào péi wéiyuējīn.",en:"One year minimum; early move-out requires a penalty."}
-        ],
-        culture:"<b>词汇：</b>「违约金」wéiyuējīn = breach-of-contract penalty；「起租」qǐ zū = minimum rental period；「退租」tuì zū = move out early。",
-        to:"ending"
-      },
-      utilities:{
-        lines:[
-          {who:"anna",zh:"水电费怎么算？",py:"Shuǐ diàn fèi zěnme suàn?",en:"How are water and electricity billed?"},
-          {who:"agent",zh:"按表算，一个月大概三百。",py:"Àn biǎo suàn, yí ge yuè dàgài sān bǎi.",en:"By meter — about 300 a month."}
-        ],
-        culture:"<b>句型：</b>「按……算」àn...suàn = calculated by...；「大概」dàgài = approximately。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"me",zh:"我们再考虑一下，明天答复你。",py:"Wǒmen zài kǎolǜ yíxià, míngtiān dáfù nǐ.",en:"We'll think it over and get back to you tomorrow."},
-          {who:"agent",zh:"好，这套房子很抢手，别犹豫太久。",py:"Hǎo, zhè tào fángzi hěn qiǎngshǒu, bié yóuyù tài jiǔ.",en:"OK — this place is popular, don't hesitate too long."}
-        ],
-        culture:"<b>词汇：</b>「考虑」kǎolǜ = consider；「抢手」qiǎngshǒu = sought-after；「别……太……」是常见劝告句型。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l4-3",level:"L4",title:"旅行订票",titleEn:"Booking travel",scene:"Scene L4-3 · 高铁售票处",
-    desc:"买两张去西安的高铁票。改签、退票、选座——掌握交通出行的实用对话。",
-    descEn:"Buy two high-speed train tickets to Xi'an. Rescheduling, refunds, choosing seats — practical Chinese for getting around by train.",
-    cast:["me","anna","agent"],
-    names:{start:"开场",change:"问改签",arrival:"问到达",seat:"问选座",refund:"问退票",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"anna",zh:"我想买两张去西安的高铁票。",py:"Wǒ xiǎng mǎi liǎng zhāng qù Xī'ān de gāotiě piào.",en:"I'd like two high-speed train tickets to Xi'an."},
-          {who:"agent",zh:"哪天出发？一等座还是二等座？",py:"Nǎ tiān chūfā? Yì děng zuò háishì èr děng zuò?",en:"Which day? First or second class?"},
-          {who:"me",zh:"明天上午，二等座就行。",py:"Míngtiān shàngwǔ, èr děng zuò jiù xíng.",en:"Tomorrow morning, second class is fine."}
-        ],
-        prompt:{zh:"Anna 担心行程有变。",en:"Anna worries about changes."},
-        opts:[
-          {label:"问「能改签吗？」",en:"Can we change the ticket?",to:"change"},
-          {label:"问「几点到西安？」",en:"What time do we arrive?",to:"arrival"}
-        ]
-      },
-      change:{
-        lines:[
-          {who:"anna",zh:"如果临时有事，能改签吗？",py:"Rúguǒ línshí yǒu shì, néng gǎiqiān ma?",en:"If something comes up last-minute, can we change?"},
-          {who:"agent",zh:"开车前改签不收手续费，开车后要补差价。",py:"Kāichē qián gǎiqiān bù shōu shǒuxùfèi, kāichē hòu yào bǔ chājià.",en:"Before departure it's free; after, you pay the difference."}
-        ],
-        culture:"<b>词汇：</b>「改签」gǎiqān = change a ticket；「手续费」shǒuxùfèi = service fee；「差价」chājià = price difference。",
-        prompt:{zh:"接着问座位或到达时间。",en:"Now ask about seats or arrival."},
-        opts:[
-          {label:"问「能选靠窗的吗？」",en:"Can we get window seats?",to:"seat"},
-          {label:"问「退票怎么算？」",en:"What about refunds?",to:"refund"}
-        ]
-      },
-      arrival:{
-        lines:[
-          {who:"anna",zh:"几点到西安？",py:"Jǐ diǎn dào Xī'ān?",en:"What time do we arrive in Xi'an?"},
-          {who:"agent",zh:"下午两点半到，全程五个小时。",py:"Xiàwǔ liǎng diǎn bàn dào, quánchéng wǔ ge xiǎoshí.",en:"2:30 pm — five hours total."}
-        ],
-        culture:"<b>词汇：</b>「全程」quánchéng = the whole journey；「点半」diǎn bàn = half past the hour。",
-        prompt:{zh:"接着问座位或退票。",en:"Now ask about seats or refunds."},
-        opts:[
-          {label:"问「能选靠窗的吗？」",en:"Can we get window seats?",to:"seat"},
-          {label:"问「退票怎么算？」",en:"What about refunds?",to:"refund"}
-        ]
-      },
-      seat:{
-        lines:[
-          {who:"me",zh:"座位能选靠窗的吗？",py:"Zuòwèi néng xuǎn kào chuāng de ma?",en:"Can we choose window seats?"},
-          {who:"agent",zh:"可以在线选座，靠窗或者过道都行。",py:"Kěyǐ zài xiàn xuǎn zuò, kào chuāng huòzhě guò dào dōu xíng.",en:"You can choose online — window or aisle."}
-        ],
-        culture:"<b>词汇：</b>「靠窗」kào chuāng = window seat；「过道」guò dào = aisle。「在线」zài xiàn = online。",
-        to:"ending"
-      },
-      refund:{
-        lines:[
-          {who:"anna",zh:"那退票呢？",py:"Nà tuì piào ne?",en:"What about refunds?"},
-          {who:"agent",zh:"开车前八天以上退票免费，越晚手续费越高。",py:"Kāichē qián bā tiān yǐshàng tuì piào miǎnfèi, yuè wǎn shǒuxùfèi yuè gāo.",en:"Refund free more than 8 days ahead; the later, the higher the fee."}
-        ],
-        culture:"<b>句型：</b>「越……越……」yuè...yuè... = the more...the more...；「以上」yǐshàng = more than / above。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"me",zh:"好，就买这两张，谢谢。",py:"Hǎo, jiù mǎi zhè liǎng zhāng, xièxie.",en:"OK, we'll take these two, thanks."},
-          {who:"agent",zh:"这是车票，进站请带好证件。",py:"Zhè shì chēpiào, jìnzhàn qǐng dài hǎo zhèngjiàn.",en:"Here are your tickets — bring your ID for entry."}
-        ],
-        culture:"<b>词汇：</b>「进站」jìn zhàn = enter the station；「证件」zhèngjiàn = ID document。中国高铁进站需刷身份证。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l4-4",level:"L4",title:"银行开户",titleEn:"At the bank",scene:"Scene L4-4 · 银行网点",
-    desc:"Anna 想在银行开户。护照、工作证明、手机银行——听懂柜员的要求，顺利办完业务。",
-    descEn:"Anna wants to open a bank account. Passport, proof of employment, mobile banking — understand the clerk's requests and get the paperwork done smoothly.",
-    cast:["me","anna","banker"],
-    names:{start:"开场",passport:"递护照",documents:"问材料",mobile:"开手机银行",card:"问取卡",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"anna",zh:"你好，我想开一个银行账户。",py:"Nǐ hǎo, wǒ xiǎng kāi yí ge yínháng zhànghù.",en:"Hello, I'd like to open a bank account."},
-          {who:"banker",zh:"请坐。您是中国居民吗？",py:"Qǐng zuò. Nín shì Zhōngguó jūmín ma?",en:"Please sit. Are you a Chinese resident?"},
-          {who:"me",zh:"不是，她是外国人，来中国工作。",py:"Bú shì, tā shì wàiguórén, lái Zhōngguó gōngzuò.",en:"No — she's a foreigner, here to work."}
-        ],
-        prompt:{zh:"柜员需要看证件。",en:"The teller needs documents."},
-        opts:[
-          {label:"递上护照",en:"Hand over the passport",to:"passport"},
-          {label:"问「需要什么材料？」",en:"Ask what's needed",to:"documents"}
-        ]
-      },
-      passport:{
-        lines:[
-          {who:"anna",zh:"这是我的护照。",py:"Zhè shì wǒ de hùzhào.",en:"Here's my passport."},
-          {who:"banker",zh:"好的，还需要工作证明和住址证明。",py:"Hǎo de, hái xūyào gōngzuò zhèngmíng hé zhùzhǐ zhèngmíng.",en:"OK, we also need employment and address proof."}
-        ],
-        culture:"<b>词汇：</b>「证明」zhèngmíng = certificate / proof；「住址证明」zhùzhǐ zhèngmíng = proof of address。",
-        prompt:{zh:"柜员接着问开通服务。",en:"The teller asks about services."},
-        opts:[
-          {label:"开通手机银行",en:"Enable mobile banking",to:"mobile"},
-          {label:"问多久能拿到卡",en:"Ask when the card arrives",to:"card"}
-        ]
-      },
-      documents:{
-        lines:[
-          {who:"anna",zh:"需要什么材料？",py:"Xūyào shénme cáiliào?",en:"What documents do I need?"},
-          {who:"banker",zh:"护照、工作证明，还有一张证件照。",py:"Hùzhào, gōngzuò zhèngmíng, hái yǒu yì zhāng zhèngjiànzhào.",en:"Passport, employment proof, and an ID photo."}
-        ],
-        culture:"<b>词汇：</b>「材料」cáiliào = documents / materials；「证件照」zhèngjiànzhào = ID photo。",
-        prompt:{zh:"柜员接着问开通服务。",en:"The teller asks about services."},
-        opts:[
-          {label:"开通手机银行",en:"Enable mobile banking",to:"mobile"},
-          {label:"问多久能拿到卡",en:"Ask when the card arrives",to:"card"}
-        ]
-      },
-      mobile:{
-        lines:[
-          {who:"banker",zh:"要开通手机银行和网上银行吗？",py:"Yào kāitōng shǒujī yínháng hé wǎngshàng yínháng ma?",en:"Would you like mobile and online banking?"},
-          {who:"anna",zh:"要，我经常转账。",py:"Yào, wǒ jīngcháng zhuǎnzhàng.",en:"Yes, I transfer money often."}
-        ],
-        culture:"<b>词汇：</b>「手机银行」shǒujī yínháng = mobile banking；「转账」zhuǎnzhàng = transfer funds。",
-        to:"ending"
-      },
-      card:{
-        lines:[
-          {who:"anna",zh:"银行卡多久能拿到？",py:"Yínhángkǎ duōjiǔ néng ná dào?",en:"How soon can I get the card?"},
-          {who:"banker",zh:"一周左右，可以邮寄到您的住址。",py:"Yì zhōu zuǒyòu, kěyǐ yóujì dào nín de zhùzhǐ.",en:"About a week — we can mail it to your address."}
-        ],
-        culture:"<b>词汇：</b>「左右」zuǒyòu = approximately；「邮寄」yóujì = to mail。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"banker",zh:"您的账户开好了，这是回执，请收好。",py:"Nín de zhànghù kāi hǎo le, zhè shì huízhí, qǐng shōuhǎo.",en:"Your account is open — here's the receipt, please keep it."},
-          {who:"anna",zh:"谢谢！以后可以直接用手机付钱了。",py:"Xièxie! Yǐhòu kěyǐ zhíjiē yòng shǒujī fù qián le.",en:"Thanks! Now I can pay directly with my phone."}
-        ],
-        culture:"<b>词汇：</b>「回执」huízhí = receipt；「以后」yǐhòu = from now on；「直接」zhíjiē = directly。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l5-1",level:"L5",title:"职场沟通",titleEn:"At the workplace",scene:"Scene L5-1 · 办公室",
-    desc:" Anna 第一天上班。向同事汇报进度、礼貌请假——得体的职场表达能帮你快速融入。",
-    descEn:"It's Anna's first day at work. Report progress to colleagues, ask for leave politely — appropriate workplace Chinese helps you fit in fast.",
-    cast:["me","anna","colleague"],
-    names:{start:"开场",report:"汇报进度",deadline:"谈截止",leave:"请假",reason:"说原因",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"colleague",zh:"早啊！昨天那份报告写完了吗？",py:"Zǎo a! Zuótiān nà fèn bàogào xiě wán le ma?",en:"Morning! Did you finish yesterday's report?"},
-          {who:"anna",zh:"写完了，不过还有两个数据要确认。",py:"Xiě wán le, búguò hái yǒu liǎng ge shùjù yào quèrèn.",en:"Yes, but two figures still need checking."},
-          {who:"me",zh:"那你先把手头的事做完。",py:"Nà nǐ xiān bǎ shǒutóu de shì zuò wán.",en:"Then finish what's at hand first."}
-        ],
-        prompt:{zh:"同事想知道进度细节。",en:"The colleague asks for details."},
-        opts:[
-          {label:"说「大概下午能交」",en:"I can hand it in this afternoon",to:"report"},
-          {label:"反问「截止日期是哪天？」",en:"Ask about the deadline",to:"deadline"}
-        ]
-      },
-      report:{
-        lines:[
-          {who:"anna",zh:"大概下午能交给经理。",py:"Dàgài xiàwǔ néng jiāo gěi jīnglǐ.",en:"I can hand it to the manager this afternoon."},
-          {who:"colleague",zh:"好的，我这边等你。",py:"Hǎo de, wǒ zhèbiān děng nǐ.",en:"OK, I'll wait on my side."}
-        ],
-        culture:"<b>职场用语：</b>「交」jiāo = hand in；「给」gěi 引出对象；「这边」zhèbiān 指自己这一方，职场沟通中很常用。",
-        prompt:{zh:"Anna 突然想起要请假。",en:"Anna remembers she needs leave."},
-        opts:[
-          {label:"问「明天能请一天假吗？」",en:"Can I take a day off tomorrow?",to:"leave"},
-          {label:"先说明家里有事",en:"First explain a family matter",to:"reason"}
-        ]
-      },
-      deadline:{
-        lines:[
-          {who:"anna",zh:"截止日期是哪天？",py:"Jiézhǐ rìqī shì nǎ tiān?",en:"What's the deadline?"},
-          {who:"colleague",zh:"本周五下班前，还来得及。",py:"Běn zhōu wǔ xiàbān qián, hái lái de jí.",en:"Before leaving Friday — still enough time."}
-        ],
-        culture:"<b>词汇：</b>「截止日期」jiézhǐ rìqī = deadline；「来得及」lái de jí = there's still time；「下班」xiàbān = get off work。",
-        prompt:{zh:"Anna 突然想起要请假。",en:"Anna remembers she needs leave."},
-        opts:[
-          {label:"问「明天能请一天假吗？」",en:"Can I take a day off tomorrow?",to:"leave"},
-          {label:"先说明家里有事",en:"First explain a family matter",to:"reason"}
-        ]
-      },
-      leave:{
-        lines:[
-          {who:"anna",zh:"明天能请一天假吗？",py:"Míngtiān néng qǐng yì tiān jià ma?",en:"Can I take a day off tomorrow?"},
-          {who:"colleague",zh:"可以，记得提前跟经理说一声。",py:"Kěyǐ, jìde tíqián gēn jīnglǐ shuō yì shēng.",en:"Sure — remember to tell the manager in advance."}
-        ],
-        culture:"<b>职场用语：</b>「请假」qǐng jià = take leave；「提前」tíqián = in advance；「说一声」shuō yì shēng = give a heads-up。",
-        to:"ending"
-      },
-      reason:{
-        lines:[
-          {who:"anna",zh:"我家里有点事，想请一天假。",py:"Wǒ jiālǐ yǒu diǎn shì, xiǎng qǐng yì tiān jià.",en:"I have a family matter — I'd like a day off."},
-          {who:"colleague",zh:"没问题，工作我帮你盯着。",py:"Méi wèntí, gōngzuò wǒ bāng nǐ dīng zhe.",en:"No problem — I'll keep an eye on your work."}
-        ],
-        culture:"<b>表达：</b>「家里有事」jiālǐ yǒu shì 是请假常用理由，委婉不涉隐私；「帮……盯着」= keep an eye on for someone。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"anna",zh:"太感谢了，改天请你喝咖啡。",py:"Tài gǎnxiè le, gǎi tiān qǐng nǐ hē kāfēi.",en:"Thanks so much — I'll treat you to coffee sometime."},
-          {who:"colleague",zh:"客气什么，同事之间应该的。",py:"Kèqi shénme, tóngshì zhī jiān yīnggāi de.",en:"Don't mention it — that's what colleagues are for."}
-        ],
-        culture:"<b>文化点：</b>「改天」gǎi tiān = some other day（模糊邀约，未必真约）；「客气什么」是回应感谢的口语说法。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l5-2",level:"L5",title:"社交媒体",titleEn:"Social media",scene:"Scene L5-2 · 朋友圈",
-    desc:"Anna 发了第一条朋友圈。点赞、评论、网络用语——看懂中国的社交场域。",
-    descEn:"Anna posts her first WeChat Moment. Likes, comments, internet slang — learn to read China's social media scene.",
-    cast:["me","anna","friend"],
-    names:{start:"开场",like:"谈点赞",comment:"读评论",emoji:"用表情",slang:"懂网络语",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"anna",zh:"我发了第一条朋友圈，好紧张。",py:"Wǒ fā le dì yī tiáo péngyouquān, hǎo jǐnzhāng.",en:"I posted my first Moment — I'm nervous."},
-          {who:"me",zh:"看看有多少人点赞。",py:"Kànkan yǒu duōshao rén diǎn zàn.",en:"Let's see how many likes you got."},
-          {who:"friend",zh:"已经二十多个了，很火！",py:"Yǐjīng èrshí duō ge le, hěn huǒ!",en:"Over twenty already — you're trending!"}
-        ],
-        prompt:{zh:"Anna 看到评论，想了解含义。",en:"Anna sees comments and wants to understand."},
-        opts:[
-          {label:"问「点赞是什么意思？」",en:"What does 'like' mean?",to:"like"},
-          {label:"念出一条评论",en:"Read a comment aloud",to:"comment"}
-        ]
-      },
-      like:{
-        lines:[
-          {who:"anna",zh:"点赞是什么意思？",py:"Diǎn zàn shì shénme yìsi?",en:"What does 'diǎn zàn' mean?"},
-          {who:"friend",zh:"就是喜欢，点一下那个心形图标。",py:"Jiù shì xǐhuan, diǎn yíxià nà ge xīnxíng túbiāo.",en:"It means 'like' — tap the heart icon."}
-        ],
-        culture:"<b>网络用语：</b>「点赞」diǎn zàn = like (a post)；「朋友圈」péngyouquān = WeChat Moments。",
-        prompt:{zh:"Anna 想学着回复。",en:"Anna wants to reply."},
-        opts:[
-          {label:"用「谢谢」加表情",en:"Reply with thanks + emoji",to:"emoji"},
-          {label:"学一句网络热词",en:"Learn an internet slang",to:"slang"}
-        ]
-      },
-      comment:{
-        lines:[
-          {who:"anna",zh:"有人评论「太赞了」，什么意思？",py:"Yǒu rén pínglùn tài zàn le, shénme yìsi?",en:"Someone commented 'too awesome' — what does it mean?"},
-          {who:"friend",zh:"就是夸你，说特别好。",py:"Jiù shì kuā nǐ, shuō tèbié hǎo.",en:"It's praise — 'really great'."}
-        ],
-        culture:"<b>词汇：</b>「评论」pínglùn = comment；「赞」zàn = awesome / praise；「太……了」tài...le = so...。",
-        prompt:{zh:"Anna 想学着回复。",en:"Anna wants to reply."},
-        opts:[
-          {label:"用「谢谢」加表情",en:"Reply with thanks + emoji",to:"emoji"},
-          {label:"学一句网络热词",en:"Learn an internet slang",to:"slang"}
-        ]
-      },
-      emoji:{
-        lines:[
-          {who:"anna",zh:"谢谢大家的赞！😊",py:"Xièxie dàjiā de zàn!",en:"Thanks for all the likes! 😊"},
-          {who:"me",zh:"还可以发表情包，更有意思。",py:"Hái kěyǐ fā biǎoqíngbāo, gèng yǒu yìsi.",en:"You can also send stickers — more fun."}
-        ],
-        culture:"<b>文化点：</b>「表情包」biǎoqíngbāo = sticker / meme pack。中国人聊天极爱用表情包，有时一个表情胜过千言万语。",
-        to:"ending"
-      },
-      slang:{
-        lines:[
-          {who:"anna",zh:"朋友说「绝绝子」，这是夸我吗？",py:"Péngyou shuō juéjuézǐ, zhè shì kuā wǒ ma?",en:"A friend said 'juejuezi' — is that praise?"},
-          {who:"friend",zh:"对！就是「太棒了」的意思，网络热词。",py:"Duì! Jiù shì tài bàng le de yìsi, wǎngluò rècí.",en:"Yes! It means 'awesome' — an internet buzzword."}
-        ],
-        culture:"<b>网络热词：</b>「绝绝子」juéjuézǐ = extremely good / awesome。「yyds」（永远的神）也是常见网络用语。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"anna",zh:"中国网友真会说话，我要多学学。",py:"Zhōngguó wǎngyǒu zhēn huì shuōhuà, wǒ yào duō xuéxue.",en:"Chinese netizens really know how to talk — I want to learn more."},
-          {who:"me",zh:"下次教你发个表情包。",py:"Xià cì jiāo nǐ fā ge biǎoqíngbāo.",en:"Next time I'll teach you to send a sticker."}
-        ],
-        culture:"<b>词汇：</b>「网友」wǎngyǒu = netizen；「会说话」huì shuōhuà = articulate / know how to talk。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l5-3",level:"L5",title:"环保生活",titleEn:"Eco-friendly living",scene:"Scene L5-3 · 社区",
-    desc:"社区在推广垃圾分类。Anna 想做环保达人——学会谈论环保话题和日常低碳行动。",
-    descEn:"The neighborhood is promoting garbage sorting, and Anna wants to live green — learn to talk about environmental topics and everyday low-carbon habits.",
-    cast:["me","anna","friend"],
-    names:{start:"开场",sort:"问分类",recycle:"谈回收",habit:"说习惯",why:"谈意义",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"friend",zh:"你看，小区开始垃圾分类了。",py:"Nǐ kàn, xiǎoqū kāishǐ lājī fēnlèi le.",en:"Look — the community started garbage sorting."},
-          {who:"anna",zh:"我看到四个颜色的桶，怎么分？",py:"Wǒ kàn dào sì ge yánsè de tǒng, zěnme fēn?",en:"I see four colored bins — how do I sort?"},
-          {who:"me",zh:"厨余、可回收、有害、其他。",py:"Chúyú, kě huíshōu, yǒuhài, qítā.",en:"Kitchen, recyclable, hazardous, and other."}
-        ],
-        prompt:{zh:"Anna 拿着一个塑料瓶。",en:"Anna holds a plastic bottle."},
-        opts:[
-          {label:"问「这个怎么分？」",en:"Ask which bin this goes in",to:"sort"},
-          {label:"说「可回收的吧？」",en:"Guess it's recyclable",to:"recycle"}
-        ]
-      },
-      sort:{
-        lines:[
-          {who:"anna",zh:"这个塑料瓶怎么分？",py:"Zhège sùliàopíng zěnme fēn?",en:"Which bin does this plastic bottle go in?"},
-          {who:"friend",zh:"可回收，放蓝色桶。",py:"Kě huíshōu, fàng lánsè tǒng.",en:"Recyclable — the blue bin."}
-        ],
-        culture:"<b>文化点：</b>中国垃圾分类通常分四类：厨余垃圾、可回收物、有害垃圾、其他垃圾。「桶」tǒng = bin。",
-        prompt:{zh:"Anna 想谈谈环保。",en:"Anna wants to discuss the environment."},
-        opts:[
-          {label:"说「我尽量少用塑料袋」",en:"I try to use fewer plastic bags",to:"habit"},
-          {label:"问「为什么要分类？」",en:"Why sort garbage?",to:"why"}
-        ]
-      },
-      recycle:{
-        lines:[
-          {who:"anna",zh:"这是可回收的吧？",py:"Zhè shì kě huíshōu de ba?",en:"This is recyclable, right?"},
-          {who:"me",zh:"对，塑料瓶可以回收再利用。",py:"Duì, sùliàopíng kěyǐ huíshōu zài lìyòng.",en:"Yes — plastic bottles can be recycled."}
-        ],
-        culture:"<b>词汇：</b>「可回收」kě huíshōu = recyclable；「再利用」zài lìyòng = reuse。「……吧？」表示推测确认。",
-        prompt:{zh:"Anna 想谈谈环保。",en:"Anna wants to discuss the environment."},
-        opts:[
-          {label:"说「我尽量少用塑料袋」",en:"I try to use fewer plastic bags",to:"habit"},
-          {label:"问「为什么要分类？」",en:"Why sort garbage?",to:"why"}
-        ]
-      },
-      habit:{
-        lines:[
-          {who:"anna",zh:"我现在尽量少用塑料袋。",py:"Wǒ xiànzài jǐnliàng shǎo yòng sùliàodài.",en:"I try to use fewer plastic bags now."},
-          {who:"friend",zh:"太好了！我也带自己的水杯。",py:"Tài hǎo le! Wǒ yě dài zìjǐ de shuǐbēi.",en:"Great! I bring my own water bottle too."}
-        ],
-        culture:"<b>句型：</b>「尽量」jǐnliàng = as much as possible；「少」shǎo = less/fewer；「带」dài = bring along。",
-        to:"ending"
-      },
-      why:{
-        lines:[
-          {who:"anna",zh:"为什么要垃圾分类？",py:"Wèi shénme yào lājī fēnlèi?",en:"Why sort garbage?"},
-          {who:"me",zh:"为了少污染，也为了资源再利用。",py:"Wèile shǎo wūrǎn, yě wèile zīyuán zài lìyòng.",en:"To reduce pollution and reuse resources."}
-        ],
-        culture:"<b>词汇：</b>「为了」wèile = in order to；「污染」wūrǎn = pollution；「资源」zīyuán = resources。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"anna",zh:"环保要从身边小事做起。",py:"Huánbǎo yào cóng shēnbiān xiǎo shì zuò qǐ.",en:"Environmental protection starts with small things around us."},
-          {who:"friend",zh:"说得对，我们一起努力！",py:"Shuō de duì, wǒmen yìqǐ nǔlì!",en:"Well said — let's work together!"}
-        ],
-        culture:"<b>句型：</b>「从……做起」cóng...zuò qǐ = start with...；「努力」nǔlì = make an effort。这是谈环保、谈改变的常用表达。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l5-4",level:"L5",title:"家庭观念",titleEn:"Family values",scene:"Scene L5-4 · 家中 dinner",
-    desc:"和中国朋友聊家庭。代沟、孝顺、独立——探讨两代人观念差异的深层话题。",
-    descEn:"Talking about family with a Chinese friend. The generation gap, filial piety, independence — explore the deeper differences between two generations.",
-    cast:["me","anna","friend"],
-    names:{start:"开场",onlychild:"谈独生",generation:"谈代沟",filial:"谈孝顺",independent:"谈独立",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"friend",zh:"你是独生子女吗？",py:"Nǐ shì dúshēng zǐnǚ ma?",en:"Are you an only child?"},
-          {who:"anna",zh:"不是，我有一个姐姐。你呢？",py:"Bú shì, wǒ yǒu yí ge jiějie. Nǐ ne?",en:"No, I have an older sister. What about you?"},
-          {who:"me",zh:"我是独生子，父母很疼我。",py:"Wǒ shì dúshēngzǐ, fùmu hěn téng wǒ.",en:"I'm an only son — my parents dote on me."}
-        ],
-        prompt:{zh:"Anna 对中国家庭很好奇。",en:"Anna is curious about Chinese families."},
-        opts:[
-          {label:"问「独生子女有什么好处？」",en:"Benefits of being an only child?",to:"onlychild"},
-          {label:"问「你和父母有代沟吗？」",en:"Do you have a generation gap?",to:"generation"}
-        ]
-      },
-      onlychild:{
-        lines:[
-          {who:"anna",zh:"独生子女有什么好处？",py:"Dúshēng zǐnǚ yǒu shénme hǎochù?",en:"What are the benefits of being an only child?"},
-          {who:"me",zh:"资源都给我一个人，压力也大。",py:"Zīyuán dōu gěi wǒ yí ge rén, yālì yě dà.",en:"All resources go to me — but so does the pressure."}
-        ],
-        culture:"<b>文化点：</b>「独生子女」dúshēng zǐnǚ = only child。中国长期实行独生子女政策，这一代常被称为「独一代」。",
-        prompt:{zh:"话题转向两代人的观念。",en:"The topic turns to generations."},
-        opts:[
-          {label:"问「什么是孝顺？」",en:"What is filial piety?",to:"filial"},
-          {label:"谈「年轻人想独立」",en:"Young people want independence",to:"independent"}
-        ]
-      },
-      generation:{
-        lines:[
-          {who:"anna",zh:"你和父母有代沟吗？",py:"Nǐ hé fùmu yǒu dài gōu ma?",en:"Do you have a generation gap with your parents?"},
-          {who:"friend",zh:"有一点，他们总催我结婚。",py:"Yǒu yìdiǎn, tāmen zǒng cuī wǒ jiéhūn.",en:"A bit — they keep pushing me to marry."}
-        ],
-        culture:"<b>词汇：</b>「代沟」dài gōu = generation gap；「催」cuī = urge / push；「结婚」jiéhūn = get married。",
-        prompt:{zh:"话题转向两代人的观念。",en:"The topic turns to generations."},
-        opts:[
-          {label:"问「什么是孝顺？」",en:"What is filial piety?",to:"filial"},
-          {label:"谈「年轻人想独立」",en:"Young people want independence",to:"independent"}
-        ]
-      },
-      filial:{
-        lines:[
-          {who:"anna",zh:"「孝顺」是什么意思？",py:"Xiàoshùn shì shénme yìsi?",en:"What does 'filial piety' mean?"},
-          {who:"me",zh:"尊敬父母、照顾他们，是中国传统美德。",py:"Zūnjìng fùmu, zhàogù tāmen, shì Zhōngguó chuántǒng měidé.",en:"Respecting and caring for parents is a traditional Chinese virtue."}
-        ],
-        culture:"<b>文化点：</b>「孝顺」xiàoshùn = filial piety，是中国家庭伦理的核心概念，强调尊敬和赡养长辈。",
-        to:"ending"
-      },
-      independent:{
-        lines:[
-          {who:"anna",zh:"现在很多年轻人想独立生活。",py:"Xiànzài hěn duō niánqīng rén xiǎng dúlì shēnghuó.",en:"Many young people now want to live independently."},
-          {who:"friend",zh:"是啊，但父母总不放心。",py:"Shì a, dàn fùmu zǒng bú fàngxīn.",en:"Yes, but parents always worry."}
-        ],
-        culture:"<b>词汇：</b>「独立」dúlì = independent；「不放心」bú fàngxīn = worry / not feel at ease。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"anna",zh:"每个国家的家庭观念都不太一样。",py:"Měi ge guójiā de jiātíng guānniàn dōu bù tài yíyàng.",en:"Family values differ across countries."},
-          {who:"me",zh:"所以才有意思，可以互相学习。",py:"Suǒyǐ cái yǒu yìsi, kěyǐ hùxiāng xuéxí.",en:"That's what makes it interesting — we can learn from each other."}
-        ],
-        culture:"<b>句型：</b>「不太一样」bú tài yíyàng = not quite the same；「互相」hùxiāng = each other。这是比较文化差异时的常用表达。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l6-1",level:"L6",title:"谈梦想规划",titleEn:"Dreams & plans",scene:"Scene L6-1 · 咖啡馆夜谈",
-    desc:"深夜聊人生。谈梦想、说规划、讲条件——学习表达抽象意愿和长远目标。",
-    descEn:"A late-night talk about life. Dreams, plans, and conditions — learn to express abstract intentions and long-term goals in Chinese.",
-    cast:["me","anna","friend"],
-    names:{start:"开场",dream:"谈梦想",plan:"谈规划",condition:"谈条件",effort:"谈努力",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"friend",zh:"你以后有什么打算？",py:"Nǐ yǐhòu yǒu shénme dǎsuàn?",en:"What are your plans for the future?"},
-          {who:"anna",zh:"我想在中国工作几年，学更多东西。",py:"Wǒ xiǎng zài Zhōngguó gōngzuò jǐ nián, xué gèng duō dōngxi.",en:"I want to work in China for a few years and learn more."},
-          {who:"me",zh:"那你的梦想是什么？",py:"Nà nǐ de mèngxiǎng shì shénme?",en:"Then what's your dream?"}
-        ],
-        prompt:{zh:"Anna 思考后回答。",en:"Anna thinks, then answers."},
-        opts:[
-          {label:"说「我想开一家餐厅」",en:"I want to open a restaurant",to:"dream"},
-          {label:"反问「你的规划呢？」",en:"Ask about his plans",to:"plan"}
-        ]
-      },
-      dream:{
-        lines:[
-          {who:"anna",zh:"我想开一家自己的餐厅。",py:"Wǒ xiǎng kāi yì jiā zìjǐ de cāntīng.",en:"I want to open my own restaurant."},
-          {who:"friend",zh:"野心不小啊！那需要不少钱。",py:"Yěxīn bù xiǎo a! Nà xūyào bù shǎo qián.",en:"Ambitious! That takes quite a bit of money."}
-        ],
-        culture:"<b>词汇：</b>「梦想」mèngxiǎng = dream；「野心」yěxīn = ambition（略带贬义，此处开玩笑）；「不少」bù shǎo = quite a lot。",
-        prompt:{zh:"话题转向实现条件。",en:"The topic turns to what's needed."},
-        opts:[
-          {label:"说「前提是要有资金」",en:"The prerequisite is funding",to:"condition"},
-          {label:"说「先积累经验」",en:"Gain experience first",to:"effort"}
-        ]
-      },
-      plan:{
-        lines:[
-          {who:"anna",zh:"你的规划呢？",py:"Nǐ de guīhuà ne?",en:"What about your plans?"},
-          {who:"friend",zh:"我想先读研，再去大公司。",py:"Wǒ xiǎng xiān dú yán, zài qù dà gōngsī.",en:"I want to do a master's, then join a big company."}
-        ],
-        culture:"<b>词汇：</b>「规划」guīhuà = plan / blueprint；「读研」dú yán = pursue graduate studies；「先……再……」= first...then...。",
-        prompt:{zh:"话题转向实现条件。",en:"The topic turns to what's needed."},
-        opts:[
-          {label:"说「前提是要有资金」",en:"The prerequisite is funding",to:"condition"},
-          {label:"说「先积累经验」",en:"Gain experience first",to:"effort"}
-        ]
-      },
-      condition:{
-        lines:[
-          {who:"anna",zh:"前提是要有资金和人脉。",py:"Qiántí shì yào yǒu zījīn hé rénmài.",en:"The prerequisite is funding and connections."},
-          {who:"me",zh:"没错，光有热情还不够。",py:"Méi cuò, guāng yǒu rèqíng hái bú gòu.",en:"Right — passion alone isn't enough."}
-        ],
-        culture:"<b>句型：</b>「前提是……」qiántí shì = the prerequisite is...；「光……还……」guāng...hái... = merely...is not enough。",
-        to:"ending"
-      },
-      effort:{
-        lines:[
-          {who:"anna",zh:"我想先积累经验，慢慢来。",py:"Wǒ xiǎng xiān jīlěi jīngyàn, mànmàn lái.",en:"I want to gain experience first, take it step by step."},
-          {who:"friend",zh:"踏实！一步步来最靠谱。",py:"Tāshi! Yí bù bù lái zuì kàopǔ.",en:"Solid — stepping by step is most reliable."}
-        ],
-        culture:"<b>词汇：</b>「积累」jīlěi = accumulate；「踏实」tāshi = down-to-earth；「靠谱」kàopǔ = reliable。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"me",zh:"不管怎样，先行动起来。",py:"Bùguǎn zěnyàng, xiān xíngdòng qǐlái.",en:"Either way, take action first."},
-          {who:"anna",zh:"对，计划再好也要去做。",py:"Duì, jìhuà zài hǎo yě yào qù zuò.",en:"Right — however good the plan, you have to do it."}
-        ],
-        culture:"<b>句型：</b>「不管……都/也……」bùguǎn...dōu/yě... = no matter...；「再……也……」= however...still...。这是表达决心的高级句型。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l6-2",level:"L6",title:"文化差异",titleEn:"Cultural differences",scene:"Scene L6-2 · 跨文化沙龙",
-    desc:"跨文化沙龙上讨论误会与理解。学会委婉地比较文化、解释差异——成熟的表达者必备。",
-    descEn:"At a cross-cultural salon, discussing misunderstanding and understanding. Learn to compare cultures and explain differences tactfully — a must for a mature speaker.",
-    cast:["me","anna","friend"],
-    names:{start:"开场",misunderstanding:"谈误会",compare:"作比较",explain:"作解释",respect:"谈尊重",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"friend",zh:"你们国家见面怎么打招呼？",py:"Nǐmen guójiā jiànmiàn zěnme dǎ zhāohu?",en:"How do people greet each other in your country?"},
-          {who:"anna",zh:"我们 generally 拥抱或者贴面。",py:"Wǒmen yōngbào huòzhě tiēmiàn.",en:"We hug or kiss on the cheek."},
-          {who:"me",zh:"中国人一般握手，或者点头。",py:"Zhōngguó rén yìbān wòshǒu, huòzhě diǎntóu.",en:"Chinese people usually shake hands or nod."}
-        ],
-        prompt:{zh:"Anna 提到一次文化误会。",en:"Anna recalls a cultural misunderstanding."},
-        opts:[
-          {label:"讲「我曾误会别人的客气」",en:"I once mistook politeness",to:"misunderstanding"},
-          {label:"直接比较两种文化",en:"Compare the two cultures",to:"compare"}
-        ]
-      },
-      misunderstanding:{
-        lines:[
-          {who:"anna",zh:"我以前以为「改天吃饭」是真邀请。",py:"Wǒ yǐqián yǐwéi gǎi tiān chīfàn shì zhēn yāoqǐng.",en:"I used to think 'let's eat sometime' was a real invitation."},
-          {who:"friend",zh:"哈哈，那只是客套话，别当真。",py:"Hāhā, nà zhǐshì kètào huà, bié dàngzhēn.",en:"Haha, that's just polite talk — don't take it literally."}
-        ],
-        culture:"<b>文化点：</b>「客套话」kètào huà = polite small talk；「别当真」bié dàngzhēn = don't take it seriously。中文里许多邀约是社交客套。",
-        prompt:{zh:"Anna 想深入解释。",en:"Anna wants to explain further."},
-        opts:[
-          {label:"分析「中外表达差异」",en:"Analyze expression differences",to:"explain"},
-          {label:"谈「互相尊重」",en:"Talk about mutual respect",to:"respect"}
-        ]
-      },
-      compare:{
-        lines:[
-          {who:"anna",zh:"我觉得西方人更直接，中国人更含蓄。",py:"Wǒ juéde xīfāng rén gèng zhíjiē, Zhōngguó rén gèng háoxù.",en:"I feel Westerners are more direct, Chinese more reserved."},
-          {who:"me",zh:"有道理，不过也不能一概而论。",py:"Yǒu dàolǐ, búguò yě bù néng yí gài ér lùn.",en:"Fair point — but you can't generalize."}
-        ],
-        culture:"<b>成语：</b>「一概而论」yí gài ér lùn = to generalize blanket-style。常用于提醒别人不要以偏概全。",
-        prompt:{zh:"Anna 想深入解释。",en:"Anna wants to explain further."},
-        opts:[
-          {label:"分析「中外表达差异」",en:"Analyze expression differences",to:"explain"},
-          {label:"谈「互相尊重」",en:"Talk about mutual respect",to:"respect"}
-        ]
-      },
-      explain:{
-        lines:[
-          {who:"anna",zh:"有些话中国人不直说，要听弦外之音。",py:"Yǒuxiē huà Zhōngguó rén bù zhí shuō, yào tīng xiánwài zhī yīn.",en:"Chinese people don't always speak directly — you must hear the subtext."},
-          {who:"friend",zh:"对，「弦外之音」这个词用得很准。",py:"Duì, xiánwài zhī yīn zhège cí yòng de hěn zhǔn.",en:"Right — you used 'subtext' very accurately."}
-        ],
-        culture:"<b>成语：</b>「弦外之音」xiánwài zhī yīn = subtext / implied meaning，字面「琴弦之外的声音」。高难度文化词。",
-        to:"ending"
-      },
-      respect:{
-        lines:[
-          {who:"anna",zh:"最重要的是互相尊重，不强求一致。",py:"Zuì zhòngyào de shì hùxiāng zūnzhòng, bù qiǎngqiú yízhì.",en:"Most important is mutual respect — not forcing agreement."},
-          {who:"me",zh:"说得真好，求同存异嘛。",py:"Shuō de zhēn hǎo, qiú tóng cún yì ma.",en:"Well said — seek common ground while reserving differences."}
-        ],
-        culture:"<b>成语：</b>「求同存异」qiú tóng cún yì = seek common ground while reserving differences，是跨文化交往的核心态度。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"friend",zh:"理解文化差异，需要时间和耐心。",py:"Lǐjiě wénhuà chāyì, xūyào shíjiān hé nàixīn.",en:"Understanding cultural differences takes time and patience."},
-          {who:"anna",zh:"所以我才想学中文，学语言就是学文化。",py:"Suǒyǐ wǒ cái xiǎng xué Zhōngwén, xué yǔyán jiù shì xué wénhuà.",en:"That's why I'm learning Chinese — learning a language is learning its culture."}
-        ],
-        culture:"<b>句型：</b>「所以……才……」suǒyǐ...cái... = that's why...；「就是」jiù shì 用于强调等同关系。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l6-3",level:"L6",title:"观点辩论",titleEn:"Debating opinions",scene:"Scene L6-3 · 辩论社",
-    desc:"参加一场中文辩论。用「一方面……另一方面」「诚然……但是」表达多层次观点——高阶表达训练。",
-    descEn:"Join a Chinese-language debate. Express layered views with 'on one hand... on the other hand' and 'granted... but' — advanced expression training.",
-    cast:["me","anna","friend"],
-    names:{start:"开场",side:"陈述立场",pros:"谈优点",cons:"谈缺点",rebut:"反驳",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"friend",zh:"今天的辩题：网络让人更亲近还是更疏远？",py:"Jīntiān de biàntí: wǎngluò ràng rén gèng qīnjìn háishì gèng shūyuǎn?",en:"Today's topic: does the internet bring people closer or farther?"},
-          {who:"me",zh:"我先说说我的看法。",py:"Wǒ xiān shuōshuo wǒ de kànfǎ.",en:"Let me share my view first."}
-        ],
-        prompt:{zh:"轮到 Anna 陈述立场。",en:"It's Anna's turn to state her position."},
-        opts:[
-          {label:"支持「更亲近」",en:"Argue it brings people closer",to:"side"},
-          {label:"支持「更疏远」",en:"Argue it makes people distant",to:"cons"}
-        ]
-      },
-      side:{
-        lines:[
-          {who:"anna",zh:"我认为网络让人更亲近。",py:"Wǒ rènwéi wǎngluò ràng rén gèng qīnjìn.",en:"I believe the internet brings people closer."},
-          {who:"me",zh:"请举一个具体的例子。",py:"Qǐng jǔ yí ge jùtǐ de lìzi.",en:"Please give a concrete example."}
-        ],
-        culture:"<b>表达立场：</b>「我认为……」wǒ rènwéi = I believe；「举例子」jǔ lìzi = give an example；「具体」jùtǐ = concrete。",
-        prompt:{zh:"Anna 展开论证。",en:"Anna elaborates."},
-        opts:[
-          {label:"谈「跨地域联系的优势」",en:"Discuss cross-distance connection",to:"pros"},
-          {label:"承认缺点再反驳",en:"Concede then rebut",to:"rebut"}
-        ]
-      },
-      pros:{
-        lines:[
-          {who:"anna",zh:"一方面，网络让异地的家人随时联系。",py:"Yì fāngmiàn, wǎngluò ràng yìdì de jiārén suíshí liánxì.",en:"On one hand, the internet lets distant families stay in touch."},
-          {who:"friend",zh:"这确实是很大的优点。",py:"Zhè quèshí shì hěn dà de yōudiǎn.",en:"That's certainly a big advantage."}
-        ],
-        culture:"<b>论证句型：</b>「一方面……（另一方面……）」yì fāngmiàn... = on one hand...；「确实」quèshí = indeed。",
-        to:"ending"
-      },
-      cons:{
-        lines:[
-          {who:"anna",zh:"我认为网络让人更疏远。",py:"Wǒ rènwéi wǎngluò ràng rén gèng shūyuǎn.",en:"I believe the internet makes people more distant."},
-          {who:"me",zh:"那你怎么看线上友谊？",py:"Nà nǐ zěnme kàn xiànshàng yǒuyì?",en:"Then what about online friendships?"}
-        ],
-        culture:"<b>词汇：</b>「疏远」shūyuǎn = distant / estranged；「线上」xiànshàng = online；「友谊」yǒuyì = friendship。",
-        prompt:{zh:"Anna 继续论证。",en:"Anna continues."},
-        opts:[
-          {label:"说「线上不如面对面」",en:"Online isn't as good as face-to-face",to:"rebut"},
-          {label:"谈「信息过载的缺点」",en:"Discuss information overload",to:"pros"}
-        ]
-      },
-      rebut:{
-        lines:[
-          {who:"anna",zh:"诚然网络方便，但是面对面的温度无法替代。",py:"Chéngrán wǎngluò fāngbiàn, dànshì miànduìmiàn de wēndù wúfǎ tìdài.",en:"Admittedly it's convenient, but face-to-face warmth can't be replaced."},
-          {who:"friend",zh:"这个反驳很有力！",py:"Zhège fǎnbó hěn yǒu lì!",en:"That's a strong rebuttal!"}
-        ],
-        culture:"<b>高级句型：</b>「诚然……但是……」chéngrán...dànshì... = admittedly...but...；「无法替代」wúfǎ tìdài = irreplaceable。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"me",zh:"辩论没有对错，关键是论证有力。",py:"Biànlùn méiyǒu duìcuò, guānjiàn shì lùnzhèng yǒu lì.",en:"Debate isn't about right or wrong — it's about strong reasoning."},
-          {who:"anna",zh:"我学会了用中文讲道理，比赢更重要。",py:"Wǒ xuéhuì le yòng Zhōngwén jiǎng dàolǐ, bǐ yíng gèng zhòngyào.",en:"I learned to reason in Chinese — more important than winning."}
-        ],
-        culture:"<b>词汇：</b>「论证」lùnzhèng = argumentation；「讲道理」jiǎng dàolǐ = reason things out；「关键」guānjiàn = key point。",
-        end:true
-      }
-    }
-  },
-  {
-    id:"l6-4",level:"L6",title:"商务谈判",titleEn:"Business negotiation",scene:"Scene L6-4 · 会议室",
-    desc:"代表公司与供应商谈判。开条件、做让步、达共识——最实用的高端商务中文。",
-    descEn:"Negotiate with a supplier on behalf of your company. Set terms, make concessions, reach agreement — the most practical high-level business Chinese.",
-    cast:["me","client"],
-    names:{start:"开场",price:"谈价格",terms:"谈条件",concession:"做让步",agreement:"达共识",ending:"结局"},
-    story:{
-      start:{
-        lines:[
-          {who:"client",zh:"张总，合作方案您看过了吧？",py:"Zhāng zǒng, hézuò fāng'àn nín kàn guò le ba?",en:"Mr. Zhang, have you reviewed the proposal?"},
-          {who:"me",zh:"看过了，大方向没问题，细节还要谈。",py:"Kàn guò le, dà fāngxiàng méi wèntí, xìjié hái yào tán.",en:"Yes — the direction is fine; details need discussion."},
-          {who:"client",zh:"那您先说，最关心哪部分？",py:"Nà nín xiān shuō, zuì guānxīn nǎ bùfen?",en:"Then tell me — what concerns you most?"}
-        ],
-        prompt:{zh:"你先提出核心议题。",en:"You raise the core issue."},
-        opts:[
-          {label:"先谈价格",en:"Discuss price first",to:"price"},
-          {label:"先谈合作条款",en:"Discuss terms first",to:"terms"}
-        ]
-      },
-      price:{
-        lines:[
-          {who:"me",zh:"首先是价格，报价比市场高了一成。",py:"Shǒuxiān shì jiàgé, bàojià bǐ shìchǎng gāo le yì chéng.",en:"First, price — your quote is 10% above market."},
-          {who:"client",zh:"我们的质量也更好，这个价格合理。",py:"Wǒmen de zhìliàng yě gèng hǎo, zhège jiàgé hélǐ.",en:"Our quality is better too — the price is fair."}
-        ],
-        culture:"<b>商务词汇：</b>「报价」bàojià = quote；「一成」yì chéng = 10%；「合理」hélǐ = reasonable。「比……高/低」用于比较。",
-        prompt:{zh:"你想推动谈判。",en:"You want to move the negotiation."},
-        opts:[
-          {label:"提出让步条件",en:"Propose a concession",to:"concession"},
-          {label:"坚持达成共识",en:"Push for agreement",to:"agreement"}
-        ]
-      },
-      terms:{
-        lines:[
-          {who:"me",zh:"我更关心付款方式和交货周期。",py:"Wǒ gèng guānxīn fùkuǎn fāngshì hé jiāohuò zhōuqī.",en:"I care more about payment terms and delivery time."},
-          {who:"client",zh:"付款可以分三期，交货四十五天。",py:"Fùkuǎn kěyǐ fēn sān qī, jiāohuò sìshíwǔ tiān.",en:"Payment in three installments; delivery in 45 days."}
-        ],
-        culture:"<b>商务词汇：</b>「付款方式」fùkuǎn fāngshì = payment terms；「交货」jiāohuò = delivery；「周期」zhōuqī = cycle / lead time。",
-        prompt:{zh:"你想推动谈判。",en:"You want to move the negotiation."},
-        opts:[
-          {label:"提出让步条件",en:"Propose a concession",to:"concession"},
-          {label:"坚持达成共识",en:"Push for agreement",to:"agreement"}
-        ]
-      },
-      concession:{
-        lines:[
-          {who:"me",zh:"如果价格降一成，我们可以长期合作。",py:"Rúguǒ jiàgé jiàng yì chéng, wǒmen kěyǐ chángqī hézuò.",en:"If you drop 10%, we can commit long-term."},
-          {who:"client",zh:"长期合作……这个条件有吸引力。",py:"Chángqī hézuò... zhège tiáojiàn yǒu xīyǐnlì.",en:"Long-term cooperation — that's attractive."}
-        ],
-        culture:"<b>谈判句型：</b>「如果……可以……」= if...then we can...；「条件」tiáojiàn = condition；「吸引力」xīyǐnlì = appeal。",
-        to:"ending"
-      },
-      agreement:{
-        lines:[
-          {who:"me",zh:"我们都退一步，争取今天定下来。",py:"Wǒmen dōu tuì yí bù, zhēngqǔ jīntiān dìng xiàlái.",en:"Let's both compromise and try to settle it today."},
-          {who:"client",zh:"好，我原则上同意，细节写进合同。",py:"Hǎo, wǒ yuánzéshàng tóngyì, xìjié xiě jìn hétong.",en:"OK — I agree in principle; details go into the contract."}
-        ],
-        culture:"<b>谈判用语：</b>「退一步」tuì yí bù = make a concession；「原则上同意」yuánzéshàng tóngyì = agree in principle；「定下来」= settle。",
-        to:"ending"
-      },
-      ending:{
-        lines:[
-          {who:"me",zh:"那就这么说定了，合作愉快！",py:"Nà jiù zhème shuō dìng le, hézuò yúkuài!",en:"Then it's settled — pleasant cooperation!"},
-          {who:"client",zh:"合作愉快！合同我明天发您。",py:"Hézuò yúkuài! Hétong wǒ míngtiān fā nín.",en:"Pleasant cooperation! I'll send the contract tomorrow."}
-        ],
-        culture:"<b>商务礼仪：</b>「说定了」shuō dìng le = it's settled；「合作愉快」hézuò yúkuài = pleasant cooperation，是签约时的标准祝福语。",
-        end:true
-      }
-    }
-  }
+let COURSES=[
 ];
 let curLesson=0, path=[];
 function say(t){if(!window.speechSynthesis)return;const u=new SpeechSynthesisUtterance(t);u.lang="zh-CN";u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u)}
@@ -1039,7 +206,7 @@ function downloadCert(){
   const a=document.createElement("a");a.download="HanziFace-情境对话结业证书.png";a.href=cv.toDataURL("image/png");a.click();
   const box=document.querySelector(".certmodal");if(box)box.remove();
 }
-render();
+if(COURSES.length) render();
 </script>
 
 <!-- ===== Premium access gate (single switch) ===== -->
@@ -1060,7 +227,7 @@ render();
     <div class="glogo">HANZIFACE · PREMIUM</div>
     <div class="gicon">🔒</div>
     <h2>L4–L6 进阶汉语 · 12 课</h2>
-    <p>这套情境连续对话属于 <b style="color:#e8c96b">Premium 会员</b>内容，支付通道正在开通中，预计本周五上线后即可解锁。</p>
+    <p>这套情境连续对话属于 <b style="color:#e8c96b">Premium 会员</b>内容，请先登录；已购买用户将自动解锁，未购买用户可前往主站了解会员方案。</p>
     <ul class="glist">
       <li>✅ 固定角色 + 连续剧情 + 分支选择</li>
       <li>✅ 中文 / 拼音 / 英文三语对照 + 语音朗读</li>
@@ -1070,15 +237,70 @@ render();
       <a class="btn" href="index.html">查看会员方案 →</a>
       <a class="btn ghost" href="index.html">← 返回主站</a>
     </div>
-    <p style="font-size:12px;color:#8f9bb3;margin-top:18px">Payments opening this Friday · 已订阅用户届时可解锁全部内容</p>
+    <p style="font-size:12px;color:#8f9bb3;margin-top:18px">Sign in to unlock · 已购买用户登录后自动解锁</p>
   </div>
 </div>
 <script>
-  /* 两种解锁方式：① 主站 PAYMENTS_LIVE 打开后写入的 localStorage 广播；② 本页强制开关（兜底） */
-  const SCENARIO_LIVE = false;
-  let live = SCENARIO_LIVE;
-  try{ if(localStorage.getItem('mh_premium_live')==='1') live = true; }catch(e){}
-  if(live){ const g=document.getElementById('gate'); if(g) g.remove(); }
+/* ===== Supabase 用户级鉴权：未登录/未付款 → gate 保留；已付款 → 拉内容并移除 gate ===== */
+(function(){
+  const URL="https://deyxyydabqtnjhggpwmt.supabase.co", KEY="sb_publishable_U8_GG2ALj9ACwd-bDNU4iA_rHNwqA6d", SK="mh_auth_session", CONTENT_KEY="scenario-l4-l6";
+  const headers=function(tok){return {"apikey":KEY,"Authorization":"Bearer "+(tok||KEY)}};
+  let session=null, user=null;
+  function restore(){ try{ const r=localStorage.getItem(SK); if(r) session=JSON.parse(r); }catch(e){} }
+  function save(){ try{ localStorage.setItem(SK, JSON.stringify(session)); }catch(e){} }
+  function parseHash(){ const h=location.hash||""; if(h.indexOf("access_token=")<0) return false;
+    const p=new URLSearchParams(h.replace(/^#/,"")); const t=p.get("access_token"); if(!t) return false;
+    session={access_token:t,refresh_token:p.get("refresh_token")||"",expires_in:+(p.get("expires_in")||3600)}; save();
+    try{ history.replaceState(null,"",location.pathname+location.search); }catch(e){} return true; }
+  async function refresh(){ if(!session||!session.refresh_token) return false;
+    try{ const r=await fetch(URL+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:headers(),body:JSON.stringify({refresh_token:session.refresh_token})});
+      if(!r.ok) return false; const j=await r.json(); session={access_token:j.access_token,refresh_token:j.refresh_token||session.refresh_token,expires_in:j.expires_in||3600}; save(); return true;
+    }catch(e){ return false; } }
+  async function api(path,retry){ const r=await fetch(URL+path,{headers:headers()});
+    if(r.status===401&&!retry){ if(await refresh()) return api(path,true); }
+    if(!r.ok) return null; return await r.json(); }
+  function unlock(){
+    const g=document.getElementById("gate"); if(g) g.remove();
+    document.body.style.overflow="";
+    render();
+  }
+  function showLogin(){
+    const body=document.querySelector("#gate .gcard");
+    if(!body) return;
+    body.innerHTML='<div class="glogo">HANZIFACE · PREMIUM</div>'+
+      '<div class="gicon">🔐</div><h2>L4–L6 进阶汉语 · 12 课</h2>'+
+      '<p>本套情境对话属于 <b style="color:#e8c96b">Premium 会员</b>内容。请登录以验证购买状态；已购买用户自动解锁全部课程。</p>'+
+      '<div style="max-width:360px;margin:22px auto 0;text-align:left">'+
+      '<label style="display:block;font-size:13px;color:#aab4c8;margin-bottom:6px">邮箱 / Email</label>'+
+      '<input id="scLoginEmail" type="email" placeholder="you@example.com" style="width:100%;padding:12px 14px;border-radius:8px;border:1px solid #3a4661;background:#1a2338;color:#fff;font-size:15px">'+
+      '<button onclick="window.__scSendLink()" style="width:100%;margin-top:12px;padding:12px;border:0;border-radius:8px;background:linear-gradient(135deg,#d4af37,#e8c96b);color:#0d203c;font-weight:700;font-size:15px;cursor:pointer">发送登录链接 →</button>'+
+      '<p id="scLoginMsg" style="font-size:12px;color:#aab4c8;margin-top:12px;text-align:center"></p>'+
+      '</div><div style="margin-top:20px"><a class="btn ghost" href="index.html">← 返回主站</a></div>';
+  }
+  window.__scSendLink=async function(){
+    const el=document.getElementById("scLoginEmail"), v=(el||{}).value||"";
+    if(!/^\S+@\S+\.\S+$/.test(v)){ document.getElementById("scLoginMsg").textContent="请输入有效邮箱 / Enter a valid email"; return; }
+    try{
+      const r=await fetch(URL+"/auth/v1/otp",{method:"POST",headers:headers(),body:JSON.stringify({email:v,create_user:true,email_redirect_to:location.origin+location.pathname})});
+      document.getElementById("scLoginMsg").textContent=r.ok?"登录链接已发送，请查收邮件 ✓ / Check your email":"发送失败，请重试 / Failed, please retry";
+    }catch(e){ document.getElementById("scLoginMsg").textContent="网络异常，请重试 / Network error"; }
+  };
+  async function init(){
+    restore(); const fromHash=parseHash();
+    if(!session){ showLogin(); return; }
+    user=await api("/auth/v1/user");
+    if(!user){ try{localStorage.removeItem(SK)}catch(e){}; session=null; showLogin(); return; }
+    const ent=await api("/rest/v1/entitlements?select=plan,paid_at&user_id=eq."+encodeURIComponent(user.id));
+    const entitled=!!(ent&&ent[0]&&ent[0].plan==="premium"&&ent[0].paid_at);
+    if(!entitled){ showLogin(); return; }
+    const rows=await api("/rest/v1/premium_content?select=key,kind,data&key=eq."+CONTENT_KEY);
+    if(!rows||!rows[0]||!rows[0].data){ showLogin(); return; }
+    ROLES=rows[0].data.roles||{}; COURSES=rows[0].data.courses||[];
+    if(fromHash){ const g=document.getElementById("gate"); if(g){ g.remove(); document.body.style.overflow=""; } render(); }
+    else unlock();
+  }
+  init();
+})();
 </script>
 
 </body>

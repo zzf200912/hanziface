@@ -274,608 +274,6 @@
 <script data-page-node-id="Bae1I2fA6na3mzJskxUhue" data-pnid-children="T2xeh5vJMzz27dxGm1D4US">
 /* ================= 数据 ================= */
 const NEW_LESSONS = [
-  {
-    id:"l4-1", level:"L4", zh:"看病就医", en:"See a doctor", ip:false,
-    desc:"Doctor visit · describe symptoms, understand advice",
-    dlg:[
-      {who:"l", zh:"医生您好，我头疼两天了。", py:"Yīshēng nín hǎo, wǒ tóu téng liǎng tiān le.", en:"Hello doctor, I've had a headache for two days."},
-      {who:"r", zh:"哪个位置疼？发烧吗？", py:"Nǎge wèizhì téng? Fāshāo ma?", en:"Where does it hurt? Do you have a fever?"},
-      {who:"l", zh:"左边太阳穴，昨晚量是三十八度。", py:"Zuǒbiān tàiyángxué, zuówǎn liáng shì sānshíbā dù.", en:"Left temple, last night it was 38 degrees."},
-      {who:"r", zh:"先验个血，然后饭后吃这个药，一天两次。", py:"Xiān yàn ge xiě, ránhòu fàn hòu chī zhège yào, yì tiān liǎng cì.", en:"Let's do a blood test first, then take this medicine after meals, twice a day."},
-      {who:"l", zh:"好的，谢谢医生！", py:"Hǎo de, xièxie yīshēng!", en:"OK, thank you doctor!"},
-    ],
-    vocab:[
-      {zh:"头疼", py:"tóu téng", en:"headache"},
-      {zh:"发烧", py:"fā shāo", en:"fever"},
-      {zh:"量体温", py:"liáng tǐ wēn", en:"take temperature"},
-      {zh:"饭后", py:"fàn hòu", en:"after meals"},
-      {zh:"验血", py:"yàn xiě", en:"blood test"},
-    ],
-    quiz:[
-      {q:"「饭后吃」means:", opts:["Before meals","After meals","With meals","On empty stomach"], a:1},
-      {q:"医生问「发烧吗」是在问:", opts:["Your temperature","Your age","Your name","Your job"], a:0},
-      {q:"「一天两次」means:", opts:["Once a day","Twice a day","Three times a day","Every hour"], a:1},
-      {q:"「头疼」means:", opts:["headache", "fever", "take temperature", "after meals"], a:0},
-    ],
-    speak:{zh:"医生您好，我头疼两天了，有点发烧。", en:"Hello doctor, I've had a headache for two days and a slight fever."}
-  },
-  {
-    id:"l4-2", level:"L4", zh:"租房看房", en:"Rent an apartment", ip:false,
-    desc:"Rental terms · deposit, contract, utilities",
-    dlg:[
-      {who:"l", zh:"这套房押一付三，月租五千。", py:"Zhè tào fáng yā yī fù sān, yuè zū wǔ qiān.", en:"This apartment is one-month deposit plus three months, rent 5000/month."},
-      {who:"r", zh:"水电燃气费包括吗？", py:"Shuǐ diàn ránqì fèi bāokuò ma?", en:"Are water, electricity and gas included?"},
-      {who:"l", zh:"水电自己交，有物业费。可以拎包入住。", py:"Shuǐ diàn zìjǐ jiāo, yǒu wùyè fèi. Kěyǐ līng bāo rùzhù.", en:"Utilities are on you, plus property fee. It's move-in ready."},
-      {who:"r", zh:"如果提前退租，违约金怎么算？", py:"Rúguǒ tíqián tuì zū, wéiyuējīn zěnme suàn?", en:"If I break the lease early, how is the penalty calculated?"},
-      {who:"l", zh:"提前一个月说，扣半个月租金。", py:"Tíqián yí ge yuè shuō, kòu bàn ge yuè zūjīn.", en:"Give one month's notice, deduct half a month's rent."},
-    ],
-    vocab:[
-      {zh:"押一付三", py:"yā yī fù sān", en:"one deposit plus three months"},
-      {zh:"违约金", py:"wéiyuējīn", en:"penalty for breach"},
-      {zh:"拎包入住", py:"līng bāo rùzhù", en:"move-in ready"},
-      {zh:"物业费", py:"wùyè fèi", en:"property fee"},
-      {zh:"月租", py:"yuè zū", en:"monthly rent"},
-    ],
-    quiz:[
-      {q:"「押一付三」first payment covers:", opts:["1 month","3 months","4 months","6 months"], a:2},
-      {q:"「拎包入住」means:", opts:["Bring your own furniture","Fully furnished","No furniture","Shared room"], a:1},
-      {q:"「违约金」is:", opts:["A discount","A deposit","A penalty","A subsidy"], a:2},
-      {q:"「押一付三」means:", opts:["one deposit plus three months", "penalty for breach", "move-in ready", "property fee"], a:0},
-    ],
-    speak:{zh:"这套房押一付三，水电自己交，可以拎包入住。", en:"This place is one-plus-three, utilities on me, move-in ready."}
-  },
-  {
-    id:"l4-3", level:"L4", zh:"旅行订票", en:"Book train tickets", ip:false,
-    desc:"Book & change tickets · seat, refund",
-    dlg:[
-      {who:"l", zh:"我想买两张去西安的高铁票。", py:"Wǒ xiǎng mǎi liǎng zhāng qù Xī'ān de gāotiě piào.", en:"I'd like two high-speed train tickets to Xi'an."},
-      {who:"r", zh:"上午十点和下午两点，您要哪个？", py:"Shàngwǔ shí diǎn hé xiàwǔ liǎng diǎn, nín yào nǎge?", en:"10am or 2pm, which do you want?"},
-      {who:"l", zh:"下午两点，靠窗的座位。", py:"Xiàwǔ liǎng diǎn, kào chuāng de zuòwèi.", en:"2pm, window seats please."},
-      {who:"r", zh:"好的，改签免费，退票要收手续费。", py:"Hǎo de, gǎiqiān miǎnfèi, tuìpiào yào shōu shǒuxùfèi.", en:"OK, changes are free, refunds have a service fee."},
-      {who:"l", zh:"明白，就要这两张。", py:"Míngbai, jiù yào zhè liǎng zhāng.", en:"Got it, I'll take these two."},
-    ],
-    vocab:[
-      {zh:"高铁票", py:"gāotiě piào", en:"high-speed train ticket"},
-      {zh:"改签", py:"gǎiqiān", en:"change a ticket"},
-      {zh:"退票", py:"tuì piào", en:"refund a ticket"},
-      {zh:"手续费", py:"shǒuxùfèi", en:"service fee"},
-      {zh:"靠窗", py:"kào chuāng", en:"window seat"},
-    ],
-    quiz:[
-      {q:"改签 means:", opts:["Cancel","Change to another time","Buy again","Upgrade"], a:1},
-      {q:"退票 may require:", opts:["A service fee","A gift","A phone call","A deposit"], a:0},
-      {q:"「靠窗」seat is:", opts:["Aisle","Window","Middle","Standing"], a:1},
-      {q:"「高铁票」means:", opts:["high-speed train ticket", "change a ticket", "refund a ticket", "service fee"], a:0},
-    ],
-    speak:{zh:"我想买两张去西安的高铁票，靠窗的座位。", en:"I'd like two window-seat high-speed tickets to Xi'an."}
-  },
-  {
-    id:"l4-4", level:"L4", zh:"银行开户", en:"Open a bank account", ip:false,
-    desc:"Bank procedures · documents, mobile banking",
-    dlg:[
-      {who:"l", zh:"你好，我想开一个账户。", py:"Nín hǎo, wǒ xiǎng kāi yí ge zhànghù.", en:"Hello, I'd like to open an account."},
-      {who:"r", zh:"请出示护照和工作证明。", py:"Qǐng chūshì hùzhào hé gōngzuò zhèngmíng.", en:"Please show your passport and work certificate."},
-      {who:"l", zh:"这是护照。需要存多少钱？", py:"Zhè shì hùzhào. Xūyào cún duōshao qián?", en:"Here's my passport. How much do I need to deposit?"},
-      {who:"r", zh:"最低十元。开通手机银行方便转账。", py:"Zuìdī shí yuán. Kāitōng shǒujī yínháng fāngbiàn zhuǎnzhàng.", en:"Minimum 10 yuan. Open mobile banking for easy transfers."},
-      {who:"l", zh:"好的，帮我都办好。", py:"Hǎo de, bāng wǒ dōu bàn hǎo.", en:"OK, please set it all up for me."},
-    ],
-    vocab:[
-      {zh:"开户", py:"kāi hù", en:"open an account"},
-      {zh:"护照", py:"hù zhào", en:"passport"},
-      {zh:"存款", py:"cún kuǎn", en:"deposit"},
-      {zh:"转账", py:"zhuǎn zhàng", en:"transfer"},
-      {zh:"手机银行", py:"shǒujī yínháng", en:"mobile banking"},
-    ],
-    quiz:[
-      {q:"「出示护照」means:", opts:["Show your passport","Buy a passport","Copy a passport","Lose a passport"], a:0},
-      {q:"手机银行方便:", opts:["Cooking","Transfers","Travel booking","Photography"], a:1},
-      {q:"最低存款是:", opts:["100 yuan","50 yuan","10 yuan","Free"], a:2},
-      {q:"「开户」means:", opts:["open an account", "passport", "deposit", "transfer"], a:0},
-    ],
-    speak:{zh:"你好，我想开个账户，这是护照，还要开通手机银行。", en:"Hello, I'd like to open an account. Here's my passport, and I want mobile banking too."}
-  },
-  {
-    id:"l5-1", level:"L5", zh:"职场沟通", en:"Workplace communication", ip:false,
-    desc:"Report progress · ask for leave politely",
-    dlg:[
-      {who:"l", zh:"经理，项目进度我汇报一下。", py:"Jīnglǐ, xiàngmù jìndù wǒ huìbào yíxià.", en:"Manager, let me report on the project progress."},
-      {who:"r", zh:"说吧，遇到什么困难了吗？", py:"Shuō ba, yùdào shénme kùnnan le ma?", en:"Go ahead. Any difficulties?"},
-      {who:"l", zh:"基本顺利，不过人手有点紧张。", py:"Jīběn shùnlì, búguò rénshǒu yǒudiǎn jǐnzhāng.", en:"Mostly smooth, but we're a bit short-handed."},
-      {who:"r", zh:"我下午协调一个人给你。", py:"Wǒ xiàwǔ xiétiáo yí ge rén gěi nǐ.", en:"I'll coordinate one person for you this afternoon."},
-      {who:"l", zh:"谢谢。另外，我明天想请一天假。", py:"Xièxie. Lìngwài, wǒ míngtiān xiǎng qǐng yì tiān jià.", en:"Thanks. Also, I'd like to take a day off tomorrow."},
-    ],
-    vocab:[
-      {zh:"汇报", py:"huì bào", en:"report"},
-      {zh:"进度", py:"jìn dù", en:"progress"},
-      {zh:"人手紧张", py:"rénshǒu jǐnzhāng", en:"short-handed"},
-      {zh:"协调", py:"xié tiáo", en:"coordinate"},
-      {zh:"请假", py:"qǐng jià", en:"ask for leave"},
-    ],
-    quiz:[
-      {q:"「汇报进度」means:", opts:["Report progress","Make a plan","Book a meeting","Write a contract"], a:0},
-      {q:"「人手紧张」means:", opts:["Too many people","Not enough staff","No staff","Skilled staff"], a:1},
-      {q:"「请假」is:", opts:["Ask for leave","Ask for a raise","Ask for a gift","Resign"], a:0},
-      {q:"「汇报」means:", opts:["report", "progress", "short-handed", "coordinate"], a:0},
-    ],
-    speak:{zh:"经理，我汇报一下项目进度，另外明天想请一天假。", en:"Manager, let me report the progress. Also I'd like a day off tomorrow."}
-  },
-  {
-    id:"l5-2", level:"L5", zh:"社交媒体", en:"Social media", ip:false,
-    desc:"Likes, comments, internet slang",
-    dlg:[
-      {who:"l", zh:"你看了 Anna 的朋友圈吗？", py:"Nǐ kàn le Anna de péngyouquān ma?", en:"Did you see Anna's Moments post?"},
-      {who:"r", zh:"看了，点赞的人好多，评论也很有意思。", py:"Kàn le, diǎnzàn de rén hǎo duō, pínglùn yě hěn yǒu yìsi.", en:"Yes, lots of likes and the comments are fun."},
-      {who:"l", zh:"她在英国留学，说这边太「卷」了。", py:"Tā zài Yīngguó liúxué, shuō zhèbiān tài juǎn le.", en:"She's studying abroad and says it's too competitive here."},
-      {who:"r", zh:"哈哈，内卷现在全世界都懂了。", py:"Hāhā, nèijuǎn xiànzài quán shìjiè dǒu dǒng le.", en:"Haha, everyone understands 'involution' now."},
-      {who:"l", zh:"下次发个 vlog，记录一下生活。", py:"Xià cì fā ge vlog, jìlù yíxià shēnghuó.", en:"Next time I'll post a vlog to record life."},
-    ],
-    vocab:[
-      {zh:"朋友圈", py:"péngyouquān", en:"Moments (social feed)"},
-      {zh:"点赞", py:"diǎn zàn", en:"like"},
-      {zh:"评论", py:"píng lùn", en:"comment"},
-      {zh:"内卷", py:"nèi juǎn", en:"involution / hyper-competition"},
-      {zh:"记录生活", py:"jìlù shēnghuó", en:"record life"},
-    ],
-    quiz:[
-      {q:"「点赞」means:", opts:["Comment","Like","Share","Follow"], a:1},
-      {q:"「内卷」describes:", opts:["Relaxation","Fierce competition","A trip","A meal"], a:1},
-      {q:"「朋友圈」is:", opts:["A social feed","A photo album","A chat group","A game"], a:0},
-      {q:"「朋友圈」means:", opts:["Moments (social feed)", "like", "comment", "involution / hyper-competition"], a:0},
-    ],
-    speak:{zh:"我发了条朋友圈，点赞的人好多，大家都在说内卷。", en:"I posted on Moments, lots of likes, everyone's talking about involution."}
-  },
-  {
-    id:"l5-3", level:"L5", zh:"环保生活", en:"Green living", ip:false,
-    desc:"Sort trash · low-carbon habits",
-    dlg:[
-      {who:"l", zh:"社区在推广垃圾分类，你知道吗？", py:"Shèqū zài tuīguǎng lājī fēnlèi, nǐ zhīdào ma?", en:"The community is promoting trash sorting, did you know?"},
-      {who:"r", zh:"知道，厨余垃圾要单独放。", py:"Zhīdào, chúyú lājī yào dāndú fàng.", en:"Yes, kitchen waste goes separately."},
-      {who:"l", zh:"我还会自带杯子，少用塑料袋。", py:"Wǒ hái huì zìdài bēizi, shǎo yòng sùliàodài.", en:"I also bring my own cup and use fewer plastic bags."},
-      {who:"r", zh:"这叫低碳生活，很棒！", py:"Zhè jiào dītàn shēnghuó, hěn bàng!", en:"That's called low-carbon living, awesome!"},
-      {who:"l", zh:"小事坚持下来，也能改变环境。", py:"Xiǎoshì jiānchí xiàlái, yě néng gǎibiàn huánjìng.", en:"Small acts, if sustained, can change the environment."},
-    ],
-    vocab:[
-      {zh:"垃圾分类", py:"lājī fēnlèi", en:"trash sorting"},
-      {zh:"厨余垃圾", py:"chúyú lājī", en:"kitchen waste"},
-      {zh:"低碳生活", py:"dītàn shēnghuó", en:"low-carbon living"},
-      {zh:"塑料袋", py:"sùliàodài", en:"plastic bag"},
-      {zh:"自带", py:"zìdài", en:"bring your own"},
-    ],
-    quiz:[
-      {q:"「厨余垃圾」means:", opts:["Kitchen waste","Recyclables","Hazardous waste","Other waste"], a:0},
-      {q:"「低碳生活」refers to:", opts:["Luxury life","Low-carbon lifestyle","Fast fashion","City life"], a:1},
-      {q:"「自带杯子」helps:", opts:["Reduce waste","Save time","Look cool","Drink more"], a:0},
-      {q:"「垃圾分类」means:", opts:["trash sorting", "kitchen waste", "low-carbon living", "plastic bag"], a:0},
-    ],
-    speak:{zh:"我坚持垃圾分类，自带杯子，过低碳生活。", en:"I sort trash, bring my own cup, and live low-carbon."}
-  },
-  {
-    id:"l5-4", level:"L5", zh:"家庭观念", en:"Family values", ip:false,
-    desc:"Generation gap · filial piety, independence",
-    dlg:[
-      {who:"l", zh:"你和中国朋友聊家庭，有什么感受？", py:"Nǐ hé Zhōngguó péngyou liáo jiātíng, yǒu shénme gǎnshòu?", en:"How do you feel talking about family with Chinese friends?"},
-      {who:"r", zh:"他们很讲孝顺，周末常回家吃饭。", py:"Tāmen hěn jiǎng xiàoshùn, zhōumò cháng huí jiā chīfàn.", en:"They value filial piety and often go home for weekend meals."},
-      {who:"l", zh:"我理解，但年轻人也想要独立空间。", py:"Wǒ lǐjiě, dàn niánqīngrén yě xiǎng yào dúlì kōngjiān.", en:"I understand, but young people also want independence."},
-      {who:"r", zh:"这就是代沟，需要互相体谅。", py:"Zhè jiù shì dàigōu, xūyào hùxiāng tǐliàng.", en:"That's the generation gap — mutual understanding is needed."},
-      {who:"l", zh:"沟通比争论更重要。", py:"Gōutōng bǐ zhēnglùn gèng zhòngyào.", en:"Communication matters more than argument."},
-    ],
-    vocab:[
-      {zh:"孝顺", py:"xiào shùn", en:"filial piety"},
-      {zh:"独立", py:"dú lì", en:"independence"},
-      {zh:"代沟", py:"dài gōu", en:"generation gap"},
-      {zh:"体谅", py:"tǐ liàng", en:"be considerate"},
-      {zh:"沟通", py:"gōu tōng", en:"communication"},
-    ],
-    quiz:[
-      {q:"「孝顺」means:", opts:["Respecting parents","Being strict","Living alone","Saving money"], a:0},
-      {q:"「代沟」refers to:", opts:["Generation gap","Age gap in salary","Language barrier","Physical distance"], a:0},
-      {q:"「体谅」means:", opts:["Understand & care","Ignore","Criticize","Argue"], a:0},
-      {q:"「孝顺」means:", opts:["filial piety", "independence", "generation gap", "be considerate"], a:0},
-    ],
-    speak:{zh:"我觉得代沟需要互相体谅，沟通比争论更重要。", en:"I think the generation gap needs mutual understanding; communication beats arguing."}
-  },
-  {
-    id:"l6-1", level:"L6", zh:"谈梦想规划", en:"Dreams & plans", ip:false,
-    desc:"Express abstract goals and conditions",
-    dlg:[
-      {who:"l", zh:"你有没有想过，五年后想成为什么样的人？", py:"Nǐ yǒu méiyǒu xiǎngguo, wǔ nián hòu xiǎng chéngwéi shénme yàng de rén?", en:"Have you thought about what kind of person you want to be in five years?"},
-      {who:"r", zh:"我希望有一份能兼顾家庭和事业的工作。", py:"Wǒ xīwàng yǒu yí fèn néng jiāngù jiātíng hé shìyè de gōngzuò.", en:"I hope to have a job that balances family and career."},
-      {who:"l", zh:"这不容易，前提是要有一技之长。", py:"Zhè bù róngyì, qiántí shì yào yǒu yí jì zhī cháng.", en:"That's not easy; the prerequisite is a solid skill."},
-      {who:"r", zh:"所以我打算边工作边深造，越努力越幸运。", py:"Suǒyǐ wǒ dǎsuàn biān gōngzuò biān shēnzào, yuè nǔlì yuè xìngyùn.", en:"So I plan to work while studying; the harder I work, the luckier I get."},
-      {who:"l", zh:"有规划的人，往往走得更稳。", py:"Yǒu guīhuà de rén, wǎngwǎng zǒu de gèng wěn.", en:"People with a plan usually move more steadily."},
-    ],
-    vocab:[
-      {zh:"兼顾", py:"jiān gù", en:"balance / take into account"},
-      {zh:"前提", py:"qián tí", en:"prerequisite"},
-      {zh:"一技之长", py:"yí jì zhī cháng", en:"a specialized skill"},
-      {zh:"深造", py:"shēn zào", en:"further study"},
-      {zh:"规划", py:"guī huà", en:"plan"},
-    ],
-    quiz:[
-      {q:"「前提」means:", opts:["Result","Prerequisite","Problem","Bonus"], a:1},
-      {q:"「越努力越幸运」expresses:", opts:["Correlation of effort and luck","Luck is fixed","No effort needed","Regret"], a:0},
-      {q:"「一技之长」is:", opts:["A specialty","A hobby","A friend","A trip"], a:0},
-      {q:"「兼顾」means:", opts:["balance / take into account", "prerequisite", "a specialized skill", "further study"], a:0},
-    ],
-    speak:{zh:"我希望边工作边深造，因为前提是要有规划。", en:"I hope to work while studying, since the prerequisite is having a plan."}
-  },
-  {
-    id:"l6-2", level:"L6", zh:"文化差异", en:"Cultural differences", ip:false,
-    desc:"Compare cultures tactfully",
-    dlg:[
-      {who:"l", zh:"你觉得中西方交际最大的不同是什么？", py:"Nǐ juéde zhōng-xīfāng jiāojì zuìdà de bùtóng shì shénme?", en:"What's the biggest difference in communication between East and West?"},
-      {who:"r", zh:"中国更讲含蓄，西方更直接一些。", py:"Zhōngguó gèng jiǎng hánxù, xīfāng gèng zhíjiē yìxiē.", en:"China values subtlety; the West is more direct."},
-      {who:"l", zh:"但不能一概而论，也要看具体场合。", py:"Dàn bùnéng yígài érlùn, yě yào kàn jùtǐ chǎnghé.", en:"But we can't generalize; it depends on the context."},
-      {who:"r", zh:"对，求同存异才能互相理解。", py:"Duì, qiútóng-cúnyì cáinéng hùxiāng lǐjiě.", en:"Right — seek common ground while reserving differences."},
-      {who:"l", zh:"理解差异，是跨文化交流的第一步。", py:"Lǐjiě chāyì, shì kuà wénhuà jiāoliú de dì-yī bù.", en:"Understanding differences is the first step in cross-cultural exchange."},
-    ],
-    vocab:[
-      {zh:"含蓄", py:"hán xù", en:"implicit / subtle"},
-      {zh:"一概而论", py:"yí gài ér lùn", en:"generalize"},
-      {zh:"求同存异", py:"qiú tóng cún yì", en:"seek common ground"},
-      {zh:"场合", py:"chǎng hé", en:"occasion / context"},
-      {zh:"跨文化", py:"kuà wénhuà", en:"cross-cultural"},
-    ],
-    quiz:[
-      {q:"「一概而论」means:", opts:["Analyze carefully","Generalize broadly","Give examples","Compare"], a:1},
-      {q:"「求同存异」means:", opts:["Seek common ground","Avoid all differences","Argue","Compete"], a:0},
-      {q:"「含蓄」is the opposite of:", opts:["Subtle","Direct","Polite","Quiet"], a:1},
-      {q:"「含蓄」means:", opts:["implicit / subtle", "generalize", "seek common ground", "occasion / context"], a:0},
-    ],
-    speak:{zh:"不能一概而论，文化差异要求同存异。", en:"We can't generalize; with cultural differences, seek common ground."}
-  },
-  {
-    id:"l6-3", level:"L6", zh:"观点辩论", en:"Debate an issue", ip:false,
-    desc:"Multi-layered argument structures",
-    dlg:[
-      {who:"l", zh:"有人认为网络让人疏远，你怎么看？", py:"Yǒu rén rènwéi wǎngluò ràng rén shūyuǎn, nǐ zěnme kàn?", en:"Some say the internet makes people distant. What do you think?"},
-      {who:"r", zh:"诚然有这种情况，但不能因此否定全部。", py:"Chéngrán yǒu zhè zhǒng qíngkuàng, dàn bùnéng yīncǐ fǒudìng quánbù.", en:"Admittedly that happens, but we can't deny everything because of it."},
-      {who:"l", zh:"一方面它拉近了距离，另一方面也制造了隔阂。", py:"Yì fāngmiàn tā lājìn le jùlí, lìng yì fāngmiàn yě zhìzào le géhé.", en:"On one hand it brings people closer; on the other, it creates distance."},
-      {who:"r", zh:"所以关键在于怎么使用，而不是工具本身。", py:"Suǒyǐ guānjiàn zài yú zěnme shǐyòng, ér bú shì gōngjù běnshēn.", en:"So the key is how it's used, not the tool itself."},
-      {who:"l", zh:"这个观点我比较认同，说得很全面。", py:"Zhège guāndiǎn wǒ bǐjiào rèntóng, shuō de hěn quánmiàn.", en:"I quite agree with this view; it's comprehensive."},
-    ],
-    vocab:[
-      {zh:"诚然……但是", py:"chéngrán...dànshì", en:"admittedly...but"},
-      {zh:"一方面……另一方面", py:"yì fāngmiàn...lìng yì fāngmiàn", en:"on one hand...on the other"},
-      {zh:"关键在于", py:"guānjiàn zài yú", en:"the key lies in"},
-      {zh:"隔阂", py:"gé hé", en:"estrangement"},
-      {zh:"认同", py:"rèn tóng", en:"agree / identify with"},
-    ],
-    quiz:[
-      {q:"「诚然……但是」is used to:", opts:["Concede then argue","Only agree","Only oppose","Tell a story"], a:0},
-      {q:"「一方面……另一方面」presents:", opts:["One side","Two sides","A conclusion","A question"], a:1},
-      {q:"「关键在于」means:", opts:["The key is","The end is","The problem is gone","It is easy"], a:0},
-      {q:"「诚然……但是」means:", opts:["admittedly...but", "on one hand...on the other", "the key lies in", "estrangement"], a:0},
-    ],
-    speak:{zh:"诚然网络有弊端，但一方面拉近了距离，另一方面关键在于使用方式。", en:"Admittedly the internet has downsides, but it brings people closer; the key is how it's used."}
-  },
-  {
-    id:"l6-4", level:"L6", zh:"商务谈判", en:"Business negotiation", ip:false,
-    desc:"Bargain, concede, reach agreement",
-    dlg:[
-      {who:"l", zh:"我们希望价格能再优惠一些。", py:"Wǒmen xīwàng jiàgé néng zài yōuhuì yìxiē.", en:"We hope you can offer a better price."},
-      {who:"r", zh:"这个价格已经是底价了，不过量大可以再谈。", py:"Zhège jiàgé yǐjīng shì dǐjià le, búguò liàng dà kěyǐ zài tán.", en:"This is already our lowest, but for larger volume we can talk."},
-      {who:"l", zh:"如果一次订一千件，能给多少折扣？", py:"Rúguǒ yí cì dìng yìqiān jiàn, néng gěi duōshao zhékòu?", en:"If we order 1,000 units at once, what discount can you give?"},
-      {who:"r", zh:"可以打九折，但付款要提前。", py:"Kěyǐ dǎ jiǔ zhé, dàn fùkuǎn yào tíqián.", en:"We can do 10% off, but payment must be in advance."},
-      {who:"l", zh:"那我们各退一步，八五折，货到付款。", py:"Nà wǒmen gè tuì yí bù, bāwǔ zhé, huò dào fùkuǎn.", en:"Then let's meet halfway: 15% off, payment on delivery."},
-    ],
-    vocab:[
-      {zh:"底价", py:"dǐ jià", en:"lowest price"},
-      {zh:"折扣", py:"zhé kòu", en:"discount"},
-      {zh:"打九折", py:"dǎ jiǔ zhé", en:"10% off"},
-      {zh:"货到付款", py:"huò dào fùkuǎn", en:"cash on delivery"},
-      {zh:"各退一步", py:"gè tuì yí bù", en:"meet halfway"},
-    ],
-    quiz:[
-      {q:"「打九折」means pay:", opts:["90% of price","10% of price","9 times more","Half price"], a:0},
-      {q:"「底价」is:", opts:["Highest price","Lowest price","Retail price","Tax"], a:1},
-      {q:"「各退一步」means:", opts:["Compromise","Argue more","Leave","Raise price"], a:0},
-      {q:"「底价」means:", opts:["lowest price", "discount", "10% off", "cash on delivery"], a:0},
-    ],
-    speak:{zh:"如果量大，能不能打九折？我们各退一步，货到付款。", en:"For larger volume, can you do 10% off? Let's compromise with payment on delivery."}
-  },
-  {
-    id:"l7-1", level:"L7", zh:"热搜该不该管", en:"Should hot searches be regulated", ip:false,
-    desc:" Debate public opinion & privacy",
-    dlg:[
-      {who:"l", zh:"最近那个热搜，你怎么看？", py:"Zuìjìn nàge rè sōu, nǐ zěnme kàn?", en:"What do you think about that trending topic recently?"},
-      {who:"r", zh:"我觉得平台该管，但不能过度。", py:"Wǒ juéde píngtái gāi guǎn, dàn bùnéng guòdù.", en:"I think platforms should regulate it, but not excessively."},
-      {who:"l", zh:"为什么？说说你的理由。", py:"Wèi shénme? Shuōshuo nǐ de lǐyóu.", en:"Why? Tell me your reasons."},
-      {who:"r", zh:"一方面要保护当事人隐私，另一方面公众也有知情权。", py:"Yì fāngmiàn yào bǎohù dāngshìrén yǐnsī, lìng yì fāngmiàn gōngzhòng yě yǒu zhīqíngquán.", en:"On one hand protect the parties' privacy; on the other, the public has a right to know."},
-      {who:"l", zh:"有道理，关键是要把握好尺度。", py:"Yǒu dàolǐ, guānjiàn shì yào bǎwò hǎo chǐdù.", en:"Makes sense; the key is striking the right balance."},
-    ],
-    vocab:[
-      {zh:"热搜", py:"rè sōu", en:"trending topic"},
-      {zh:"隐私", py:"yǐn sī", en:"privacy"},
-      {zh:"知情权", py:"zhī qíng quán", en:"right to know"},
-      {zh:"尺度", py:"chǐ dù", en:"measure / balance"},
-      {zh:"平台", py:"píng tái", en:"platform"},
-    ],
-    quiz:[
-      {q:"「当事人」指的是:", opts:["事件涉及的人","围观的网友","平台管理员","新闻记者"], a:0},
-      {q:"「知情权」means:", opts:["Right to know","Right to speak","Right to leave","Right to buy"], a:0},
-      {q:"「把握尺度」means:", opts:["Keep proportion","Ignore rules","Increase speed","Lower price"], a:0},
-      {q:"「热搜」means:", opts:["trending topic", "privacy", "right to know", "measure / balance"], a:0},
-    ],
-    speak:{zh:"平台该管热搜，但关键是保护隐私的同时把握好尺度。", en:"Platforms should regulate hot searches, but the key is balancing privacy protection."}
-  },
-  {
-    id:"l7-2", level:"L7", zh:"内卷与躺平", en:"Involution vs lying flat", ip:false,
-    desc:"Discuss work culture & values",
-    dlg:[
-      {who:"l", zh:"你怎么看「内卷」和「躺平」？", py:"Nǐ zěnme kàn nèijuǎn hé tǎngpíng?", en:"What do you think of 'involution' and 'lying flat'?"},
-      {who:"r", zh:"内卷是过度竞争，躺平是拒绝竞争。", py:"Nèijuǎn shì guòdù jìngzhēng, tǎngpíng shì jùjué jìngzhēng.", en:"Involution is excessive competition; lying flat is rejecting it."},
-      {who:"l", zh:"两种我都不太认同，太极端了。", py:"Liǎng zhǒng wǒ dōu bú tài rèntóng, tài jíduān le.", en:"I don't fully agree with either; both are extreme."},
-      {who:"r", zh:"那你的态度是？", py:"Nà nǐ de tàidu shì?", en:"So what's your attitude?"},
-      {who:"l", zh:"找到自己的节奏，不盲从，也不放弃。", py:"Zhǎodào zìjǐ de jiézòu, bù mángcóng, yě bù fàngqì.", en:"Find your own rhythm — don't follow blindly, don't give up."},
-    ],
-    vocab:[
-      {zh:"内卷", py:"nèi juǎn", en:"involution"},
-      {zh:"躺平", py:"tǎng píng", en:"lying flat"},
-      {zh:"过度竞争", py:"guòdù jìngzhēng", en:"excessive competition"},
-      {zh:"盲从", py:"máng cóng", en:"follow blindly"},
-      {zh:"节奏", py:"jié zòu", en:"rhythm / pace"},
-    ],
-    quiz:[
-      {q:"「躺平」attitude is:", opts:["Compete harder","Opt out of competition","Travel more","Study abroad"], a:1},
-      {q:"「盲从」means:", opts:["Follow blindly","Think deeply","Lead others","Rest"], a:0},
-      {q:"「节奏」here means:", opts:["Music beat","Own pace","Dance","Schedule"], a:1},
-      {q:"「内卷」means:", opts:["involution", "lying flat", "excessive competition", "follow blindly"], a:0},
-    ],
-    speak:{zh:"我不认同内卷也不认同躺平，要找到自己的节奏。", en:"I agree with neither involution nor lying flat; find your own rhythm."}
-  },
-  {
-    id:"l7-3", level:"L7", zh:"催婚与边界", en:"Marriage pressure & boundaries", ip:false,
-    desc:"Talk about family pressure tactfully",
-    dlg:[
-      {who:"l", zh:"过年回家，又被催婚了。", py:"Guònián huí jiā, yòu bèi cuī hūn le.", en:"Went home for the holiday and got pressured about marriage again."},
-      {who:"r", zh:"长辈是关心，但方式让人有压力。", py:"Zhǎngbèi shì guānxīn, dàn fāngshì ràng rén yǒu yālì.", en:"Elders care, but the way they do it is stressful."},
-      {who:"l", zh:"我想委婉地说，我还没准备好。", py:"Wǒ xiǎng wěiwǎn de shuō, wǒ hái méi zhǔnbèi hǎo.", en:"I want to gently say I'm not ready yet."},
-      {who:"r", zh:"可以试试：「谢谢关心，我有自己的计划。」", py:"Kěyǐ shìshi: xièxie guānxīn, wǒ yǒu zìjǐ de jìhuà.", en:"You could try: 'Thanks for caring, I have my own plan.'"},
-      {who:"l", zh:"这样既表达了感谢，也守住了边界。", py:"Zhèyàng jì biǎodá le gǎnxiè, yě shǒuzhù le biānjiè.", en:"This shows gratitude while keeping your boundary."},
-    ],
-    vocab:[
-      {zh:"催婚", py:"cuī hūn", en:"pressuring to marry"},
-      {zh:"委婉", py:"wěi wǎn", en:"tactful / indirect"},
-      {zh:"边界", py:"biān jiè", en:"boundary"},
-      {zh:"长辈", py:"zhǎng bèi", en:"elder"},
-      {zh:"守住", py:"shǒu zhù", en:"maintain / hold"},
-    ],
-    quiz:[
-      {q:"「催婚」refers to:", opts:["Urge someone to marry","Plan a wedding","End a marriage","Date someone"], a:0},
-      {q:"「委婉」means:", opts:["Direct","Tactful","Loud","Rude"], a:1},
-      {q:"「守住边界」means:", opts:["Keep boundaries","Cross a line","Give up","Argue"], a:0},
-      {q:"「催婚」means:", opts:["pressuring to marry", "tactful / indirect", "boundary", "elder"], a:0},
-    ],
-    speak:{zh:"我用委婉的方式回应催婚，既表达感谢也守住边界。", en:"I respond to marriage pressure tactfully — showing thanks and keeping boundaries."}
-  },
-  {
-    id:"l7-4", level:"L7", zh:"消费观断舍离", en:"Minimalism & consumption", ip:false,
-    desc:"Express views on spending & simplicity",
-    dlg:[
-      {who:"l", zh:"你赞成「断舍离」吗？", py:"Nǐ zànchéng duàn-shě-lí ma?", en:"Do you support 'decluttering' (minimalism)?"},
-      {who:"r", zh:"赞成，买太多东西反而成了负担。", py:"Zànchéng, mǎi tài duō dōngxi fǎn'ér chéngle fùdān.", en:"Yes — buying too much becomes a burden."},
-      {who:"l", zh:"但我觉得关键是理性消费，不是一味地少买。", py:"Dàn wǒ juéde guānjiàn shì lǐxìng xiāofèi, bú shì yíwèi de shǎo mǎi.", en:"But I think the key is rational spending, not just buying less."},
-      {who:"r", zh:"有道理，该买的还是得买。", py:"Yǒu dàolǐ, gāi mǎi de háishì děi mǎi.", en:"True — you still need to buy what you need."},
-      {who:"l", zh:"理性消费，是把钱花在真正有价值的地方。", py:"Lǐxìng xiāofèi, shì bǎ qián huā zài zhēnzhèng yǒu jiàzhí de dìfang.", en:"Rational spending means spending on what truly matters."},
-    ],
-    vocab:[
-      {zh:"断舍离", py:"duàn shě lí", en:"decluttering / minimalism"},
-      {zh:"理性消费", py:"lǐxìng xiāofèi", en:"rational consumption"},
-      {zh:"负担", py:"fù dān", en:"burden"},
-      {zh:"一味地", py:"yíwèi de", en:"blindly / one-sidedly"},
-      {zh:"价值", py:"jià zhí", en:"value"},
-    ],
-    quiz:[
-      {q:"「断舍离」is about:", opts:["Buying more","Decluttering","Saving receipts","Moving house"], a:1},
-      {q:"「理性消费」means:", opts:["Impulse buying","Rational spending","Never spending","Luxury buying"], a:1},
-      {q:"「负担」means:", opts:["Burden","Gift","Joy","Discount"], a:0},
-      {q:"「断舍离」means:", opts:["decluttering / minimalism", "rational consumption", "burden", "blindly / one-sidedly"], a:0},
-    ],
-    speak:{zh:"我赞成断舍离，但更看重理性消费，把钱花在有价值的地方。", en:"I support decluttering, but value rational spending on what matters."}
-  },
-  {
-    id:"l8-1", level:"L8", zh:"商务谈判拉锯", en:"Negotiation back-and-forth", ip:false,
-    desc:"Push, concede, close a deal",
-    dlg:[
-      {who:"l", zh:"贵方的报价我们研究过了，还是偏高。", py:"Guìfāng de bàojià wǒmen yánjiū guo le, háishì piān gāo.", en:"We've reviewed your quote; it's still on the high side."},
-      {who:"r", zh:"我们的质量摆在这里，价格反映价值。", py:"Wǒmen de zhìliàng bǎi zài zhèlǐ, jiàgé fǎnyìng jiàzhí.", en:"Our quality speaks for itself; the price reflects value."},
-      {who:"l", zh:"如果长期合作，希望有个阶梯价。", py:"Rúguǒ chángqī hézuò, xīwàng yǒu ge jiētī jià.", en:"For long-term cooperation, we'd like tiered pricing."},
-      {who:"r", zh:"分批采购量递增，单价可以递减。", py:"Pī cì cǎigòu liàng dìzēng, dānjià kěyǐ dìjiǎn.", en:"As volume increases in batches, unit price can decrease."},
-      {who:"l", zh:"这个方案我们可以接受，今天就签合同。", py:"Zhège fāng'àn wǒmen kěyǐ jiēshòu, jīntiān jiù qiān hétong.", en:"We can accept this proposal; let's sign the contract today."},
-    ],
-    vocab:[
-      {zh:"报价", py:"bào jià", en:"quote"},
-      {zh:"偏高", py:"piān gāo", en:"on the high side"},
-      {zh:"阶梯价", py:"jiētī jià", en:"tiered pricing"},
-      {zh:"单价", py:"dān jià", en:"unit price"},
-      {zh:"签合同", py:"qiān hétong", en:"sign a contract"},
-    ],
-    quiz:[
-      {q:"「偏高」means:", opts:["Too low","Rather high","Exact","Negotiable"], a:1},
-      {q:"「阶梯价」is:", opts:["Fixed price","Price by volume tiers","A discount gift","Tax included"], a:1},
-      {q:"「签合同」happens:", opts:["Before negotiation","At deal closure","Never","At lunch"], a:1},
-      {q:"「报价」means:", opts:["quote", "on the high side", "tiered pricing", "unit price"], a:0},
-    ],
-    speak:{zh:"贵方报价偏高，如果长期合作，希望能有阶梯价。", en:"Your quote is high; for long-term cooperation we'd like tiered pricing."}
-  },
-  {
-    id:"l8-2", level:"L8", zh:"劳动纠纷咨询", en:"Labor dispute consultation", ip:false,
-    desc:"Legal terms · rights, compensation",
-    dlg:[
-      {who:"l", zh:"律师您好，我被公司无故辞退了。", py:"Lǜshī nín hǎo, wǒ bèi gōngsī wúgù cítuì le.", en:"Hello lawyer, I was dismissed without cause."},
-      {who:"r", zh:"有劳动合同吗？试用期过了没有？", py:"Yǒu láodòng hétong ma? Shìyòngqī guò le méiyǒu?", en:"Do you have a labor contract? Is the probation period over?"},
-      {who:"l", zh:"合同在，已经转正半年了。", py:"Hétong zài, yǐjīng zhuǎnzhèng bàn nián le.", en:"I have the contract and was confirmed six months ago."},
-      {who:"r", zh:"无故辞退可以要求赔偿金，先申请劳动仲裁。", py:"Wúgù cítuì kěyǐ yāoqiú péichángjīn, xiān shēnqǐng láodòng zhòngcái.", en:"For wrongful dismissal you can claim compensation; first apply for labor arbitration."},
-      {who:"l", zh:"明白了，我先把证据准备好。", py:"Míngbai le, wǒ xiān bǎ zhèngjù zhǔnbèi hǎo.", en:"Understood, I'll prepare the evidence first."},
-    ],
-    vocab:[
-      {zh:"辞退", py:"cí tuì", en:"dismiss"},
-      {zh:"试用期", py:"shìyòngqī", en:"probation period"},
-      {zh:"转正", py:"zhuǎn zhèng", en:"become a permanent employee"},
-      {zh:"赔偿金", py:"péichángjīn", en:"compensation"},
-      {zh:"劳动仲裁", py:"láodòng zhòngcái", en:"labor arbitration"},
-    ],
-    quiz:[
-      {q:"「试用期」is:", opts:["A probation period","A holiday","A bonus","A meeting"], a:0},
-      {q:"「赔偿金」means:", opts:["A fine","Compensation","A salary","A loan"], a:1},
-      {q:"「劳动仲裁」is:", opts:["A court appeal","Labor arbitration","A negotiation","A contract"], a:1},
-      {q:"「辞退」means:", opts:["dismiss", "probation period", "become a permanent employee", "compensation"], a:0},
-    ],
-    speak:{zh:"我被无故辞退，已经过了试用期，想申请劳动仲裁要赔偿金。", en:"I was dismissed without cause after probation and want arbitration for compensation."}
-  },
-  {
-    id:"l8-3", level:"L8", zh:"门诊高效沟通", en:"Efficient clinic communication", ip:false,
-    desc:"Describe symptoms precisely",
-    dlg:[
-      {who:"l", zh:"医生，我最近胃疼，特别是饭后。", py:"Yīshēng, wǒ zuìjìn wèi téng, tèbié shì fàn hòu.", en:"Doctor, I've had stomach pain lately, especially after meals."},
-      {who:"r", zh:"疼了多久？是隐痛还是剧痛？", py:"Téng le duōjiǔ? Shì yǐntòng háishì jùtòng?", en:"How long? Is it a dull or sharp pain?"},
-      {who:"l", zh:"大约两周，隐痛，偶尔反酸。", py:"Dàyuē liǎng zhōu, yǐntòng, ǒu'ěr fǎn suān.", en:"About two weeks, dull, with occasional acid reflux."},
-      {who:"r", zh:"先做个胃镜，最近别吃辛辣和生冷。", py:"Xiān zuò ge wèijìng, zuìjìn bié chī xīnlà hé shēnglěng.", en:"Let's do an endoscopy; avoid spicy and cold/raw food lately."},
-      {who:"l", zh:"好的，多久能出结果？", py:"Hǎo de, duōjiǔ néng chū jiéguǒ?", en:"OK, how soon will the results be ready?"},
-    ],
-    vocab:[
-      {zh:"隐痛", py:"yǐn tòng", en:"dull pain"},
-      {zh:"剧痛", py:"jù tòng", en:"sharp pain"},
-      {zh:"反酸", py:"fǎn suān", en:"acid reflux"},
-      {zh:"胃镜", py:"wèi jìng", en:"endoscopy"},
-      {zh:"辛辣", py:"xīn là", en:"spicy"},
-    ],
-    quiz:[
-      {q:"「隐痛」is:", opts:["Sharp pain","Dull pain","No pain","Headache"], a:1},
-      {q:"「反酸」refers to:", opts:["Acid reflux","Low blood sugar","Cough","Fever"], a:0},
-      {q:"「胃镜」is:", opts:["An X-ray","An endoscopy","A blood test","A pill"], a:1},
-      {q:"「隐痛」means:", opts:["dull pain", "sharp pain", "acid reflux", "endoscopy"], a:0},
-    ],
-    speak:{zh:"我胃疼两周了，是隐痛，偶尔反酸，医生让我做胃镜。", en:"I've had a dull stomach pain for two weeks with acid reflux; the doctor ordered an endoscopy."}
-  },
-  {
-    id:"l8-4", level:"L8", zh:"高压面试作答", en:"High-pressure interview", ip:false,
-    desc:"Answer tough questions strategically",
-    dlg:[
-      {who:"r", zh:"请做个自我介绍，控制在两分钟内。", py:"Qǐng zuò ge zìwǒ jièshào, kòngzhì zài liǎng fēnzhōng nèi.", en:"Please introduce yourself within two minutes."},
-      {who:"l", zh:"好的。我有三年市场经验，擅长数据分析。", py:"Hǎo de. Wǒ yǒu sān nián shìchǎng jīngyàn, shàncháng shùjù fēnxī.", en:"Sure. I have three years in marketing, skilled at data analysis."},
-      {who:"r", zh:"你最大的缺点是什么？", py:"Nǐ zuìdà de quēdiǎn shì shénme?", en:"What's your greatest weakness?"},
-      {who:"l", zh:"我以前不太擅长当众演讲，但我主动练习，现在能独立做汇报了。", py:"Wǒ yǐqián bú tài shàncháng dāngzhòng yǎnjiǎng, dàn wǒ zhǔdòng liànxí, xiànzài néng dúlì zuò huìbào le.", en:"I wasn't good at public speaking, but I practiced and can now present independently."},
-      {who:"r", zh:"很好。你对加班怎么看？", py:"Hěn hǎo. Nǐ duì jiābān zěnme kàn?", en:"Good. How do you feel about overtime?"},
-      {who:"l", zh:"项目赶工时我愿意配合，但更看重效率和规划。", py:"Xiàngmù gǎn gōng shí wǒ yuànyì pèihé, dàn gèng kànzhòng xiàolǜ hé guīhuà.", en:"I'm willing to cooperate during deadlines, but value efficiency and planning more."},
-    ],
-    vocab:[
-      {zh:"自我介绍", py:"zìwǒ jièshào", en:"self-introduction"},
-      {zh:"擅长", py:"shàn cháng", en:"be good at"},
-      {zh:"缺点", py:"quē diǎn", en:"weakness"},
-      {zh:"当众演讲", py:"dāngzhòng yǎnjiǎng", en:"public speaking"},
-      {zh:"加班", py:"jiā bān", en:"overtime"},
-    ],
-    quiz:[
-      {q:"「擅长」means:", opts:["Be good at","Dislike","Avoid","Learn slowly"], a:0},
-      {q:"谈「缺点」时应:", opts:["Hide all","Show awareness & improvement","Blame others","Stay silent"], a:1},
-      {q:"「加班」is:", opts:["Overtime","A holiday","A bonus","Training"], a:0},
-      {q:"「自我介绍」means:", opts:["self-introduction", "be good at", "weakness", "public speaking"], a:0},
-    ],
-    speak:{zh:"我有三年市场经验，擅长数据分析，也愿意在赶工时配合加班。", en:"I have three years in marketing, excel at data analysis, and will cooperate during crunch time."}
-  },
-  {
-    id:"l9-1", level:"L9", zh:"成语里的智慧", en:"Wisdom in idioms", ip:false,
-    desc:"Use idioms accurately in context",
-    dlg:[
-      {who:"l", zh:"「画蛇添足」是什么意思？", py:"Huà shé tiān zú shì shénme yìsi?", en:"What does 'draw legs on a snake' mean?"},
-      {who:"r", zh:"就是做了多余的事，反而不好。", py:"Jiù shì zuò le duōyú de shì, fǎn'ér bù hǎo.", en:"It means doing something unnecessary that backfires."},
-      {who:"l", zh:"比如文章已经很好，再加一段就成了画蛇添足。", py:"Bǐrú wénzhāng yǐjīng hěn hǎo, zài jiā yí duàn jiù chéng le huà shé tiān zú.", en:"For example, if an essay is already good, adding another paragraph is overkill."},
-      {who:"r", zh:"对。还有「守株待兔」，讽刺不劳而获。", py:"Duì. Hái yǒu shǒuzhū-dàitù, fěngcì bùláo-érhuò.", en:"Right. And 'waiting by a stump for rabbits' mocks expecting rewards without work."},
-      {who:"l", zh:"会用成语，中文表达就更有味道了。", py:"Huì yòng chéngyǔ, Zhōngwén biǎodá jiù gèng yǒu wèidào le.", en:"Using idioms makes Chinese expression more flavorful."},
-    ],
-    vocab:[
-      {zh:"画蛇添足", py:"huà shé tiān zú", en:"overkill"},
-      {zh:"守株待兔", py:"shǒuzhū dàitù", en:"wait for windfalls"},
-      {zh:"不劳而获", py:"bùláo érhuò", en:"reap without sowing"},
-      {zh:"讽刺", py:"fěng cì", en:"satirize"},
-      {zh:"多余", py:"duō yú", en:"superfluous"},
-    ],
-    quiz:[
-      {q:"「画蛇添足」means:", opts:["Add something unnecessary","Work hard","Be creative","Finish early"], a:0},
-      {q:"「守株待兔」mocks:", opts:["Hard work","Expecting luck without effort","Farming","Hunting"], a:1},
-      {q:"「成语」are:", opts:["Idioms","Proverbs only","Slang","Names"], a:0},
-      {q:"「画蛇添足」means:", opts:["overkill", "wait for windfalls", "reap without sowing", "satirize"], a:0},
-    ],
-    speak:{zh:"画蛇添足指做了多余的事，守株待兔讽刺不劳而获，成语让中文更有味道。", en:"Overkill means doing too much; waiting for rabbits mocks laziness — idioms add flavor."}
-  },
-  {
-    id:"l9-2", level:"L9", zh:"诗词里的情味", en:"Emotion in poetry", ip:false,
-    desc:"Quote poetry to express feelings",
-    dlg:[
-      {who:"l", zh:"中秋夜，你想家吗？", py:"Zhōngqiū yè, nǐ xiǎng jiā ma?", en:"On Mid-Autumn night, do you miss home?"},
-      {who:"r", zh:"有点。这时候总会想起「但愿人长久，千里共婵娟」。", py:"Yǒudiǎn. Zhè shíhou zǒng huì xiǎngqǐ dàn yuàn rén chángjiǔ, qiānlǐ gòng chánjuān.", en:"A little. I always think of 'may we live long and share the moon afar.'"},
-      {who:"l", zh:"这句写的是思念和祝福，很美。", py:"Zhè jù xiě de shì sīniàn hé zhùfú, hěn měi.", en:"This line expresses longing and blessing — beautiful."},
-      {who:"r", zh:"还有「举头望明月，低头思故乡」，更简单直接。", py:"Hái yǒu jǔtóu wàng míngyuè, dītóu sī gùxiāng, gèng jiǎndān zhíjiē.", en:"And 'raise my head to the bright moon, lower it thinking of home' — simpler and direct."},
-      {who:"l", zh:"学几句诗，表达感情时就多了一种方式。", py:"Xué jǐ jù shī, biǎodá gǎnqíng shí jiù duō le yì zhǒng fāngshì.", en:"Learning a few poems gives you another way to express feelings."},
-    ],
-    vocab:[
-      {zh:"但愿人长久", py:"dàn yuàn rén chángjiǔ", en:"may people live long"},
-      {zh:"千里共婵娟", py:"qiānlǐ gòng chánjuān", en:"share the moon across distances"},
-      {zh:"思念", py:"sī niàn", en:"longing"},
-      {zh:"祝福", py:"zhù fú", en:"blessing"},
-      {zh:"故乡", py:"gù xiāng", en:"hometown"},
-    ],
-    quiz:[
-      {q:"「婵娟」refers to:", opts:["The moon","A flower","A person","A river"], a:0},
-      {q:"「举头望明月」expresses:", opts:["Joy","Longing for home","Anger","Boredom"], a:1},
-      {q:"这些诗句多用来:", opts:["Express feelings","Do math","Give directions","Order food"], a:0},
-      {q:"「但愿人长久」means:", opts:["may people live long", "share the moon across distances", "longing", "blessing"], a:0},
-    ],
-    speak:{zh:"中秋时我会想起但愿人长久，千里共婵娟，用诗词表达思念。", en:"At Mid-Autumn I think of 'may we live long and share the moon' — poetry expresses longing."}
-  },
-  {
-    id:"l9-3", level:"L9", zh:"书法与留白", en:"Calligraphy & blank space", ip:false,
-    desc:"Discuss aesthetics in Chinese",
-    dlg:[
-      {who:"l", zh:"你看得懂书法吗？", py:"Nǐ kàn de dǒng shūfǎ ma?", en:"Do you understand calligraphy?"},
-      {who:"r", zh:"看不太懂，但觉得很有气韵。", py:"Kàn bú tài dǒng, dàn juéde hěn yǒu qìyùn.", en:"Not really, but I feel it has spirit/resonance."},
-      {who:"l", zh:"书法讲究笔画的力度，还有「留白」。", py:"Shūfǎ jiǎngjiū bǐhuà de lìdù, hái yǒu liúbái.", en:"Calligraphy values the strength of strokes and 'blank space.'"},
-      {who:"r", zh:"留白就是不着墨的地方？", py:"Liúbái jiù shì bù zhuó mò de dìfang?", en:"Blank space is where you don't put ink?"},
-      {who:"l", zh:"对，无画处皆成妙境，这是中国美学。", py:"Duì, wú huà chù jiē chéng miào jìng, zhè shì Zhōngguó měixué.", en:"Yes — 'even the unpainted becomes a wondrous realm'; that's Chinese aesthetics."},
-    ],
-    vocab:[
-      {zh:"书法", py:"shū fǎ", en:"calligraphy"},
-      {zh:"气韵", py:"qì yùn", en:"spirit / resonance"},
-      {zh:"留白", py:"liú bái", en:"blank space"},
-      {zh:"笔画", py:"bǐ huà", en:"brush strokes"},
-      {zh:"妙境", py:"miào jìng", en:"wondrous realm"},
-    ],
-    quiz:[
-      {q:"「留白」means:", opts:["Blank space","Black ink","A signature","A frame"], a:0},
-      {q:"「气韵」refers to:", opts:["Spirit & rhythm","Price","Size","Material"], a:0},
-      {q:"书法讲究:", opts:["Speed only","Stroke strength & space","Color only","Loudness"], a:1},
-      {q:"「书法」means:", opts:["calligraphy", "spirit / resonance", "blank space", "brush strokes"], a:0},
-    ],
-    speak:{zh:"书法讲究笔画力度和留白，无画处皆成妙境，这是中国美学。", en:"Calligraphy values stroke strength and blank space — the unpainted becomes a realm."}
-  },
-  {
-    id:"l9-4", level:"L9", zh:"商务宴请分寸", en:"Business banquet etiquette", ip:false,
-    desc:"Toasts, seating, polite refusals",
-    dlg:[
-      {who:"l", zh:"宴请客户，座位怎么安排？", py:"Yànqǐng kèhù, zuòwèi zěnme ānpái?", en:"When hosting clients, how is seating arranged?"},
-      {who:"r", zh:"主位面对门，客人坐右手边。", py:"Zhǔwèi miànduì mén, kèrén zuò yòushǒu biān.", en:"The host seat faces the door; guests sit on the right."},
-      {who:"l", zh:"敬酒时要注意什么？", py:"Jìngjiǔ shí yào zhùyì shénme?", en:"What should I note when toasting?"},
-      {who:"r", zh:"杯沿低于对方，说句祝福就好，别劝酒过分。", py:"Bēiyán dī yú duìfāng, shuō jù zhùfú jiù hǎo, bié quànjiǔ guòfèn.", en:"Keep your glass rim lower, offer a blessing, don't push drinks too hard."},
-      {who:"l", zh:"我不喝酒，怎么婉拒比较得体？", py:"Wǒ bù hējiǔ, zěnme wǎnjù bǐjiào détǐ?", en:"I don't drink — how to decline gracefully?"},
-      {who:"r", zh:"可以笑着说「以茶代酒」，大家都能接受。", py:"Kěyǐ xiào zhe shuō yǐ chá dài jiǔ, dàjiā dōu néng jiēshòu.", en:"Smile and say 'tea instead of wine' — everyone accepts that."},
-    ],
-    vocab:[
-      {zh:"宴请", py:"yàn qǐng", en:"banquet invitation"},
-      {zh:"主位", py:"zhǔ wèi", en:"seat of honor"},
-      {zh:"敬酒", py:"jìng jiǔ", en:"toast"},
-      {zh:"婉拒", py:"wǎn jù", en:"politely decline"},
-      {zh:"以茶代酒", py:"yǐ chá dài jiǔ", en:"tea instead of wine"},
-    ],
-    quiz:[
-      {q:"「主位」通常:", opts:["Faces the door","Is near the kitchen","Is the smallest seat","Is outside"], a:0},
-      {q:"「敬酒」时杯沿应:", opts:["Higher than others","Lower than others","Equal always","On the table"], a:1},
-      {q:"「以茶代酒」is:", opts:["A polite refusal","A type of wine","A dish","A toast song"], a:0},
-      {q:"「宴请」means:", opts:["banquet invitation", "seat of honor", "toast", "politely decline"], a:0},
-    ],
-    speak:{zh:"宴请客户时主位面对门，敬酒杯沿要低，我不会喝酒就以茶代酒。", en:"At banquets the host seat faces the door; keep your glass low; I don't drink so I use tea."}
-  },
 ];
 
 const LESSONS = [
@@ -1565,46 +963,10 @@ const MOCK_BANKS = {
     {q:"老师让我们____课文。", opts:["读","读了","读过","要读"], a:0, ex:"让 / 叫 + person + verb in base form"}
   ],
   hsk4:[
-    {q:"他____出国留学的事，家里人都很支持。", opts:["提到","说到","讲起","谈起"], a:0, ex:"提到 = bring up / mention；此处指提出留学这件事"},
-    {q:"这次考试他考得很好，____老师也很满意。", opts:["连","甚至","就是","还是"], a:0, ex:"连…也/都… = even...；连老师也很满意 = even the teacher is pleased"},
-    {q:"别看他人高马大的，____胆子很小。", opts:["其实","果然","当然","居然"], a:0, ex:"其实 = actually；表转折，说明真实情况与外表不同"},
-    {q:"这家餐厅的菜____不错，就是价格有点贵。", opts:["味道","口味","滋味","感觉"], a:0, ex:"味道不错 = tastes good；评价食物常用搭配"},
-    {q:"为了赶上早班飞机，他____天没亮就出发了。", opts:["趁","赶","趁早","一"], a:0, ex:"趁 + 时间 = take advantage of / while；趁天没亮 = before dawn"},
-    {q:"你把地址再说一遍，____我记下来。", opts:["以便","所以","因为","虽然"], a:0, ex:"以便 = so that / in order to；表目的"},
-    {q:"这个问题____复杂，不是一两句话能说清楚的。", opts:["相当","稍微","略微","比较"], a:0, ex:"相当 + adj = quite / fairly；程度较高"},
-    {q:"他坚持每天锻炼，____身体比以前好多了。", opts:["因此","然而","尽管","否则"], a:0, ex:"因此 = therefore；表结果，与前面的原因呼应"},
-    {q:"「你会不会吸烟？」——「我早____了。」", opts:["戒烟","抽烟","吸烟","不吸"], a:0, ex:"戒烟 = quit smoking；早…了 表示事情早已完成"},
-    {q:"这部电影____是根据真实故事改编的。", opts:["据说","听说","据称","相传"], a:0, ex:"据说 = it is said / reportedly；用于转述信息来源"},
-    {q:"他一到周末就____在家里打游戏。", opts:["宁可","宁愿","干脆","索性"], a:3, ex:"索性 = simply / might as well；表示干脆这样做"},
-    {q:"这个文件很急，你____交给经理。", opts:["务必","必须","必需","必要"], a:0, ex:"务必 = be sure to / must；强调一定要做到"}
   ],
   hsk5:[
-    {q:"他这人很____，答应的事从来不会食言。", opts:["靠谱","可靠","稳妥","老实"], a:1, ex:"可靠 = reliable；食言 = break one's promise"},
-    {q:"这项政策____了广大群众的切身利益。", opts:["涉及","涉猎","交涉","牵涉"], a:0, ex:"涉及 = involve / concern；涉及利益 = affect interests"},
-    {q:"面对质疑，他____，没有立刻反驳。", opts:["保持沉默","沉默保持","保持安静","沉默着"], a:0, ex:"保持沉默 = remain silent；动宾搭配要规范"},
-    {q:"公司的业绩下滑，____管理层开始反思策略。", opts:["迫使","促使","促进","驱使"], a:1, ex:"促使 = prompt / cause (someone to do)；迫使语气更强含强迫"},
-    {q:"这份合同有几处条款需要进一步____。", opts:["商榷","商量","商议","协商"], a:0, ex:"商榷 = discuss / deliberate；多用于较正式的意见交换"},
-    {q:"他____多年的努力终于有了回报。", opts:["付出","支付","支出","付出过"], a:0, ex:"付出努力 = make an effort；付出与努力搭配"},
-    {q:"这种药____饭后服用，以免刺激肠胃。", opts:["宜","适合","应该","须"], a:0, ex:"宜 = it is advisable to；说明书常用"},
-    {q:"两国关系近年来不断____，贸易额逐年增长。", opts:["升温","升高","上升","增加"], a:0, ex:"关系升温 = relations warming up；固定搭配"},
-    {q:"他说话____，从不绕弯子。", opts:["直截了当","直接了当","直截了当的","干脆利落"], a:0, ex:"直截了当 = straightforward；成语固定写法"},
-    {q:"这次失败给他上了宝贵的一课，____让他成熟了不少。", opts:["也","更","还","倒"], a:1, ex:"更…不少 = even more；强调程度加深"},
-    {q:"那份报告内容____，数据翔实，得到了一致好评。", opts:["详实","空洞","仔细","简略"], a:0, ex:"内容详实 = detailed and accurate；与数据翔实呼应"},
-    {q:"在____的情况下，我们只能临时改变计划。", opts:["事与愿违","事出有因","情有可原","万不得已"], a:3, ex:"万不得已 = only as a last resort；表被迫无奈"}
   ],
   hsk6:[
-    {q:"面对外界的批评，他始终____，专注于自己的研究。", opts:["置若罔闻","不以为然","充耳不闻","视而不见"], a:0, ex:"置若罔闻 = turn a deaf ear to；强调完全不理会"},
-    {q:"这份方案的漏洞____，专家一眼就看出来了。", opts:["显而易见","一目了然","有目共睹","不言而喻"], a:0, ex:"显而易见 = obvious；形容问题明显"},
-    {q:"他的演讲____，深深地打动了在场的每一个人。", opts:["声情并茂","有声有色","绘声绘色","娓娓动听"], a:0, ex:"声情并茂 = voice and feeling both expressive；多形容演讲朗读"},
-    {q:"市场竞争日趋激烈，企业必须____，才能立于不败之地。", opts:["未雨绸缪","亡羊补牢","临渴掘井","江心补漏"], a:0, ex:"未雨绸缪 = plan ahead；趁雨没来先修缮门窗"},
-    {q:"对于这种____的说法，我们有必要保持清醒的头脑。", opts:["似是而非","是而非","似非而是","模棱两可"], a:0, ex:"似是而非 = specious / seemingly right but wrong"},
-    {q:"两国文化____，但在许多价值观上却有相通之处。", opts:["迥然不同","大相径庭","天差地别","截然相反"], a:1, ex:"大相径庭 = widely different；强调差别很大"},
-    {q:"他____地放弃了高薪职位，这个决定令所有人费解。", opts:["义无反顾","毫不犹豫","毅然决然","不假思索"], a:2, ex:"毅然决然 = resolutely；强调下定决心坚定不移"},
-    {q:"这篇文章____，观点新颖，值得细细品读。", opts:["鞭辟入里","入木三分","一针见血","切中要害"], a:0, ex:"鞭辟入里 = penetrating / profound；形容分析深刻透彻"},
-    {q:"在利益面前，他选择了____，坚守了职业操守。", opts:["急功近利","见利忘义","洁身自好","唯利是图"], a:2, ex:"洁身自好 = keep oneself clean；不与世俗同流合污"},
-    {q:"这个决定____，需要所有股东的一致同意。", opts:["非同小可","举足轻重","至关重要","无关紧要"], a:0, ex:"非同小可 = no small matter；强调事情重大不能马虎"},
-    {q:"他为人低调，从不____自己的成就。", opts:["炫耀","夸耀","显示","展示"], a:0, ex:"炫耀 = show off；含贬义，与低调形成对比"},
-    {q:"传统与现代在这里____，形成了独特的城市风貌。", opts:["交相辉映","相得益彰","相辅相成","融为一体"], a:0, ex:"交相辉映 = enhance each other's beauty；指两者互相映衬"}
   ]
 };
 
@@ -1633,27 +995,157 @@ const CONFIG = {
   SUPABASE_URL: "https://deyxyydabqtnjhggpwmt.supabase.co",
   SUPABASE_ANON_KEY: "sb_publishable_U8_GG2ALj9ACwd-bDNU4iA_rHNwqA6d",
   NEWSLETTER_TABLE: "subscribers",
-  PAYMENT_LINK: "https://www.creem.io/product/prod_6o8Am1r3r09BRnhcTZApUL"
+  PAYMENT_LINK: "https://www.creem.io/product/prod_6o8Am1r3r09BRnhcTZApUL",
+  /* Creem KYC 通过、webhook 部署完成后才改 true。
+     false 时付款入口显示 waitlist；付费内容始终由 entitlements 授权控制，与此标志无关。 */
+  PAYMENTS_ENABLED: false
 };
 
-/* ===== 访问控制（单开关）=====
-   上线初期：PAYMENTS_LIVE = false → 免费内容全开、付费内容与支付入口加锁
-   周五 KYC 通过后：把下面这一行改为 true，付费内容与支付按钮同时开放 */
+/* ===== 用户级付费鉴权（内容不存前端，按 Supabase 授权拉取）=====
+   付费内容全部存 Supabase premium_content 表，仅 RLS 允许已授权用户读取。
+   没有任何"日期到点自动解锁"的开关——付款功能何时启用由 Creem webhook 写入
+   entitlements 决定；用户未登录/未付款时，前端根本没有付费内容数据。 */
 const ACCESS = {
-  PAYMENTS_LIVE: false,
   PREM_LESSONS: ["L4","L5","L6","L7","L8","L9"],
   PREM_MOCKS: ["hsk4","hsk5","hsk6"],
   isPremLesson: function(l){ return !!l && this.PREM_LESSONS.indexOf(l.level)>=0; },
   isPremMock: function(k){ return this.PREM_MOCKS.indexOf(k)>=0; },
-  lessonOpen: function(l){ return !this.isPremLesson(l) || this.PAYMENTS_LIVE; },
-  mockOpen: function(k){ return !this.isPremMock(k) || this.PAYMENTS_LIVE; }
+  lessonOpen: function(l){ return !this.isPremLesson(l) || AUTH.entitled; },
+  mockOpen: function(k){ return !this.isPremMock(k) || (AUTH.entitled && (MOCK_BANKS[k]||[]).length>0); },
+  contentLoaded: function(){ return AUTH.entitled && AUTH.contentLoaded; }
 };
-/* 支付开通后，向同源的其它页面广播解锁状态（情境对话页据此自动解锁） */
-try{ if(ACCESS.PAYMENTS_LIVE) localStorage.setItem("mh_premium_live","1"); }catch(e){}
+
+/* ===== Supabase Auth：邮箱魔法链接登录（无密码）=====
+   - 未登录用户：只有免费内容
+   - 登录且已付款（entitlements.plan=premium）：从 Supabase 拉取付费内容注入本地变量
+   - session 存 localStorage；token 在 URL hash（/#access_token=...）里回传
+   - token 过期自动 refresh，失败则降级为未登录（安全侧：看不到付费内容） */
+const AUTH = {
+  session: null, user: null, entitled: false, contentLoaded: false, checking: true,
+  SK: "mh_auth_session",
+  url: function(){ return CONFIG.SUPABASE_URL.replace(/\/$/, ""); },
+  headers: function(auth){
+    const h = { "apikey": CONFIG.SUPABASE_ANON_KEY, "Authorization": "Bearer " + (auth || (this.session && this.session.access_token) || CONFIG.SUPABASE_ANON_KEY) };
+    return h;
+  },
+  /* 解析 URL hash 中的 token 并持久化 */
+  parseHash: function(){
+    const h = location.hash || "";
+    if(h.indexOf("access_token=") < 0) return false;
+    const p = new URLSearchParams(h.replace(/^#/, ""));
+    const tok = p.get("access_token");
+    if(!tok) return false;
+    this.session = { access_token: tok, refresh_token: p.get("refresh_token")||"", expires_in: +(p.get("expires_in")||3600) };
+    try{ localStorage.setItem(this.SK, JSON.stringify(this.session)); }catch(e){}
+    try{ history.replaceState(null, "", location.pathname + location.search); }catch(e){}
+    return true;
+  },
+  restore: function(){
+    if(this.session) return;
+    try{ const raw = localStorage.getItem(this.SK); if(raw) this.session = JSON.parse(raw); }catch(e){}
+  },
+  refresh: async function(){
+    if(!this.session || !this.session.refresh_token) return false;
+    try{
+      const r = await fetch(this.url()+"/auth/v1/token?grant_type=refresh_token", {
+        method:"POST", headers:this.headers(),
+        body:JSON.stringify({refresh_token:this.session.refresh_token})
+      });
+      if(!r.ok) return false;
+      const j = await r.json();
+      this.session = { access_token:j.access_token, refresh_token:j.refresh_token||this.session.refresh_token, expires_in:j.expires_in||3600 };
+      localStorage.setItem(this.SK, JSON.stringify(this.session));
+      return true;
+    }catch(e){ return false; }
+  },
+  api: async function(path, retry){
+    const r = await fetch(this.url()+path, { headers:this.headers() });
+    if(r.status===401 && !retry){ if(await this.refresh()) return this.api(path, true); }
+    if(!r.ok) return null;
+    return await r.json();
+  },
+  /* 发送魔法链接 */
+  sendLink: async function(email){
+    try{
+      const r = await fetch(this.url()+"/auth/v1/otp", {
+        method:"POST",
+        headers:Object.assign(this.headers(), {"Content-Type":"application/json"}),
+        body:JSON.stringify({ email:email, create_user:true, email_redirect_to:location.origin+location.pathname })
+      });
+      return r.ok;
+    }catch(e){ return false; }
+  },
+  /* 启动：解析 token → 取用户 → 查授权 → 拉内容 */
+  init: async function(){
+    this.restore();
+    const fromHash = this.parseHash();
+    if(!this.session){ this.checking=false; return; }
+    const u = await this.api("/auth/v1/user");
+    if(!u || !u.id){ this.signOut(); this.checking=false; return; }
+    this.user = u;
+    const rows = await this.api("/rest/v1/entitlements?select=plan,paid_at&user_id=eq."+encodeURIComponent(u.id));
+    this.entitled = !!(rows && rows[0] && rows[0].plan==="premium" && rows[0].paid_at);
+    if(this.entitled) await this.loadContent();
+    this.checking=false;
+    if(fromHash) toast(lang==="zh"?"登录成功 ✓":"Signed in ✓");
+  },
+  /* 拉取付费内容（RLS 会二次校验授权，前端伪造无效） */
+  loadContent: async function(){
+    if(this.contentLoaded) return;  // 幂等：避免重复注入
+    const rows = await this.api("/rest/v1/premium_content?select=key,kind,data");
+    if(!rows || !rows.length) return;
+    rows.forEach(function(row){
+      if(row.kind==="lesson" && row.key==="lessons"){
+        LESSONS.push.apply(LESSONS, row.data);
+      } else if(row.kind==="mock" && MOCK_BANKS[row.key]){
+        MOCK_BANKS[row.key] = row.data;
+      }
+    });
+    this.contentLoaded = true;
+  },
+  signOut: function(){
+    this.session=null; this.user=null; this.entitled=false; this.contentLoaded=false;
+    try{ localStorage.removeItem(this.SK); }catch(e){}
+  },
+  isLoggedIn: function(){ return !!(this.session && this.user); }
+};
 function paywall(what){
-  toast(lang==="zh" ? "🔒 "+(what||"该内容")+" 属于 Premium，支付通道开通后即可解锁" : "🔒 "+(what||"This content")+" is Premium — unlocking soon when payments go live");
+  if(!AUTH.isLoggedIn()){ openLogin(what); return; }
+  toast(lang==="zh" ? "🔒 "+(what||"该内容")+" 属于 Premium，购买后即可解锁" : "🔒 "+(what||"This content")+" is Premium — purchase to unlock");
   setTimeout(function(){ if(currentView!=="pricing") go("pricing"); }, 850);
 }
+
+/* 登录弹窗（邮箱魔法链接） */
+function openLogin(what){
+  let box=document.querySelector(".login-modal");
+  if(box) box.remove();
+  box=document.createElement("div");box.className="certmodal login-modal";
+  box.innerHTML='<div class="certcard"><h3>'+
+    (lang==="zh"?"🔐 登录以继续":"🔐 Sign in to continue")+'</h3>'+
+    '<p class="note">'+(lang==="zh"
+      ?"登录后：已购买用户自动解锁全部付费内容；未购买用户可继续浏览免费课程。"
+      :"Sign in: purchased users unlock all premium content; free content stays available to everyone.")+'</p>'+
+    '<label>'+(lang==="zh"?"邮箱 / Email":"Email")+'</label>'+
+    '<input id="loginEmail" type="email" placeholder="you@example.com">'+
+    '<div class="certbtns"><button class="btn btn-ghost" onclick="this.closest(\'.certmodal\').remove()">'+
+    (lang==="zh"?"稍后":"Later")+'</button>'+
+    '<button class="btn btn-red" onclick="submitLogin()">'+
+    (lang==="zh"?"发送登录链接 →":"Send sign-in link →")+'</button></div></div>';
+  document.body.appendChild(box);
+  setTimeout(function(){const el=document.getElementById("loginEmail");if(el)el.focus();},80);
+}
+async function submitLogin(){
+  const el=document.getElementById("loginEmail");
+  const v=(el||{}).value||"";
+  if(!/^\S+@\S+\.\S+$/.test(v)){ toast(lang==="zh"?"请输入有效邮箱":"Please enter a valid email"); return; }
+  localStorage.setItem("mh_waitlist_email", v);
+  const ok=await AUTH.sendLink(v);
+  toast(ok
+    ? (lang==="zh"?"登录链接已发到你的邮箱，请点开完成登录 ✓":"Sign-in link sent — check your email ✓")
+    : (lang==="zh"?"发送失败，请稍后重试":"Failed to send, please retry"));
+  const b=document.querySelector(".login-modal");if(b)b.remove();
+}
+function doSignOut(){ AUTH.signOut(); toast(lang==="zh"?"已退出":"Signed out"); go(currentView, cur?cur.id:undefined); }
 
 function progress(){ try{return JSON.parse(localStorage.getItem("mh_progress")||"{}")}catch(e){return {}} }
 function saveProgress(p){ localStorage.setItem("mh_progress", JSON.stringify(p)); }
@@ -2223,10 +1715,12 @@ async function subscribe(){
   }
 }
 function checkout(){
-  /* 支付通道尚未开通（Creem KYC 审核中）：引导登记邮箱，开通后第一时间通知 */
-  if(!ACCESS.PAYMENTS_LIVE){ openWaitlist(); return; }
+  /* 付款入口：Creem KYC 通过前不开放收款；之后跳转 Creem。
+     付费内容的可见性不依赖这个函数——由后端 entitlements 授权决定。 */
+  if(!CONFIG.PAYMENTS_ENABLED){ openWaitlist(); return; }
+  if(!AUTH.isLoggedIn()){ openLogin("Premium"); return; }
   if(CONFIG.PAYMENT_LINK){ window.location.href = CONFIG.PAYMENT_LINK; return; }
-  toast(lang==="zh"?"演示版：填入 Stripe Payment Link 后即可真实收款":"Demo: add a Stripe Payment Link to enable checkout");
+  toast(lang==="zh"?"支付链接未配置":"Payment link not configured");
 }
 
 /* ===== 付款意向登记（Waitlist）===== */
@@ -2294,9 +1788,10 @@ function toggleLang(){
   go(currentView, cur ? cur.id : undefined);
 }
 
-/* 启动 */
+/* 启动：先异步完成鉴权与内容拉取，再渲染（避免付费内容注入后视图不刷新） */
 document.getElementById("cta-start").textContent = t("cta-start");
 go("home");
+AUTH.init().then(function(){ if(currentView) go(currentView, cur?cur.id:undefined); });
 </script>
 </body>
 </html>
