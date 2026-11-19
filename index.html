@@ -1687,9 +1687,16 @@ function downloadCert(){
   c.fillStyle="#0d203c";c.beginPath();c.roundRect(-28,-28,56,56,11);c.fill();
   c.strokeStyle="#d4af37";c.lineWidth=2.6;c.beginPath();c.roundRect(-26.4,-26.4,52.8,52.8,10);c.stroke();
   c.strokeStyle="#c9b98a";c.lineWidth=1;c.beginPath();c.roundRect(-21,-21,42,42,7);c.stroke();
-  c.strokeStyle="#d4af37";c.lineWidth=3.2;c.lineCap="round";c.lineJoin="round";
-  c.beginPath();c.moveTo(-13,-13);c.lineTo(-15,-8);c.moveTo(-17,-1);c.lineTo(-19,4);c.moveTo(-19,13);c.lineTo(-13,18);
-  c.moveTo(-3,-12);c.lineTo(15,-12);c.lineTo(-1,13);c.moveTo(5,-4);c.lineTo(18,15);c.stroke();
+  /* 华文行楷「汉」字（矢量路径，按字形bbox精确居中） */
+  if(typeof Path2D!=="undefined"){
+    var hanPath=new Path2D("M316 480Q293 460 244 460Q224 460 224.0 466.5Q224 473 233 484Q258 514 258.0 524.5Q258 535 251 545Q201 619 201 637Q201 646 211.0 646.0Q221 646 245.5 633.5Q270 621 305.0 605.0Q340 589 353.5 568.5Q367 548 367 521Q367 479 328 479Q323 479 316 480ZM638 234Q718 190 761 177Q831 156 853.5 111.0Q876 66 876 9Q876 -12 862.5 -12.0Q849 -12 811.5 2.5Q774 17 745 49Q736 59 691.0 89.0Q646 119 595 148Q555 104 502.5 80.5Q450 57 406.5 57.0Q363 57 350 75Q323 114 290 130Q283 68 274 -72Q273 -95 260 -95Q241 -95 214.5 -63.0Q188 -31 162.5 43.0Q137 117 137 234Q137 286 142.5 334.5Q148 383 156 383Q159 383 164.5 373.0Q170 363 194 347Q226 326 226 272Q226 254 221 235Q202 160 202.0 117.5Q202 75 208 40Q242 104 266 187Q273 213 290 245Q286 244 280.5 244.0Q275 244 275 249Q275 259 307 282Q346 366 415 419Q426 448 474.0 472.0Q522 496 556.0 525.5Q590 555 590 576Q590 586 609.5 599.5Q629 613 638.0 613.0Q647 613 649 602Q652 580 675.0 570.0Q698 560 712.0 540.5Q726 521 726.0 500.5Q726 480 712.0 458.5Q698 437 683.5 394.0Q669 351 638 234ZM556 268Q606 429 606 444Q606 450 601.5 450.0Q597 450 580.0 430.5Q563 411 545.5 399.5Q528 388 507 388L470 392Q436 392 388.5 360.0Q341 328 325 288Q368 295 409 295Q490 295 556 268ZM517 197Q424 251 340 251Q326 251 312 250Q297 214 293 163Q299 132 351.5 132.0Q404 132 446.0 149.0Q488 166 517 197Z");
+    c.save();c.translate(-25.974,14.128);c.scale(0.051282,-0.051282);
+    c.fillStyle="#d4af37";c.fill(hanPath);c.restore();
+  } else {
+    c.strokeStyle="#d4af37";c.lineWidth=3.2;c.lineCap="round";c.lineJoin="round";
+    c.beginPath();c.moveTo(-13,-13);c.lineTo(-15,-8);c.moveTo(-17,-1);c.lineTo(-19,4);c.moveTo(-19,13);c.lineTo(-13,18);
+    c.moveTo(-3,-12);c.lineTo(15,-12);c.lineTo(-1,13);c.moveTo(5,-4);c.lineTo(18,15);c.stroke();
+  }
   c.restore();
   c.fillStyle="#e8c96b";c.font="bold 30px Georgia";c.fillText("HANZIFACE",600,174);
   c.fillStyle="#b89a4a";c.font="14px Georgia";c.fillText("·  EST. 2026  ·",600,198);
