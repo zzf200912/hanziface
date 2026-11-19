@@ -4,6 +4,7 @@
 <script data-page-node-id="xUSTyp3lwWJapHKpsw6cdA" src="/page/page_comm/inject.js"></script>
 <meta data-page-node-id="KCsPeFZ2FEW8urxzcy9RX8" charset="UTF-8">
 <meta data-page-node-id="ueymdKrnVPxtR5I5LOTqsp" content="width=device-width, initial-scale=1.0" name="viewport">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title data-page-node-id="6uMFJuBZpGJmfiAzh1IGSQ" data-pnid-children="s03x1csRrbo35AgtVUd1yw">HanziFace — Learn Chinese through shows & games you love</title>
 <meta name="description" content="Learn Chinese through the shows, games and culture you already love. 50 structured lessons (L1-L9), HSK 1-6 mock exams, AI speaking score, and spaced-repetition vocabulary. Free to start.">
 <meta name="keywords" content="learn Chinese online, Chinese course for beginners, HSK 1 mock test, Chinese through dramas, Mandarin vocabulary SRS, 学中文">
@@ -212,7 +213,7 @@
 
 <header data-page-node-id="dyjeZUqlE095aj8KtyUPk2">
   <div data-page-node-id="SqlN1c0kkhNGEGyX0w4l8S" class="wrap nav">
-    <div data-page-node-id="LzESffyao6f4nOViClLuqA" class="logo" onclick="go('home')"><!--pnid:e7pvjqdVnOSGlRjch5dZoT-->汉字<span data-page-node-id="gYRvOj00KtXjgmcs8CEFgt"><!--pnid:uO8axS4j4cxyeU63Bpmao3-->Face</span><!--pnid:yqdFqmgzvDgrxKsz6aJ0i7--> · HanziFace</div>
+    <div data-page-node-id="LzESffyao6f4nOViClLuqA" class="logo" onclick="go('home')"><!--pnid:e7pvjqdVnOSGlRjch5dZoT--><img src="hanziface-logo.svg" alt="HanziFace" style="height:46px;width:auto;display:block"></div>
     <a data-page-node-id="Cpd7t3zH9AwdGV2RG7Fmp9" data-nav="home" onclick="go('home')"><!--pnid:YK28eAUvPQsP965wo1qSeJ-->Home</a>
     <a data-page-node-id="jolIWWHn1pQxk81fgNrao9" data-nav="courses" onclick="go('courses')"><!--pnid:u0uarUZcr96eBou8SBe0yy-->Courses</a>
     <a data-nav="stories" href="scenario-l1.html">情境对话</a>
@@ -1673,6 +1674,7 @@ function openCertModal(){
 }
 function downloadCert(){
   const cv=document.createElement("canvas");cv.width=1200;cv.height=850;const c=cv.getContext("2d");
+  if(!c.roundRect){c.roundRect=function(x,y,w,h,r){this.moveTo(x+r,y);this.arcTo(x+w,y,x+w,y+h,r);this.arcTo(x+w,y+h,x,y+h,r);this.arcTo(x,y+h,x,y,r);this.arcTo(x,y,x+w,y,r);this.closePath();return this;};}
   const g=c.createLinearGradient(0,0,1200,850);
   g.addColorStop(0,"#0d203c");g.addColorStop(.5,"#16305a");g.addColorStop(1,"#0d203c");
   c.fillStyle=g;c.fillRect(0,0,1200,850);
@@ -1680,8 +1682,17 @@ function downloadCert(){
   c.strokeStyle="#b89a4a";c.lineWidth=2;c.strokeRect(48,48,1104,754);
   [[72,72],[1128,72],[72,778],[1128,778]].forEach(([x,y])=>{c.save();c.translate(x,y);c.rotate(Math.PI/4);c.fillStyle="#d4af37";c.fillRect(-7,-7,14,14);c.restore()});
   c.textAlign="center";
-  c.fillStyle="#e8c96b";c.font="bold 32px Georgia";c.fillText("HANZIFACE",600,138);
-  c.fillStyle="#b89a4a";c.font="15px Georgia";c.fillText("·  EST. 2026  ·",600,170);
+  /* logo印章（深蓝金，呼应favicon）：56×56，置于品牌名上方 */
+  c.save();c.translate(600,108);
+  c.fillStyle="#0d203c";c.beginPath();c.roundRect(-28,-28,56,56,11);c.fill();
+  c.strokeStyle="#d4af37";c.lineWidth=2.6;c.beginPath();c.roundRect(-26.4,-26.4,52.8,52.8,10);c.stroke();
+  c.strokeStyle="#c9b98a";c.lineWidth=1;c.beginPath();c.roundRect(-21,-21,42,42,7);c.stroke();
+  c.strokeStyle="#d4af37";c.lineWidth=3.2;c.lineCap="round";c.lineJoin="round";
+  c.beginPath();c.moveTo(-13,-13);c.lineTo(-15,-8);c.moveTo(-17,-1);c.lineTo(-19,4);c.moveTo(-19,13);c.lineTo(-13,18);
+  c.moveTo(-3,-12);c.lineTo(15,-12);c.lineTo(-1,13);c.moveTo(5,-4);c.lineTo(18,15);c.stroke();
+  c.restore();
+  c.fillStyle="#e8c96b";c.font="bold 30px Georgia";c.fillText("HANZIFACE",600,174);
+  c.fillStyle="#b89a4a";c.font="14px Georgia";c.fillText("·  EST. 2026  ·",600,198);
   c.fillStyle="#f5ecd7";c.font="bold 52px Georgia";c.fillText("Certificate of Completion",600,240);
   c.fillStyle="#d4af37";c.font="24px 'PingFang SC','Microsoft YaHei',Arial";c.fillText("结 业 证 书 · 系统课程 L1–L3",600,290);
   c.strokeStyle="#b89a4a";c.lineWidth=1;c.beginPath();c.moveTo(430,315);c.lineTo(770,315);c.stroke();

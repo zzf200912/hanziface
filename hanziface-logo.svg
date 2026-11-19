@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 452 68" role="img" aria-label="HanziFace">
+  <defs>
+    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d203c"/>
+      <stop offset="0.5" stop-color="#16305a"/>
+      <stop offset="1" stop-color="#0d203c"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8c96b"/>
+      <stop offset="0.5" stop-color="#d4af37"/>
+      <stop offset="1" stop-color="#b89a4a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 印章徽章 -->
+  <g transform="translate(2,4)">
+    <rect x="0" y="0" width="60" height="60" rx="13" fill="url(#navy)"/>
+    <rect x="1.4" y="1.4" width="57.2" height="57.2" rx="11.6" fill="none" stroke="url(#gold)" stroke-width="2.8"/>
+    <rect x="6" y="6" width="48" height="48" rx="8" fill="none" stroke="#c9b98a" stroke-width="0.9" opacity="0.85"/>
+    <!-- 四角菱形（呼应证书） -->
+    <g fill="#e8c96b">
+      <path d="M12 6 l2 -2 2 2 -2 2 z"/>
+      <path d="M44 6 l2 -2 2 2 -2 2 z"/>
+      <path d="M12 50 l2 -2 2 2 -2 2 z"/>
+      <path d="M44 50 l2 -2 2 2 -2 2 z"/>
+    </g>
+    <!-- 几何化「汉」字：氵(三点水) + 又 -->
+    <g fill="none" stroke="url(#gold)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 17 L18 21"/>
+      <path d="M16 26 L14 30"/>
+      <path d="M14 37 L21 43"/>
+      <path d="M28 23 H47 L31 44"/>
+      <path d="M35 28 L50 46"/>
+    </g>
+  </g>
+
+  <!-- 文字标记 -->
+  <text x="76" y="37" font-family="Georgia,'Times New Roman',serif" font-size="29" font-weight="700" fill="#0d203c" letter-spacing="0.3">Hanzi<tspan fill="#b8860b">Face</tspan></text>
+  <text x="77" y="55" font-family="Arial,Helvetica,sans-serif" font-size="9.5" letter-spacing="2.2" fill="#b8860b">LEARN CHINESE THROUGH SHOWS</text>
+</svg>
