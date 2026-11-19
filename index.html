@@ -2223,13 +2223,69 @@ async function subscribe(){
   }
 }
 function checkout(){
-  /* 支付通道尚未开通（Creem KYC 审核中）：显示预告，不跳转，避免收款失败 */
-  if(!ACCESS.PAYMENTS_LIVE){
-    toast(lang==="zh"?"💳 Premium 支付通道开通中，预计周五上线。届时可解锁全部内容！":"💳 Premium payments are opening soon (this Friday). All content unlocks then!");
-    return;
-  }
+  /* 支付通道尚未开通（Creem KYC 审核中）：引导登记邮箱，开通后第一时间通知 */
+  if(!ACCESS.PAYMENTS_LIVE){ openWaitlist(); return; }
   if(CONFIG.PAYMENT_LINK){ window.location.href = CONFIG.PAYMENT_LINK; return; }
   toast(lang==="zh"?"演示版：填入 Stripe Payment Link 后即可真实收款":"Demo: add a Stripe Payment Link to enable checkout");
+}
+
+/* ===== 付款意向登记（Waitlist）===== */
+function openWaitlist(){
+  let box=document.querySelector(".waitlist-modal");
+  if(box) box.remove();
+  box=document.createElement("div");box.className="certmodal waitlist-modal";
+  const saved=localStorage.getItem("mh_waitlist_email")||"";
+  box.innerHTML='<div class="certcard"><h3>'+
+    (lang==="zh"?"💳 抢先体验 Premium":"💳 Be first to unlock Premium")+'</h3>'+
+    '<p class="note">'+
+    (lang==="zh"
+      ?"支付通道正在开通中（周五上线）。留下邮箱，开通第一时间通知你 —— 登记用户享早鸟价，且现在就能优先体验全部课程。"
+      :"Payments open this Friday. Leave your email and we'll notify you the moment it's live — early-bird pricing for early supporters.")+
+    '</p>'+
+    '<div class="certmeta">'+
+    (lang==="zh"
+      ?"✓ 全部 50 节系统课 + 39 节情境对话　✓ HSK 1–6 模考　✓ AI 口语评分　✓ 数字结业证书"
+      :"✓ 50 structured lessons + 39 story dialogues  ✓ HSK 1–6 mock exams  ✓ AI speaking score  ✓ Certificate")+
+    '</div>'+
+    '<label>'+(lang==="zh"?"你的邮箱 / Your email":"Your email")+'</label>'+
+    '<input id="waitlistEmail" type="email" placeholder="you@example.com" value="'+saved+'">'+
+    '<div class="certbtns"><button class="btn btn-ghost" onclick="this.closest(\'.certmodal\').remove()">'+
+    (lang==="zh"?"稍后":"Later")+'</button>'+
+    '<button class="btn btn-red" onclick="submitWaitlist()">'+
+    (lang==="zh"?"登记并通知我 ✓":"Notify me ✓")+'</button></div></div>';
+  document.body.appendChild(box);
+  setTimeout(function(){const el=document.getElementById("waitlistEmail");if(el&&!saved)el.focus();},80);
+}
+
+async function submitWaitlist(){
+  const el=document.getElementById("waitlistEmail");
+  const v=(el||{}).value||"";
+  if(!/^\S+@\S+\.\S+$/.test(v)){ toast(lang==="zh"?"请输入有效邮箱":"Please enter a valid email"); return; }
+  localStorage.setItem("mh_waitlist_email", v);
+  if(!CONFIG.SUPABASE_URL || !CONFIG.SUPABASE_ANON_KEY){
+    toast(lang==="zh"?"已登记（演示模式）":"Registered (demo mode)");
+    const b=document.querySelector(".waitlist-modal");if(b)b.remove();
+    return;
+  }
+  try{
+    const url=CONFIG.SUPABASE_URL.replace(/\/$/,"")+"/rest/v1/"+CONFIG.NEWSLETTER_TABLE;
+    const r=await fetch(url,{
+      method:"POST",
+      headers:{
+        "apikey":CONFIG.SUPABASE_ANON_KEY,
+        "Authorization":"Bearer "+CONFIG.SUPABASE_ANON_KEY,
+        "Content-Type":"application/json",
+        "Prefer":"resolution=ignore-duplicates,return=minimal"
+      },
+      body:JSON.stringify({email:v, source:"payment-intent", created_at:new Date().toISOString()})
+    });
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    toast(lang==="zh"?"🎉 登记成功！开通第一时间通知你":"🎉 You're on the list! We'll notify you when live.");
+    const b=document.querySelector(".waitlist-modal");if(b)b.remove();
+  }catch(e){
+    toast(lang==="zh"?"已本地保存邮箱，稍后重试":"Saved locally, will retry");
+    const b=document.querySelector(".waitlist-modal");if(b)b.remove();
+  }
 }
 function toggleLang(){
   lang = lang==="en" ? "zh" : "en";
