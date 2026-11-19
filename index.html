@@ -925,10 +925,10 @@ let cur = null, curStep = 0, quizState = [], speakOK = false, currentView = "hom
  * Supabase：表 subscribers 需开启 RLS 并仅允许 anon 角色 INSERT(email, source, created_at)
  * Stripe：使用 Payment Link，切勿把 secret key 写进前端 */
 const CONFIG = {
-  SUPABASE_URL: "",
-  SUPABASE_ANON_KEY: "",
+  SUPABASE_URL: "https://deyxyydabqtnjhggpwmt.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_U8_GG2ALj9ACwd-bDNU4iA_rHNwqA6d",
   NEWSLETTER_TABLE: "subscribers",
-  STRIPE_PAYMENT_LINK: ""
+  PAYMENT_LINK: "https://www.creem.io/product/prod_6o8Am1r3r09BRnhcTZApUL"
 };
 
 function progress(){ try{return JSON.parse(localStorage.getItem("mh_progress")||"{}")}catch(e){return {}} }
@@ -1345,7 +1345,7 @@ async function subscribe(){
   }
 }
 function checkout(){
-  if(CONFIG.STRIPE_PAYMENT_LINK){ window.location.href = CONFIG.STRIPE_PAYMENT_LINK; return; }
+  if(CONFIG.PAYMENT_LINK){ window.location.href = CONFIG.PAYMENT_LINK; return; }
   toast(lang==="zh"?"演示版：填入 Stripe Payment Link 后即可真实收款":"Demo: add a Stripe Payment Link to enable checkout");
 }
 function toggleLang(){
