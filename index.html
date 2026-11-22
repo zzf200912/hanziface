@@ -172,6 +172,10 @@
   .plan li{padding:6px 0;border-bottom:1px dashed var(--line)}
   .plan li::before{content:"✓ ";color:var(--green);font-weight:700}
   .plan li.n::before{content:"– ";color:#bbb}
+  .plan .local-price{font-size:13px;color:#0f766e;font-weight:700;margin:2px 0 0}
+  .plan .local-price span{display:block;font-size:11px;color:#9ca3af;font-weight:400;margin-top:2px}
+  .pay-note{max-width:900px;margin:16px auto 0;text-align:center;font-size:12px;color:#6b7280;line-height:1.7}
+  .pay-note b{color:#374151}
   /* newsletter */
   .news{background:linear-gradient(135deg,#96281b,#c0392b);border-radius:18px;padding:34px;color:#fff;display:flex;gap:26px;align-items:center;margin-top:50px;flex-wrap:wrap}
   .news h3{font-size:22px}
@@ -998,8 +1002,42 @@ const CONFIG = {
   PAYMENT_LINK: "https://www.creem.io/product/prod_6o8Am1r3r09BRnhcTZApUL",
   /* Creem KYC 通过、webhook 部署完成后才改 true。
      false 时付款入口显示 waitlist；付费内容始终由 entitlements 授权控制，与此标志无关。 */
-  PAYMENTS_ENABLED: false
+  PAYMENTS_ENABLED: false,
+  /* 价格本地化：Creem 产品仅支持 USD/EUR 单一币种定价，本站产品以 USD 计价，
+     故主价保留美元（与真实扣款一致），下方显示"约合本币"参考行，绝不暗示按本币扣款。
+     汇率为近似参考值（非实时），更新处仅此一处。*/
+  PRICE_USD: 39,
+  FX: { EUR:0.92, GBP:0.78, CNY:7.15, JPY:152, PLN:3.95, CZK:23.2 }
 };
+
+/* 根据浏览器语言推断展示币种；仅作参考价展示，不改变实际结算币种 */
+function guessCurrency(){
+  var l = ((navigator.language||"en")+"").toLowerCase();
+  var urlLang = new URLSearchParams(location.search).get("lang");
+  if(urlLang) l = urlLang.toLowerCase()+"-"+l;
+  if(/^zh|cn/.test(l)) return "CNY";
+  if(/^ja/.test(l)) return "JPY";
+  if(/^pl/.test(l)) return "PLN";
+  if(/^cs/.test(l)) return "CZK";
+  if(/^en-gb|^gb/.test(l)) return "GBP";
+  if(/^de|^fr|^es|^it|^nl|^pt|^el|^en-ie|^en-de/.test(l)) return "EUR";
+  return "USD";
+}
+function localPriceLine(usd){
+  var cur = guessCurrency();
+  if(cur==="USD") return "";
+  var rate = CONFIG.FX[cur];
+  var sym = {EUR:"€",GBP:"£",CNY:"¥",JPY:"¥",PLN:"zł",CZK:"Kč"}[cur];
+  var val = Math.round(usd*rate);
+  val = cur==="JPY" ? val.toLocaleString("en-US") : val;
+  var note = lang==="zh" ? "约合 · 以美元结算" : "approx. · charged in USD";
+  return '<p class="local-price">≈ '+sym+val+' <span>'+note+'</span></p>';
+}
+function payMethodsLine(){
+  return lang==="zh"
+    ? '<div class="pay-note">🔒 由 <b>Creem</b> 安全结账 · 支持 Visa / Mastercard / Apple Pay / Google Pay 及你所在地区的本地支付方式 · 汇率由发卡行按实时牌价换算</div>'
+    : '<div class="pay-note">🔒 Secure checkout by <b>Creem</b> · Visa / Mastercard / Apple Pay / Google Pay and local payment methods in your region · your bank converts at the live rate</div>';
+}
 
 /* ===== 用户级付费鉴权（内容不存前端，按 Supabase 授权拉取）=====
    付费内容全部存 Supabase premium_content 表，仅 RLS 允许已授权用户读取。
@@ -1357,6 +1395,7 @@ function renderPricing(){
     </div>
     <div class="plan hot">
       <h3>Premium</h3><div class="price">$39<small style="font-size:14px;color:#6b7280">/yr</small></div>
+      ${localPriceLine(39)}
       <p style="font-size:12px;color:#9ca3af">($11.99/mo after launch · price locked for life)</p>
       <ul>
         <li>Everything in Free</li>
@@ -1380,7 +1419,8 @@ function renderPricing(){
       </ul>
       <button class="btn btn-gold" onclick="toast('Demo: contact form goes here')">Contact us</button>
     </div>
-  </div>`;
+  </div>
+  ${payMethodsLine()}`;
 }
 
 /* ============ 课程播放器 ============ */
