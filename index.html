@@ -176,11 +176,6 @@
   .plan .local-price span{display:block;font-size:11px;color:#9ca3af;font-weight:400;margin-top:2px}
   .pay-note{max-width:900px;margin:16px auto 0;text-align:center;font-size:12px;color:#6b7280;line-height:1.7}
   .pay-note b{color:#374151}
-  /* newsletter */
-  .news{background:linear-gradient(135deg,#96281b,#c0392b);border-radius:18px;padding:34px;color:#fff;display:flex;gap:26px;align-items:center;margin-top:50px;flex-wrap:wrap}
-  .news h3{font-size:22px}
-  .news p{font-size:14px;opacity:.9}
-  .news input{flex:1;min-width:220px;padding:12px 16px;border-radius:999px;border:none;font-size:15px}
   .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:#1f2937;color:#fff;padding:12px 24px;border-radius:999px;font-size:14px;opacity:0;transition:.3s;z-index:99;pointer-events:none}
   .toast.show{opacity:1}
   footer{border-top:1px solid var(--line);padding:22px 0;color:#9ca3af;font-size:12px;text-align:center}
@@ -980,10 +975,6 @@ const I18N = {
   "hero-p":{"en":"HSK-aligned 5-step lessons, AI-style speaking drills, and culture-IP content (Ne Zha, Genshin, C-dramas). Start free — no credit card.","zh":"对标 HSK 的五步课程、口语跟读打分、文化 IP 特色内容（哪吒、原神、国产剧）。免费开始，无需信用卡。"},
   "sec-path":{"en":"Your learning path","zh":"你的学习路径"},
   "sec-path-sub":{"en":"Each lesson = Scenario dialogue → Vocabulary → Quiz → Speaking → Certificate. Progress saves automatically.","zh":"每课 = 情景对话 → 生词 → 测验 → 口语 → 结课。进度自动保存。"},
-  "news-title":{"en":"Get 1 free mini-lesson every day 📩","zh":"每天 1 节免费微课 📩"},
-  "news-p":{"en":"Join the newsletter — one 3-minute lesson + one culture tip, every morning.","zh":"订阅邮件列表 —— 每天早上 3 分钟微课 + 1 条文化小知识。"},
-  "news-ph":{"en":"your@email.com","zh":"你的邮箱"},
-  "news-btn":{"en":"Subscribe free","zh":"免费订阅"},
   "sec-price":{"en":"Simple pricing","zh":"简单透明的价格"},
   "sec-price-sub":{"en":"One-time annual payment. No subscription, no automatic renewal — price locked for life.","zh":"一次性年付，非订阅、不自动续费，价格终身锁定。"}
 };
@@ -992,16 +983,14 @@ const I18N = {
 let lang = localStorage.getItem("mh_lang") || "en";
 let cur = null, curStep = 0, quizState = [], speakOK = false, currentView = "home";
 
-/* 集成配置：留空 = 本地演示模式；填写后 = 真实后端 / 支付
- * Supabase：表 subscribers 需开启 RLS 并仅允许 anon 角色 INSERT(email, source, created_at)
- * Stripe：使用 Payment Link，切勿把 secret key 写进前端 */
+/* 集成配置：Supabase 用于邮箱登录与付费授权；支付使用 Waffo Payment Link。
+ * 切勿把 secret key 写进前端。 */
 const CONFIG = {
   SUPABASE_URL: "https://deyxyydabqtnjhggpwmt.supabase.co",
   SUPABASE_ANON_KEY: "sb_publishable_U8_GG2ALj9ACwd-bDNU4iA_rHNwqA6d",
-  NEWSLETTER_TABLE: "subscribers",
   PAYMENT_LINK: "", /* Waffo 正式支付链接：审核通过并切换正式环境后填入 */
   /* Waffo 审核通过、正式支付链接与生产环境 webhook 就绪后才改 true。
-     false 时付款入口显示 waitlist；付费内容始终由 entitlements 授权控制，与此标志无关。 */
+     false 时付款入口仅提示开通中；付费内容始终由 entitlements 授权控制，与此标志无关。 */
   PAYMENTS_ENABLED: false,
   /* 价格本地化：本站产品以 USD 计价，
      故主价保留美元（与真实扣款一致），下方显示"约合本币"参考行，绝不暗示按本币扣款。
@@ -1176,7 +1165,7 @@ async function submitLogin(){
   const el=document.getElementById("loginEmail");
   const v=(el||{}).value||"";
   if(!/^\S+@\S+\.\S+$/.test(v)){ toast(lang==="zh"?"请输入有效邮箱":"Please enter a valid email"); return; }
-  localStorage.setItem("mh_waitlist_email", v);
+  localStorage.setItem("mh_login_email", v);
   const ok=await AUTH.sendLink(v);
   toast(ok
     ? (lang==="zh"?"登录链接已发到你的邮箱，请点开完成登录 ✓":"Sign-in link sent — check your email ✓")
@@ -1324,16 +1313,6 @@ function renderHome(){
         <em>🔒 ${lang==="zh"?"Premium":"Premium"}</em>
       </a>
     </div>
-  </div>
-  <div class="news">
-    <div style="flex:1;min-width:240px">
-      <h3 data-i18n="news-title">${t("news-title")}</h3>
-      <p data-i18n="news-p">${t("news-p")}</p>
-    </div>
-    <div style="display:flex;gap:10px;flex:1;min-width:280px">
-      <input id="email" data-i18n-ph="news-ph" placeholder="${t("news-ph")}">
-      <button class="btn btn-gold" onclick="subscribe()">${t("news-btn")}</button>
-    </div>
   </div>`;
 }
 
@@ -1362,16 +1341,7 @@ function renderCourses(){
   document.getElementById("app").innerHTML = `
     <h2 class="sec">${t("sec-path")}</h2>
     <div class="sub">${t("sec-path-sub")}</div>
-    <div class="path">${cards}</div>
-    <div class="news">
-      <div style="flex:1;min-width:240px">
-        <h3>${t("news-title")}</h3><p>${t("news-p")}</p>
-      </div>
-      <div style="display:flex;gap:10px;flex:1;min-width:280px">
-        <input id="email" placeholder="${t("news-ph")}">
-        <button class="btn btn-gold" onclick="subscribe()">${t("news-btn")}</button>
-      </div>
-    </div>`;
+    <div class="path">${cards}</div>`;
 }
 
 function renderPricing(){
@@ -1728,98 +1698,16 @@ function renderReview(){
 }
 
 /* ================= 通用动作 ================= */
-async function subscribe(){
-  const v = (document.getElementById("email")||{}).value||"";
-  if(!/^\S+@\S+\.\S+$/.test(v)){ toast(lang==="zh"?"请输入有效邮箱":"Please enter a valid email"); return; }
-  localStorage.setItem("mh_subscribed", v);
-  if(!CONFIG.SUPABASE_URL || !CONFIG.SUPABASE_ANON_KEY){
-    toast("🎉 " + (lang==="zh"?"已本地保存（演示模式）：订阅成功！":"Saved locally (demo mode): subscribed!"));
-    return;
-  }
-  try{
-    const url = CONFIG.SUPABASE_URL.replace(/\/$/,"") + "/rest/v1/" + CONFIG.NEWSLETTER_TABLE;
-    const r = await fetch(url, {
-      method:"POST",
-      headers:{
-        "apikey": CONFIG.SUPABASE_ANON_KEY,
-        "Authorization": "Bearer " + CONFIG.SUPABASE_ANON_KEY,
-        "Content-Type": "application/json",
-        "Prefer": "return=minimal"
-      },
-      body: JSON.stringify({email:v, source:"mandarin-hub", created_at:new Date().toISOString()})
-    });
-    if(!r.ok) throw new Error("HTTP " + r.status);
-    toast("🎉 " + (lang==="zh"?"订阅成功！明天早上见！":"Subscribed! See you tomorrow morning!"));
-  }catch(e){
-    toast(lang==="zh"?"网络异常，邮箱已本地保存，稍后重试":"Network error — saved locally, will retry");
-  }
-}
 function checkout(){
   /* 付款入口：Waffo 审核通过前不开放收款；之后跳转 Waffo 支付链接。
      付费内容的可见性不依赖这个函数——由后端 entitlements 授权决定。 */
-  if(!CONFIG.PAYMENTS_ENABLED){ openWaitlist(); return; }
+  if(!CONFIG.PAYMENTS_ENABLED){
+    toast(lang==="zh"?"Premium 收款通道开通中，敬请期待":"Premium checkout is coming soon — stay tuned");
+    return;
+  }
   if(!AUTH.isLoggedIn()){ openLogin("Premium"); return; }
   if(CONFIG.PAYMENT_LINK){ window.location.href = CONFIG.PAYMENT_LINK; return; }
   toast(lang==="zh"?"支付链接未配置":"Payment link not configured");
-}
-
-/* ===== 付款意向登记（Waitlist）===== */
-function openWaitlist(){
-  let box=document.querySelector(".waitlist-modal");
-  if(box) box.remove();
-  box=document.createElement("div");box.className="certmodal waitlist-modal";
-  const saved=localStorage.getItem("mh_waitlist_email")||"";
-  box.innerHTML='<div class="certcard"><h3>'+
-    (lang==="zh"?"💳 抢先体验 Premium":"💳 Be first to unlock Premium")+'</h3>'+
-    '<p class="note">'+
-    (lang==="zh"
-      ?"支付通道正在开通中（周五上线）。留下邮箱，开通第一时间通知你 —— 登记用户享早鸟价，且现在就能优先体验全部课程。"
-      :"Payments open this Friday. Leave your email and we'll notify you the moment it's live — early-bird pricing for early supporters.")+
-    '</p>'+
-    '<div class="certmeta">'+
-    (lang==="zh"
-      ?"✓ 全部 50 节系统课 + 39 节情境对话　✓ HSK 1–6 模考　✓ AI 口语评分　✓ 数字结业证书"
-      :"✓ 50 structured lessons + 39 story dialogues  ✓ HSK 1–6 mock exams  ✓ AI speaking score  ✓ Certificate")+
-    '</div>'+
-    '<label>'+(lang==="zh"?"你的邮箱 / Your email":"Your email")+'</label>'+
-    '<input id="waitlistEmail" type="email" placeholder="you@example.com" value="'+saved+'">'+
-    '<div class="certbtns"><button class="btn btn-ghost" onclick="this.closest(\'.certmodal\').remove()">'+
-    (lang==="zh"?"稍后":"Later")+'</button>'+
-    '<button class="btn btn-red" onclick="submitWaitlist()">'+
-    (lang==="zh"?"登记并通知我 ✓":"Notify me ✓")+'</button></div></div>';
-  document.body.appendChild(box);
-  setTimeout(function(){const el=document.getElementById("waitlistEmail");if(el&&!saved)el.focus();},80);
-}
-
-async function submitWaitlist(){
-  const el=document.getElementById("waitlistEmail");
-  const v=(el||{}).value||"";
-  if(!/^\S+@\S+\.\S+$/.test(v)){ toast(lang==="zh"?"请输入有效邮箱":"Please enter a valid email"); return; }
-  localStorage.setItem("mh_waitlist_email", v);
-  if(!CONFIG.SUPABASE_URL || !CONFIG.SUPABASE_ANON_KEY){
-    toast(lang==="zh"?"已登记（演示模式）":"Registered (demo mode)");
-    const b=document.querySelector(".waitlist-modal");if(b)b.remove();
-    return;
-  }
-  try{
-    const url=CONFIG.SUPABASE_URL.replace(/\/$/,"")+"/rest/v1/"+CONFIG.NEWSLETTER_TABLE;
-    const r=await fetch(url,{
-      method:"POST",
-      headers:{
-        "apikey":CONFIG.SUPABASE_ANON_KEY,
-        "Authorization":"Bearer "+CONFIG.SUPABASE_ANON_KEY,
-        "Content-Type":"application/json",
-        "Prefer":"resolution=ignore-duplicates,return=minimal"
-      },
-      body:JSON.stringify({email:v, source:"payment-intent", created_at:new Date().toISOString()})
-    });
-    if(!r.ok) throw new Error("HTTP "+r.status);
-    toast(lang==="zh"?"🎉 登记成功！开通第一时间通知你":"🎉 You're on the list! We'll notify you when live.");
-    const b=document.querySelector(".waitlist-modal");if(b)b.remove();
-  }catch(e){
-    toast(lang==="zh"?"已本地保存邮箱，稍后重试":"Saved locally, will retry");
-    const b=document.querySelector(".waitlist-modal");if(b)b.remove();
-  }
 }
 function toggleLang(){
   lang = lang==="en" ? "zh" : "en";
