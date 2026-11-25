@@ -985,7 +985,7 @@ const I18N = {
   "news-ph":{"en":"your@email.com","zh":"你的邮箱"},
   "news-btn":{"en":"Subscribe free","zh":"免费订阅"},
   "sec-price":{"en":"Simple pricing","zh":"简单透明的价格"},
-  "sec-price-sub":{"en":"Early-bird annual price locked for life. Cancel anytime.","zh":"早鸟年费价格终身锁定，随时可取消。"}
+  "sec-price-sub":{"en":"One-time annual payment. No subscription, no automatic renewal — price locked for life.","zh":"一次性年付，非订阅、不自动续费，价格终身锁定。"}
 };
 
 /* ================= 状态 ================= */
@@ -999,11 +999,11 @@ const CONFIG = {
   SUPABASE_URL: "https://deyxyydabqtnjhggpwmt.supabase.co",
   SUPABASE_ANON_KEY: "sb_publishable_U8_GG2ALj9ACwd-bDNU4iA_rHNwqA6d",
   NEWSLETTER_TABLE: "subscribers",
-  PAYMENT_LINK: "https://www.creem.io/product/prod_6o8Am1r3r09BRnhcTZApUL",
-  /* Creem KYC 通过、webhook 部署完成后才改 true。
+  PAYMENT_LINK: "", /* Waffo 正式支付链接：审核通过并切换正式环境后填入 */
+  /* Waffo 审核通过、正式支付链接与生产环境 webhook 就绪后才改 true。
      false 时付款入口显示 waitlist；付费内容始终由 entitlements 授权控制，与此标志无关。 */
   PAYMENTS_ENABLED: false,
-  /* 价格本地化：Creem 产品仅支持 USD/EUR 单一币种定价，本站产品以 USD 计价，
+  /* 价格本地化：本站产品以 USD 计价，
      故主价保留美元（与真实扣款一致），下方显示"约合本币"参考行，绝不暗示按本币扣款。
      汇率为近似参考值（非实时），更新处仅此一处。*/
   PRICE_USD: 39,
@@ -1035,13 +1035,13 @@ function localPriceLine(usd){
 }
 function payMethodsLine(){
   return lang==="zh"
-    ? '<div class="pay-note">🔒 由 <b>Creem</b> 安全结账 · 支持 Visa / Mastercard / Apple Pay / Google Pay 及你所在地区的本地支付方式 · 汇率由发卡行按实时牌价换算</div>'
-    : '<div class="pay-note">🔒 Secure checkout by <b>Creem</b> · Visa / Mastercard / Apple Pay / Google Pay and local payment methods in your region · your bank converts at the live rate</div>';
+    ? '<div class="pay-note">🔒 由 <b>Waffo</b> 安全结账 · 支持 Visa / Mastercard / Apple Pay / Google Pay 及你所在地区的本地支付方式 · 汇率由发卡行按实时牌价换算</div>'
+    : '<div class="pay-note">🔒 Secure checkout by <b>Waffo</b> · Visa / Mastercard / Apple Pay / Google Pay and local payment methods in your region · your bank converts at the live rate</div>';
 }
 
 /* ===== 用户级付费鉴权（内容不存前端，按 Supabase 授权拉取）=====
    付费内容全部存 Supabase premium_content 表，仅 RLS 允许已授权用户读取。
-   没有任何"日期到点自动解锁"的开关——付款功能何时启用由 Creem webhook 写入
+   没有任何"日期到点自动解锁"的开关——付款功能何时启用由 Waffo webhook 写入
    entitlements 决定；用户未登录/未付款时，前端根本没有付费内容数据。 */
 const ACCESS = {
   PREM_LESSONS: ["L4","L5","L6","L7","L8","L9"],
@@ -1396,7 +1396,7 @@ function renderPricing(){
     <div class="plan hot">
       <h3>Premium</h3><div class="price">$39<small style="font-size:14px;color:#6b7280">/yr</small></div>
       ${localPriceLine(39)}
-      <p style="font-size:12px;color:#9ca3af">($11.99/mo after launch · price locked for life)</p>
+      <p style="font-size:12px;color:#9ca3af">One-time payment · no subscription · price locked for life</p>
       <ul>
         <li>Everything in Free</li>
         <li>All 51 scenario dialogues (L1–L9) unlocked</li>
@@ -1755,7 +1755,7 @@ async function subscribe(){
   }
 }
 function checkout(){
-  /* 付款入口：Creem KYC 通过前不开放收款；之后跳转 Creem。
+  /* 付款入口：Waffo 审核通过前不开放收款；之后跳转 Waffo 支付链接。
      付费内容的可见性不依赖这个函数——由后端 entitlements 授权决定。 */
   if(!CONFIG.PAYMENTS_ENABLED){ openWaitlist(); return; }
   if(!AUTH.isLoggedIn()){ openLogin("Premium"); return; }
