@@ -1099,8 +1099,10 @@ const AUTH = {
         headers:Object.assign(this.headers(), {"Content-Type":"application/json"}),
         body:JSON.stringify({ email:email, create_user:true, email_redirect_to:location.origin+location.pathname })
       });
-      return r.ok;
-    }catch(e){ return false; }
+      if(r.ok) return "ok";
+      let j={}; try{ j=await r.json(); }catch(e){}
+      return j.error_code || ("http_"+r.status);
+    }catch(e){ return "network"; }
   },
   /* 启动：解析 token → 取用户 → 查授权 → 拉内容 */
   init: async function(){
@@ -1166,10 +1168,13 @@ async function submitLogin(){
   const v=(el||{}).value||"";
   if(!/^\S+@\S+\.\S+$/.test(v)){ toast(lang==="zh"?"请输入有效邮箱":"Please enter a valid email"); return; }
   localStorage.setItem("mh_login_email", v);
-  const ok=await AUTH.sendLink(v);
-  toast(ok
-    ? (lang==="zh"?"登录链接已发到你的邮箱，请点开完成登录 ✓":"Sign-in link sent — check your email ✓")
-    : (lang==="zh"?"发送失败，请稍后重试":"Failed to send, please retry"));
+  const res=await AUTH.sendLink(v);
+  let msg;
+  if(res==="ok") msg = lang==="zh"?"登录链接已发到你的邮箱，请点开完成登录 ✓":"Sign-in link sent — check your email ✓";
+  else if(res==="over_email_send_rate_limit") msg = lang==="zh"?"邮件发送过于频繁，请稍后再试（约 1 小时）":"Too many sign-in requests right now. Please try again in about an hour.";
+  else if(res==="network") msg = lang==="zh"?"网络异常，请重试":"Network error. Please try again.";
+  else msg = lang==="zh"?"发送失败，请稍后重试":"Could not send the link. Please try again.";
+  toast(msg);
   const b=document.querySelector(".login-modal");if(b)b.remove();
 }
 function doSignOut(){ AUTH.signOut(); toast(lang==="zh"?"已退出":"Signed out"); go(currentView, cur?cur.id:undefined); }
