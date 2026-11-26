@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<title>L7–L9 高阶汉语 · 情境连续对话 | HanziFace Premium</title>
-<meta name="description" content="HanziFace Premium：L7-L9 高阶汉语情境连续对话，12 课 HSK6+ 深度内容，固定角色、分支剧情、三语对照、文化点。">
+<title>L7–L9 Advanced Chinese · Story-based conversations | HanziFace Premium</title>
+<meta name="description" content="HanziFace Premium L7–L9 Advanced Chinese: 12 story-based lessons (HSK 6+), complex plots, trilingual text and advanced discussion of culture and professional topics.">
 <style>
 :root{--red:#c0392b;--red-dark:#96281b;--gold:#d4a017;--ink:#1f2937;--muted:#6b7280;--line:#e7e2d8;--bg:#faf7f0;--card:#fff;--green:#2e7d32;--blue:#185fa5;--purple:#7b4ea0;--teal:#1f8a70}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -103,7 +103,7 @@ footer{text-align:center;color:#9ca3af;font-size:12px;padding:20px;line-height:1
   <div class="dlg" id="dlg"></div>
   <div class="controls" id="controls"></div>
 </main>
-<footer>情境连续对话 · L7–L9 高阶汉语（12 课 · Premium）<br>固定角色 + 连续剧情 + 分支选择 + 文化点 · HSK6+ 思辨与专业内容<br>Support: <a href="mailto:zzf200912@163.com" style="color:inherit;text-decoration:underline">zzf200912@163.com</a> · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a> · <a href="terms.html" style="color:inherit;text-decoration:underline">Terms of Service</a></footer>
+<footer>Story-based conversations · L7–L9 Advanced Chinese (12 lessons · Premium)<br>Recurring characters + continuous plot + branching choices + culture notes · HSK 6+ advanced and professional content<br>Support: <a href="mailto:zzf200912@163.com" style="color:inherit;text-decoration:underline">zzf200912@163.com</a> · <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a> · <a href="terms.html" style="color:inherit;text-decoration:underline">Terms of Service</a></footer>
 
 <script>
 const ROLES={
@@ -226,18 +226,18 @@ if(COURSES.length) render();
   <div class="gcard">
     <div class="glogo">HANZIFACE · PREMIUM</div>
     <div class="gicon">🔒</div>
-    <h2>L7–L9 高阶汉语 · 12 课</h2>
-    <p>这套情境连续对话属于 <b style="color:#e8c96b">Premium 会员</b>内容，请先登录；已购买用户将自动解锁，未购买用户可前往主站了解会员方案。</p>
+    <h2>L7–L9 Advanced Chinese · 12 lessons</h2>
+    <p>This story-based course is part of <b style="color:#e8c96b">Premium</b>. Sign in to unlock — paying members get instant access.</p>
     <ul class="glist">
-      <li>✅ 固定角色 + 连续剧情 + 分支选择</li>
-      <li>✅ 中文 / 拼音 / 英文三语对照 + 语音朗读</li>
-      <li>✅ 文化点注释 · HSK 进阶表达</li>
+      <li>✓ Recurring characters, continuous plot &amp; branching choices</li>
+      <li>✓ Chinese / pinyin / English side by side + audio</li>
+      <li>✓ Culture notes &amp; HSK-aligned expressions</li>
     </ul>
     <div>
-      <a class="btn" href="index.html">查看会员方案 →</a>
-      <a class="btn ghost" href="index.html">← 返回主站</a>
+      <a class="btn" href="index.html">See Premium plans →</a>
+      <a class="btn ghost" href="index.html">← Back to home</a>
     </div>
-    <p style="font-size:12px;color:#8f9bb3;margin-top:18px">Sign in to unlock · 已购买用户登录后自动解锁</p>
+    <p style="font-size:12px;color:#8f9bb3;margin-top:18px">Sign in to unlock · New here? <a href="index.html" style="color:#e8c96b">View plans</a></p>
   </div>
 </div>
 <script>
@@ -268,22 +268,22 @@ if(COURSES.length) render();
     const body=document.querySelector("#gate .gcard");
     if(!body) return;
     body.innerHTML='<div class="glogo">HANZIFACE · PREMIUM</div>'+
-      '<div class="gicon">🔐</div><h2>L7–L9 高阶汉语 · 12 课</h2>'+
-      '<p>本套情境对话属于 <b style="color:#e8c96b">Premium 会员</b>内容。请登录以验证购买状态；已购买用户自动解锁全部课程。</p>'+
+      '<div class="gicon">🔐</div><h2>L7–L9 Advanced Chinese · 12 lessons</h2>'+
+      '<p>Sign in with the email you purchased with. Your Premium access unlocks automatically — no password needed.</p>'+
       '<div style="max-width:360px;margin:22px auto 0;text-align:left">'+
-      '<label style="display:block;font-size:13px;color:#aab4c8;margin-bottom:6px">邮箱 / Email</label>'+
+      '<label style="display:block;font-size:13px;color:#aab4c8;margin-bottom:6px">Email address</label>'+
       '<input id="scLoginEmail" type="email" placeholder="you@example.com" style="width:100%;padding:12px 14px;border-radius:8px;border:1px solid #3a4661;background:#1a2338;color:#fff;font-size:15px">'+
-      '<button onclick="window.__scSendLink()" style="width:100%;margin-top:12px;padding:12px;border:0;border-radius:8px;background:linear-gradient(135deg,#d4af37,#e8c96b);color:#0d203c;font-weight:700;font-size:15px;cursor:pointer">发送登录链接 →</button>'+
+      '<button onclick="window.__scSendLink()" style="width:100%;margin-top:12px;padding:12px;border:0;border-radius:8px;background:linear-gradient(135deg,#d4af37,#e8c96b);color:#0d203c;font-weight:700;font-size:15px;cursor:pointer">Send sign-in link →</button>'+
       '<p id="scLoginMsg" style="font-size:12px;color:#aab4c8;margin-top:12px;text-align:center"></p>'+
-      '</div><div style="margin-top:20px"><a class="btn ghost" href="index.html">← 返回主站</a></div>';
+      '</div><div style="margin-top:20px"><a class="btn ghost" href="index.html">← Back to home</a></div>';
   }
   window.__scSendLink=async function(){
     const el=document.getElementById("scLoginEmail"), v=(el||{}).value||"";
-    if(!/^\S+@\S+\.\S+$/.test(v)){ document.getElementById("scLoginMsg").textContent="请输入有效邮箱 / Enter a valid email"; return; }
+    if(!/^\S+@\S+\.\S+$/.test(v)){ document.getElementById("scLoginMsg").textContent="Please enter a valid email address"; return; }
     try{
       const r=await fetch(URL+"/auth/v1/otp",{method:"POST",headers:headers(),body:JSON.stringify({email:v,create_user:true,email_redirect_to:location.origin+location.pathname})});
-      document.getElementById("scLoginMsg").textContent=r.ok?"登录链接已发送，请查收邮件 ✓ / Check your email":"发送失败，请重试 / Failed, please retry";
-    }catch(e){ document.getElementById("scLoginMsg").textContent="网络异常，请重试 / Network error"; }
+      let msg; if(r.ok) msg="Sign-in link sent. Check your inbox ✓"; else { let j={}; try{ j=await r.json(); }catch(e){} msg = j.error_code==="over_email_send_rate_limit" ? "Too many requests. Please try again in a few minutes." : "Could not send the link. Please try again."; } document.getElementById("scLoginMsg").textContent=msg;
+    }catch(e){ document.getElementById("scLoginMsg").textContent="Network error. Please try again."; }
   };
   async function init(){
     restore(); const fromHash=parseHash();
