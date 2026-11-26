@@ -989,9 +989,9 @@ const CONFIG = {
   SUPABASE_URL: "https://deyxyydabqtnjhggpwmt.supabase.co",
   SUPABASE_ANON_KEY: "sb_publishable_U8_GG2ALj9ACwd-bDNU4iA_rHNwqA6d",
   PAYMENT_LINK: "https://pancake.waffo.ai/store/hanziface-w5tzycv1/product/PROD_5u78vscLzEULZydTyAHU3v?type=onetime&currency=USD", /* Waffo 正式支付链接（生产环境，$39/年）*/
-  /* Waffo 审核通过、正式支付链接与生产环境 webhook 就绪后才改 true。
-     false 时付款入口仅提示开通中；付费内容始终由 entitlements 授权控制，与此标志无关。 */
-  PAYMENTS_ENABLED: false,
+  /* 2026-11-26：生产 webhook 与真实支付授权已验证通过，付款入口开放。
+     付费内容的可见性始终由后端 entitlements 决定，与此开关无关。 */
+  PAYMENTS_ENABLED: true,
   /* 价格本地化：本站产品以 USD 计价，
      故主价保留美元（与真实扣款一致），下方显示"约合本币"参考行，绝不暗示按本币扣款。
      汇率为近似参考值（非实时），更新处仅此一处。*/
