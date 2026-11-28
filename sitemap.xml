@@ -6,57 +6,57 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/es.html</loc>
+    <loc>https://hanziface.com/es</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/de.html</loc>
+    <loc>https://hanziface.com/de</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/fr.html</loc>
+    <loc>https://hanziface.com/fr</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/scenario-l1.html</loc>
+    <loc>https://hanziface.com/scenario-l1</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/scenario-l2-l3.html</loc>
+    <loc>https://hanziface.com/scenario-l2-l3</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/scenario-l4-l6.html</loc>
+    <loc>https://hanziface.com/scenario-l4-l6</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/scenario-l7-l9.html</loc>
+    <loc>https://hanziface.com/scenario-l7-l9</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/market-report.html</loc>
+    <loc>https://hanziface.com/market-report</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/privacy.html</loc>
+    <loc>https://hanziface.com/privacy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/terms.html</loc>
+    <loc>https://hanziface.com/terms</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://hanziface.com/learn-chinese-through-dramas.html</loc>
+    <loc>https://hanziface.com/learn-chinese-through-dramas</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
